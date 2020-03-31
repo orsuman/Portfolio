@@ -19,6 +19,9 @@
 <上記にもありますが、身近な人に相談しにくい事例や、軽犯罪被害に遭ったけどどうすれば良いのかわからない方が、この質問サイトで匿名で相談することができます。>
 
 ## 設計書
+
+<ER図　https://drive.google.com/file/d/1vjrIjlhdsnOZU5pv6quy2NgiLeZfnqVi/view?usp=sharing>
+
 <✨Admin（サイト管理者）
 ・カテゴリー管理
 ・ユーザー管理 ･･･ 強制退会制度、悪質な質問を削除
@@ -46,14 +49,15 @@
 ・記事(Article)
 
 📦カラム
-・Devise(Admin) ･･･ :id_name, :passwordをseedで設定（登録画面は非表示！！）
-・Devise(Lawyers) ･･･ :mail, :password, :family_name, :name, :profession, :sex, :profile, :credit_number, :credit_month, :credit_year, :credit_name, :postal_code, :prefecture, :address, :profile_image, :deleted_at
-・Devise(Users) ･･･ :mail, :password, :family_name, :name, family_name_kana, name_kana, :nickname, :age, :prefecture, :city, :profile_image, :deleted_at
+・Devise(Admin) ･･･ :id_name, :passwordをseedで設定（登録画面は非表示！！）,:mail
+・Devise(Lawyers) ･･･ :mail, :password, :name, :name_kana, :profession, :sex, :profile, :credit_number, :credit_month, :credit_year, :credit_name, :postal_code, :prefecture, :address, :profile_image, :deleted_at
+・Devise(Users) ･･･ :mail, :password, :name, :name_kana, :nickname, :age, :prefecture, :city, :profile_image, :deleted_at
 ・Trouble ･･･ :title, :body, :category_id, :image_id
 ・Comment ･･･ :title, :comment
 ・Reference ･･･ :reference
+・Article ･･･ :title, :body, :image_id
 ・Category ･･･ :name, :is_active
-・Chat ･･･ :room, :lawyer
+・Chat ･･･ :room, :user
 
 🖥ページ(アクション)
 ・Home ･･･ top(ログイン画面誘導)
