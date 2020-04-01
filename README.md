@@ -19,7 +19,7 @@
  上記にもありますが、身近な人に相談しにくい事例や、軽犯罪被害に遭ったけどどうすれば良いのかわからない方が、この質問サイトで匿名で相談することができます。
 
 ## 設計書
- 以下に設計書の詳細リンクを記載しております。
+ 以下に、設計書の詳細リンクを記載しております。
 
 ### 機能一覧
  https://docs.google.com/spreadsheets/d/1wjvZuUAIdml-vEE73Jd0cJARbH-wJyIR3sAC7rD0X1g/edit?usp=sharing
