@@ -1,0 +1,2 @@
+module Lawyers::LawyersHelper
+end

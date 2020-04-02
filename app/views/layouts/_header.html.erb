@@ -1,0 +1,18 @@
+<header>
+  <div class="container">
+    <nav>
+      <span>気軽にできる！法律相談所</span>
+    </nav>
+      <!-----管理者ログイン後----->
+      <% if admin_signed_in? %>
+      <!-----先生ログイン後----->
+      <% elsif lawyer_signed_in? %>
+      <!-----利用者ログイン後----->
+      <% elsif user_signed_in? %>
+      <!-----特定のページ設定----->
+      <% elsif request.path == new_admin_session_path %>
+      <!-----その他----->
+      <% else %>
+      <% end %>
+  </div>
+</header>

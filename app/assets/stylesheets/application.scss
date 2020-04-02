@@ -13,3 +13,22 @@
  *= require_tree .
  *= require_self
  */
+
+    @import "bootstrap-sprockets";
+    @import "bootstrap";
+
+header {
+	background-color: #FFDAB9;
+	width: 100%;
+	height: 100px;
+}
+
+.required {
+	color: red;
+}
+.recommendation {
+	color: blue;
+}
+.subject {
+	background-color: #e6e6fa;
+}

@@ -1,0 +1,17 @@
+<div class = "container">
+  <div class = "row">
+  	<div class = "col-xs-7 col-xs-offset-2">
+      <h2>以下の該当するものをクリックしてください</h2>
+    </div>
+
+    <div class = "col-xs-3 col-xs-offset-3">
+      <h4><%=link_to '管理者ログイン', new_admin_session_path %> <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></h4>
+
+      <h3>士業の先生の方</h3>
+      <h4><%=link_to '先生ログイン', new_lawyer_session_path %></h4>
+      <h4><%=link_to '先生新規登録', new_lawyer_registration_path %></h4>
+
+      <h3>先生に相談したい方</h3>
+      <h4><%=link_to '相談者ログイン', new_user_session_path %></h4>
+      <h4><%=link_to '相談者新規登録', new_user_registration_path %></h4>
+    </div>
