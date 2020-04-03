@@ -1,0 +1,86 @@
+<div class = "container">
+  <div class = "row">
+
+  	<div class="col-xs-6 col-xs-offset-2">
+      <h2><span class = "subject">カテゴリー一覧・追加</span></h2></br>
+        <div>
+          <% if @category.errors.any? %>
+            <div class= "error">
+              <div id="error_explanation">
+                <h3>
+                  <%= pluralize(@category.errors.count, "error") %>
+                  prohibited this category from being saved:
+                </h3>
+                  <% @category.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                  <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+    </div>
+
+    <div class="col-xs-5 col-xs-offset-2">
+
+  		  <%= form_for(@category, url: admin_categories_path) do |f| %>
+
+  		    <div class="field">
+  		      <%= f.label :カテゴリー名, class:"col-xs-4" %>
+  		      <%= f.text_field :name, class:"col-xs-5" %>
+  		    </div></br></br>
+
+          <div class="field">
+            <%= f.label :ステータス, class:"col-xs-4" %>
+            <span class= "col-xs-2">
+  		      <%= f.radio_button :is_active, true %>
+  		      <%= f.label :有効 %>
+  		      </span>
+  		      <span class= "col-xs-3">
+  		      <%= f.radio_button :is_active, false %>
+  		      <%= f.label :無効 %>
+  		      </span>
+  		      <span class= "col-xs-3">
+  		      <%= f.submit "追加する" %>
+  		      </span>
+  		    </div>
+
+  		  <% end %>
+
+  	</div>
+  </div></br></br>
+
+  <div class = "row">
+  	<div class="col-xs-6 col-xs-offset-2">
+
+  	    <table ~~~ class = "table">
+
+          <colgroup>
+             <col style = "width:45%;">
+             <col style = "width:35%;">
+             <col style = "width:20%;">
+          </colgroup>
+
+  		    <tr class= "info">
+  			  <th class = "text-center">カテゴリー</th>
+  			  <th class = "text-center">ステータス</th>
+  			  <th></th>
+  		    </tr>
+  		  <% @categories.each do |category| %>
+  		    <tr>
+  			  <td class = "text-center"><%= category.name %></td>
+  			  <td class = "text-center">
+  			    <% if category.is_active == true %>
+  				  <p>有効</p>
+  				<%else%>
+  				  <p>無効</p>
+  				<%end%>
+  			  </td>
+  			  <td>
+  				<%= link_to "編集する", edit_admin_category_path(category), class: "btn btn-success" %>
+  			  </td>
+  		    </tr>
+  		  <%end%>
+  	    </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,2 @@
+module Lawyers::UsersHelper
+end

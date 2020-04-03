@@ -1,0 +1,58 @@
+<div class = "container">
+  <div class = "row">
+
+  	<div class="col-xs-6 col-xs-offset-2">
+      <h2><span class = "subject">先生に相談してみる</span></h2></br>
+        <div>
+          <% if @trouble.errors.any? %>
+            <div class= "error">
+              <div id="error_explanation">
+                <h3>
+                  <%= pluralize(@trouble.errors.count, "error") %>
+                  prohibited this category from being saved:
+                </h3>
+                  <% @trouble.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                  <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+    </div>
+
+    <div class="col-xs-7 col-xs-offset-2">
+
+      <%= form_for(@trouble, url: confirm_troubles_path) do |f| %>
+
+      　 <div class="field">
+          <%= f.label :カテゴリー, class:"col-xs-2" %>
+          <%= f.collection_select :category_id, @categories, :id, :name, :prompt => "選択" %>
+        </div></br>
+
+        <div class="field">
+          <%= f.label :説明の写真, class:"col-xs-12" %>
+          <%= f.attachment_field :image, class:"col-xs-5" %>
+        </div></br></br>
+
+        <div class="field"></br>
+          <%= f.label :タイトル, class:"col-xs-12" %><br/>
+          <%= f.text_field :title, class:"col-xs-7",placeholder: "※20文字以内で入力してください" %>
+        </div></br></br>
+
+        <div class="field">
+          <%= f.label :投稿内容, class:"col-xs-12" %>
+          <%= f.text_area :body, class:"col-xs-12",size:'15x15',placeholder: "※2000文字以内で入力してください" %>
+        </div>
+
+    </div>
+
+    <div class="col-xs-7 col-xs-offset-2"><br/>
+
+        <div class="actions">
+          <%= f.submit "投稿内容を確認する", class:"btn btn-primary col-xs-12" %>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>

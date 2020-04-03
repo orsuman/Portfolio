@@ -1,30 +1,16 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-5 col-xs-offset-2 devise">
-      <h2><span class="subject">相談者として、新規登録する</span></h2><br/>
+      <h2><span class="subject">ユーザー情報を編集する</span></h2><br/>
     </div>
 
     <div class="col-xs-10 col-xs-offset-3">
 
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
+      <%= form_for(current_user) do |f| %>
 
         <div class="field">
           <%= f.label :メールアドレス %> <span class="required">※必須</span><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-xs-3" %>
-        </div></br></br>
-
-        <div class="field">
-          <%= f.label :パスワード %>
-          <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> 文字以上)</em>
-          <% end %> <span class="required">※必須</span><br />
-          <%= f.password_field :password, autocomplete: "new-password", class:"col-xs-3" %>
-        </div></br></br>
-
-        <div class="field">
-          <%= f.label :パスワード確認 %>（もう一度入力）<span class="required">※必須</span><br />
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"col-xs-3" %>
         </div></br></br>
 
         <div class="field">
@@ -62,13 +48,22 @@
           <%= f.text_field :city, autofocus: true, autocomplete: "city"%>
         </div></br>
 
+        <div class = "field">
+          <%= f.label :プロフィール写真 %>
+          <%= f.attachment_field :image %>
+        </div></br>
+
         <div class="actions">
-          <%= f.submit "以上の情報で登録する", class: "btn btn-info col-xs-3" %>
+          <%= f.submit "以上の情報で更新する", class: "btn btn-info col-xs-3" %>
         </div>
       <% end %></br></br></br>
 
         <div class="actions">
-          <%= link_to "< 登録せずに戻る", root_path %>
+          <%= link_to "退会する", '', class: "btn btn-danger col-xs-1" %>
+        </div></br></br></br>
+
+        <div class="actions">
+          <%= link_to "< 更新せずに戻る", user_path %>
         </div></br></br>
 
     </div>

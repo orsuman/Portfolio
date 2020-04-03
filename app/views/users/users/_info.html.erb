@@ -1,0 +1,46 @@
+<table ~~~ class = "table text-center">
+
+  <colgroup>
+     <col style = "width:40%;">
+     <col style = "width:60%;">
+  </colgroup>
+
+    <tr>
+      <th>写真</th>
+      <td><%= attachment_image_tag(user, :image, :fill, 200, 200, size:'150x150') %></td>
+    </tr>
+  <% if lawyer_signed_in? %>
+    <tr>
+      <th>姓・名</th>
+      <td><%= user.name %></td>
+    </tr>
+  <% end %>
+    <tr>
+      <th>名前</th>
+      <td><%= user.nickname %></td>
+    </tr>
+    <tr>
+      <th>性別</th>
+      <td>
+          <% if user.sex == true %>
+            男性
+          <% else %>
+            女性
+          <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th>県</th>
+      <td><%= user.prefecture %></td>
+    </tr>
+  <% if lawyer_signed_in? %>
+    <tr>
+      <th>市</th>
+      <td><%= user.city %></td>
+    </tr>
+  <% end %>
+</table></br>
+
+<% if user_signed_in? %>
+  <%= link_to '編集する', edit_user_path, class: "btn btn-success col-xs-12" %>
+<% end %>

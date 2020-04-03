@@ -1,0 +1,23 @@
+<div class = "container">
+  <div class = "row">
+
+    <div class="col-xs-6 col-xs-offset-2">
+      <h2><span class = "subject">相談事例</span></h2></br>
+    </div>
+
+    <div class="col-xs-7 col-xs-offset-2">
+
+        <label class="col-xs-3">相談者の名前</label>
+          <span class ="col-xs-9"><%= @trouble.user.nickname %></span>
+        <label class="col-xs-3">カテゴリー</label>
+          <span class ="col-xs-9"><%= @trouble.category.name %></span>
+        <label class="col-xs-12">説明写真</label>
+          <span class ="col-xs-12"><%= attachment_image_tag @trouble, :image, :fill, 200, 200, size:'280x150' %></span>
+        <label class="col-xs-12">タイトル</label>
+          <span class ="col-xs-7"><%= @trouble.title %></span>
+        <label class="col-xs-12">投稿内容</label>
+          <span class ="col-xs-12"><%= @trouble.body%></span>
+
+    </div>
+  </div>
+</div>

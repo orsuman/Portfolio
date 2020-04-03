@@ -1,18 +1,42 @@
 <header>
   <div class="container">
-    <nav>
-      <span>気軽にできる！法律相談所</span>
-    </nav>
-      <!-----管理者ログイン後----->
-      <% if admin_signed_in? %>
-      <!-----先生ログイン後----->
-      <% elsif lawyer_signed_in? %>
-      <!-----利用者ログイン後----->
-      <% elsif user_signed_in? %>
-      <!-----特定のページ設定----->
-      <% elsif request.path == new_admin_session_path %>
-      <!-----その他----->
+    <nav class="clearfix">
+
+      <% if admin_signed_in? || lawyer_signed_in? || user_signed_in?  %>
+        <span><%=link_to home_about_path do%>気軽にできる！法律相談所<% end %></span>
       <% else %>
+        <span><%=link_to root_path do%>気軽にできる！法律相談所<% end %></span>
       <% end %>
+
+      <ul class="header-links">
+        <!-----管理者ログイン後----->
+        <% if admin_signed_in? %>
+          <li class="header-link"><%= link_to '先生一覧', '' %></li>
+          <li class="header-link"><%= link_to '相談一覧', troubles_path %></li>
+          <li class="header-link"><%= link_to '相談投稿一覧', '' %></li>
+          <li class="header-link"><%= link_to 'コメント一覧', '' %></li>
+          <li class="header-link"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+        <!-----先生ログイン後----->
+        <% elsif lawyer_signed_in? %>
+          <li class="header-link"><%= link_to 'マイページ', '' %></li>
+          <li class="header-link"><%= link_to '相談一覧', troubles_path %></li>
+          <li class="header-link"><%= link_to 'コメント一覧', '' %></li>
+          <li class="header-link"><%= link_to 'コラム一覧', '' %></li>
+          <li class="header-link"><%= link_to 'ログアウト', destroy_lawyer_session_path, method: :delete %></li>
+        <!-----利用者ログイン後----->
+        <% elsif user_signed_in? %>
+          <li class="header-link"><%= link_to 'マイページ', user_path %></li>
+          <li class="header-link"><%= link_to '相談する', new_trouble_path %></li>
+          <li class="header-link"><%= link_to '相談一覧', troubles_path %></li>
+          <li class="header-link"><%= link_to 'コラム一覧', '' %></li>
+          <li class="header-link"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+        <!-----その他----->
+        <% else %>
+          <li class="header-link"><%= link_to 'サイト説明', home_about_path %></li>
+          <li class="header-link"><%= link_to '先生ログイン', new_lawyer_session_path %></li>
+          <li class="header-link"><%= link_to '相談者ログイン', new_user_session_path %></li>
+        <% end %>
+      </ul>
+    </nav>
   </div>
 </header>

@@ -1,6 +1,6 @@
 class Users::TroublesController < ApplicationController
 
-	before_action :authenticate_user!,only: [:new, :confirm, :create]
+	before_action :authenticate_user!,only: [:new, :confirm, :create, :back]
 
 	def index
 	   @troubles = Trouble.all
@@ -8,17 +8,26 @@ class Users::TroublesController < ApplicationController
 
 	def new
 	   @trouble = Trouble.new
-	   @user = User.find(current_user.id)
+	   @categories = Category.all
 	end
 
 	def confirm
 	   @trouble = Trouble.new(trouble_params)
-	   @trouble.user.id = current_user.id
+	   @trouble.user_id = current_user.id
+       return if @trouble.valid?
+         @categories = Category.all
+         render :new
+	end
+
+	def back
+       @trouble = Trouble.new(trouble_params)
+	   @categories = Category.all
+       render :new
 	end
 
 	def create
 	   @trouble = Trouble.new(trouble_params)
-	   @trouble.user.id = current_user.id
+	   @trouble.user_id = current_user.id
 	     if @trouble.save
 	     	redirect_to @trouble
 	     else
@@ -33,7 +42,7 @@ class Users::TroublesController < ApplicationController
 
 	private
 	  def trouble_params
-	  	 params.require(:trouble).permit(:title, :body, :image)
+	  	 params.require(:trouble).permit(:title, :body, :image, :category_id)
 	  end
 
 end

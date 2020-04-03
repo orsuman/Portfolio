@@ -1,0 +1,57 @@
+<div class = "container">
+  <div class = "row">
+
+    <div class="col-xs-6 col-xs-offset-2">
+      <h2><span class = "subject">投稿内容を確認する</span></h2></br>
+        <div>
+          <% if @trouble.errors.any? %>
+            <div class= "error">
+              <div id="error_explanation">
+                <h3>
+                  <%= pluralize(@trouble.errors.count, "error") %>
+                  prohibited this category from being saved:
+                </h3>
+                  <% @trouble.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                  <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+    </div>
+
+    <div class="col-xs-7 col-xs-offset-2">
+
+
+        <label class="col-xs-2">カテゴリー</label>
+          <span class ="col-xs-10"><%= @trouble.category.name %></span></br>
+        <label class="col-xs-12">説明写真</label>
+          <span class ="col-xs-12"><%= attachment_image_tag @trouble, :image, :fill, 200, 200, size:'280x150' %></span>
+        <label class="col-xs-12">タイトル</label>
+          <span class ="col-xs-7"><%= @trouble.title %></span>
+        <label class="col-xs-12">投稿内容</label>
+          <span class ="col-xs-12"><%= @trouble.body%></span>
+
+      <%= form_for(@trouble, url: troubles_path) do |f| %>
+
+        <%= f.hidden_field :category_id, :value => @trouble.category_id %>
+        <%= f.hidden_field :title, :value => @trouble.title %>
+        <%= f.hidden_field :body, :value => @trouble.body %>
+        <%= f.attachment_field :image, :value => @trouble.image %>
+        <%= f.submit "内容を確認した上で、投稿する", class:"btn btn-success col-xs-12" %>
+
+      <% end %>
+
+      <%= form_for(@trouble, url: new_troubles_path) do |f| %>
+
+        <%= f.hidden_field :category_id, :value => @trouble.category_id %>
+        <%= f.hidden_field :title, :value => @trouble.title %>
+        <%= f.hidden_field :body, :value => @trouble.body %>
+        <%= f.attachment_field :image, :value => @trouble.image %>
+        <%= f.submit "内容を訂正する", class:"btn btn-primary col-xs-12" %>
+
+      <% end %>
+
+    </div>
+  </div>
+</div>

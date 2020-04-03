@@ -3,6 +3,9 @@ class Trouble < ApplicationRecord
   belongs_to :user
   belongs_to :category
 
-  validates :title, presence: true
-  validates :body ,presence: true, length: {maximum: 1000}
+  attachment :image
+
+  validates :title, presence: true, length: {maximum: 20}
+  validates :body ,presence: true, length: {minimum: 10, maximum: 2000}
+  validates :category_id, presence: true
 end

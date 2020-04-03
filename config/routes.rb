@@ -11,13 +11,21 @@ Rails.application.routes.draw do
   end
 
   devise_for :lawyers
-    scope module: :lawyers do
+    namespace :lawyers do
+      resource :lawyers, only: [:show, :edit, :update, :destroy]
+      resources :users, only: [:show]
   end
 
   devise_for :users
     scope module: :users do
-      get 'troubles_confirm' => 'troubles#confirm', as: 'troubles_confirm'
-      resources :troubles, only: [:index, :new, :create, :show]
+      resources :troubles, only: [:index, :new, :create, :show] do
+        collection do
+          get :confirm
+          post :confirm
+          post :new, path: :new, as: :new, action: :back
+        end
+      end
+      resource :user, only: [:show, :edit, :update, :destroy]
   end
 
 end
