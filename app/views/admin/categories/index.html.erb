@@ -1,7 +1,7 @@
 <div class = "container">
   <div class = "row">
 
-  	<div class="col-xs-6 col-xs-offset-2">
+  	<div class="col-xs-6 col-xs-offset-2 actions">
       <h2><span class = "subject">カテゴリー一覧・追加</span></h2></br>
         <div>
           <% if @category.errors.any? %>
@@ -61,23 +61,23 @@
           </colgroup>
 
   		    <tr class= "info">
-  			  <th class = "text-center">カテゴリー</th>
-  			  <th class = "text-center">ステータス</th>
-  			  <th></th>
+  			    <th class = "text-center">カテゴリー</th>
+  			    <th class = "text-center">ステータス</th>
+  			    <th></th>
   		    </tr>
   		  <% @categories.each do |category| %>
   		    <tr>
-  			  <td class = "text-center"><%= category.name %></td>
-  			  <td class = "text-center">
-  			    <% if category.is_active == true %>
-  				  <p>有効</p>
-  				<%else%>
-  				  <p>無効</p>
-  				<%end%>
-  			  </td>
-  			  <td>
-  				<%= link_to "編集する", edit_admin_category_path(category), class: "btn btn-success" %>
-  			  </td>
+  			    <td class = "text-center"><%= category.name %></td>
+  			    <td class = "text-center">
+  			      <% if category.is_active == true %>
+  				      <p>有効</p>
+  				    <%else%>
+  				      <p>無効</p>
+  				    <%end%>
+  			    </td>
+  			    <td>
+  				    <%= link_to "編集する", edit_admin_category_path(category), class: "btn btn-success" %>
+  			    </td>
   		    </tr>
   		  <%end%>
   	    </table>

@@ -1,0 +1,60 @@
+<table ~~~ class = "table text-center">
+
+  <colgroup>
+     <col style = "width:25%;">
+     <col style = "width:75%;">
+  </colgroup>
+
+    <tr>
+      <th>写真</th>
+      <td><%= attachment_image_tag(lawyer, :image, :fill, 200, 200, fallback: "no_image.jpg", size:'150x150') %></td>
+    </tr>
+    <tr>
+      <th>姓・名</th>
+      <td><%= lawyer.name %></td>
+    </tr>
+    <tr>
+      <th>かな</th>
+      <td><%= lawyer.name_kana %></td>
+    </tr>
+    <tr>
+      <th>職業</th>
+      <td><%= lawyer.profession %></td>
+    </tr>
+    <tr>
+      <th>事務所</th>
+      <td><%= lawyer.office %></td>
+    </tr>
+    <tr>
+      <th>性別</th>
+      <td>
+          <% if lawyer.sex == true %>
+            男性
+          <% else %>
+            女性
+          <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th>年齢</th>
+      <td><%= lawyer.age %></td>
+    </tr>
+    <tr>
+      <th>県</th>
+      <td><%= lawyer.prefecture %></td>
+    </tr>
+    <tr>
+      <th>住所</th>
+      <td><%= lawyer.address %></td>
+    </tr>
+      <th>自己文</th>
+      <td class="text-left"><%= lawyer.profile %></td>
+    <tr>
+    </tr>
+</table></br>
+
+<% if lawyer_signed_in? %>
+  <% if current_lawyer.id == lawyer.id %>
+    <%= link_to '編集する', edit_lawyer_path, class: "btn btn-success col-xs-12" %>
+  <% end %>
+<% end %>

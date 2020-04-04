@@ -1,13 +1,16 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-5 col-xs-offset-2 devise">
+    <div class="col-xs-5 col-xs-offset-2 actions">
       <h2><span class="subject">相談者として、新規登録する</span></h2><br/>
     </div>
 
     <div class="col-xs-10 col-xs-offset-3">
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="required">
+          <%= render "devise/shared/error_messages", resource: resource %>
+        </div>
 
         <div class="field">
           <%= f.label :メールアドレス %> <span class="required">※必須</span><br />
@@ -33,11 +36,6 @@
         </div></br>
 
         <div class="field">
-          <%= f.label :名前（せい・めい） %> <span class="recommendation">推奨</span>（せい・めいの間に一文字スペースを入れてください）<br />
-          <%= f.text_field :name_kana, autofocus: true, autocomplete: "name_kana"%>
-        </div></br>
-
-        <div class="field">
           <%= f.label :このサイトで使う名前 %> <span class="required">※必須（個人を特定できない名前にしてください）</span></br>
           <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname"%>
         </div></br>
@@ -55,11 +53,6 @@
         <div class="field">
           <%= f.label :県 %> <span class="required">※必須</span><br />
           <%= f.select :prefecture, User.prefectures.keys.to_a, :prompt => "--選択--" %>
-        </div></br>
-
-        <div class="field">
-          <%= f.label :市 %> <span class="recommendation">推奨</span><br />
-          <%= f.text_field :city, autofocus: true, autocomplete: "city"%>
         </div></br>
 
         <div class="actions">

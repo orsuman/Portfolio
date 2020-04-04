@@ -18,7 +18,7 @@ class Admin::LawyersController < ApplicationController
 
     def destroy
        @lawyer = Lawyer.with_deleted.find(params[:id])
-       @user.destroy
+       @lawyer.destroy
        redirect_to admin_user_path(@lawyer)
     end
 

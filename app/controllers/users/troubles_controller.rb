@@ -1,6 +1,7 @@
 class Users::TroublesController < ApplicationController
 
-	before_action :authenticate_user!,only: [:new, :confirm, :create, :back]
+    before_action :login, only: [:index]
+	before_action :user_login, only: [:new, :confirm, :create, :back]
 
 	def index
 	   @troubles = Trouble.all
@@ -43,6 +44,16 @@ class Users::TroublesController < ApplicationController
 	private
 	  def trouble_params
 	  	 params.require(:trouble).permit(:title, :body, :image, :category_id)
+	  end
+	  def login
+	  	unless user_signed_in? || lawyer_signed_in? || admin_signed_in?
+	  	  redirect_to root_path
+	  	end
+	  end
+	  def user_login
+	  	unless user_signed_in?
+	  	  redirect_to troubles_path
+	  	end
 	  end
 
 end

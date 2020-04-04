@@ -1,18 +1,18 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-5 col-xs-offset-2 actions">
-      <h2><span class="subject">相談者の情報を見る</span></h2><br/>
+      <h2><span class="subject">先生の情報を見る</span></h2><br/>
     </div>
   </div>
 
   <div class="row">
     <div class="col-xs-1"></div>
     <div class="col-xs-3">
-      <%= render 'info', user: @user %>
+      <%= render 'info', lawyer: @lawyer %>
     </div>
     <div class="col-xs-1"></div>
     <div class="col-xs-6">
-      <%= render 'trouble', user: @user %>
+      <%= render 'list', user: @lawyer %>
     </div>
     <div class="col-xs-1"></div>
   </div>

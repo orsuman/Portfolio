@@ -38,7 +38,7 @@ class DeviseCreateLawyers < ActiveRecord::Migration[5.2]
       t.integer :profession
       t.boolean :sex
       t.integer :age
-      t.text :profile
+      t.string :profile
       t.string :image_id
       t.string :postal_code
       t.string :prefecture

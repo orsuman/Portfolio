@@ -1,0 +1,71 @@
+<div class = "container">
+  <div class = "row">
+
+  	<div class="col-xs-3 col-xs-offset-2 actions">
+      <h2><span class = "subject">相談者一覧</span></h2></br>
+    </div>
+
+  </div>
+
+  <div class = "row">
+
+    <div class="col-xs-7 col-xs-offset-2 actions">
+
+      <table ~~~ class = "table">
+
+        <colgroup>
+           <col style = "width:5%;">
+           <col style = "width:10%;">
+           <col style = "width:23%;">
+           <col style = "width:23%;">
+           <col style = "width:10%;">
+           <col style = "width:10%;">
+           <col style = "width:14%;">
+        </colgroup>
+
+  	    <tr class= "info">
+  	      <th>ID</th>
+  	      <th></th>
+  	      <th>表示名</th>
+  		  <th>姓名</th>
+  		  <th>性別</th>
+  		  <th>状況</th>
+  		  <th></th>
+  	    </tr>
+  	  <% @users.each do |user| %>
+  	    <tr>
+  	      <td>
+  	      	<%= user.id %>
+  	      </td>
+  	      <td>
+  	      	<%= attachment_image_tag user, :image, :fill, 40, 40, fallback: "no_image.jpg",  size:'40x40' %>
+  	      </td>
+  	      <td>
+  	      	<%= link_to user_path(user) do %><%= user.nickname %><% end %>
+  	      </td>
+  		  <td>
+  		  	<%= user.name %>
+  		  </td>
+  		  <td>
+  		  	<% if user.sex == true %>
+                男性
+              <% else %>
+                女性
+              <% end %>
+  		  </td>
+  		  <td>
+	        <% if user.deleted_at == nil %>
+              有効
+            <%else%>
+              退会
+            <%end%>
+  		  </td>
+  		  <td>
+  		    <%= link_to '編集する', admin_user_path(user), class: "btn btn-success" %>
+  		  </td>
+  	  <%end%>
+      </table>
+
+    </div>
+  </div>
+</div>

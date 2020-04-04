@@ -1,7 +1,7 @@
 <div class = "container">
   <div class = "row">
 
-    <div class="col-xs-6 col-xs-offset-2">
+    <div class="col-xs-6 col-xs-offset-2 actions">
       <h2><span class = "subject">投稿内容を確認する</span></h2></br>
         <div>
           <% if @trouble.errors.any? %>
@@ -22,7 +22,7 @@
 
     <div class="col-xs-7 col-xs-offset-2">
 
-
+        <h4 class="required">※ 一度投稿すると編集・削除することはできませんので、よくご確認ください!!</h4>
         <label class="col-xs-2">カテゴリー</label>
           <span class ="col-xs-10"><%= @trouble.category.name %></span></br>
         <label class="col-xs-12">説明写真</label>
@@ -32,26 +32,34 @@
         <label class="col-xs-12">投稿内容</label>
           <span class ="col-xs-12"><%= @trouble.body%></span>
 
+    </div>
+
+    <div class="actions col-xs-7 col-xs-offset-2">
+
       <%= form_for(@trouble, url: troubles_path) do |f| %>
 
         <%= f.hidden_field :category_id, :value => @trouble.category_id %>
         <%= f.hidden_field :title, :value => @trouble.title %>
         <%= f.hidden_field :body, :value => @trouble.body %>
-        <%= f.attachment_field :image, :value => @trouble.image %>
+        <span class="attachment_field"><%= f.attachment_field :image, :value => @trouble.image %></span>
         <%= f.submit "内容を確認した上で、投稿する", class:"btn btn-success col-xs-12" %>
 
       <% end %>
+
+    </div>
+
+    <div class="actions col-xs-7 col-xs-offset-2">
 
       <%= form_for(@trouble, url: new_troubles_path) do |f| %>
 
         <%= f.hidden_field :category_id, :value => @trouble.category_id %>
         <%= f.hidden_field :title, :value => @trouble.title %>
         <%= f.hidden_field :body, :value => @trouble.body %>
-        <%= f.attachment_field :image, :value => @trouble.image %>
+        <span class="attachment_field"><%= f.attachment_field :image, :value => @trouble.image %></span>
         <%= f.submit "内容を訂正する", class:"btn btn-primary col-xs-12" %>
 
-      <% end %>
-
+      <% end %><br/><br/><br/><br/><br/>
     </div>
+
   </div>
 </div>

@@ -41,18 +41,21 @@ nav {
 	top: 25px;
 	right: 0;
 }
-
-.error { color:red; }
-.actions { margin-top: 20px;}
-.devise { margin-top: 20px; }
-
+.attachment_field {
+	display: none;
+}
+.error {
+    color:red;
+}
+.actions {
+    margin-top: 30px;
+}
 table td {
 	background: #f8f8ff;
 }
 table tr:nth-child(even) td {
 	background: #fff;
 }
-
 .required {
 	color: red;
 }

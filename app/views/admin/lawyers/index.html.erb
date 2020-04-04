@@ -1,0 +1,66 @@
+<div class = "container">
+  <div class = "row">
+
+  	<div class="col-xs-3 col-xs-offset-2 actions">
+      <h2><span class = "subject">士業の先生一覧</span></h2></br>
+    </div>
+
+  </div>
+
+  <div class = "row">
+
+    <div class="col-xs-6 col-xs-offset-3 actions">
+
+      <table ~~~ class = "table">
+
+        <colgroup>
+           <col style = "width:5%;">
+           <col style = "width:15%;">
+           <col style = "width:35%;">
+           <col style = "width:15%;">
+           <col style = "width:15%;">
+           <col style = "width:15%;">
+        </colgroup>
+
+  	    <tr class= "info">
+  	      <th>ID</th>
+  	      <th></th>
+  		    <th>姓名</th>
+  		    <th>性別</th>
+  		    <th>状況</th>
+  		    <th></th>
+  	    </tr>
+  	  <% @lawyers.each do |lawyer| %>
+  	    <tr>
+  	      <td>
+  	      	<%= lawyer.id %>
+  	      </td>
+  	      <td>
+  	      	<%= attachment_image_tag lawyer, :image, :fill, 40, 40, fallback: "no_image.jpg",  size:'40x40' %>
+  	      </td>
+  	      <td>
+  	      	<%= link_to lawyer_path(lawyer) do %><%= lawyer.name %><% end %>
+  	      </td>
+  		    <td>
+  		  	  <% if lawyer.sex == true %>
+                男性
+            <% else %>
+                女性
+            <% end %>
+  		    </td>
+  		    <td>
+	          <% if lawyer.deleted_at == nil %>
+              有効
+            <%else%>
+              退会
+            <%end%>
+  		    </td>
+  		  <td>
+  		    <%= link_to '編集する', admin_lawyer_path(lawyer), class: "btn btn-success" %>
+  		  </td>
+  	  <%end%>
+      </table>
+
+    </div>
+  </div>
+</div>

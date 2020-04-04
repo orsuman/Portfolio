@@ -1,0 +1,88 @@
+<div class = "container">
+  <div class = "row">
+
+    <div class="col-xs-3 col-xs-offset-2 actions">
+      <h2><span class = "subject">士業の先生詳細</span></h2></br>
+    </div>
+  </div>
+
+  <div class = "row">
+    <div class="col-xs-5 col-xs-offset-3 actions">
+
+      <table ~~~ class = "table text-center">
+
+        <colgroup>
+           <col style = "width:30%;">
+           <col style = "width:70%;">
+        </colgroup>
+
+          <tr>
+            <th>写真</th>
+            <td><%= attachment_image_tag(@lawyer, :image, :fill, 200, 200, fallback: "no_image.jpg", size:'150x150') %></td>
+          </tr>
+          <tr>
+            <th>ステータス</th>
+            <td>
+              <% if @lawyer.deleted_at == nil %>
+                有効ユーザー
+              <%else%>
+                退会ユーザー
+              <%end%>
+            </td>
+          </tr>
+          <tr>
+            <th>姓・名</th>
+            <td><%= @lawyer.name %></td>
+          </tr>
+          <tr>
+            <th>かな</th>
+            <td><%= @lawyer.name_kana %></td>
+          </tr>
+          <tr>
+            <th>性別</th>
+            <td>
+                <% if @lawyer.sex == true %>
+                  男性
+                <% else %>
+                  女性
+                <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th>年齢</th>
+            <td><%= @lawyer.age %></td>
+          </tr>
+          <tr>
+            <th>職業</th>
+            <td><%= @lawyer.profession %></td>
+          </tr>
+          <tr>
+            <th>事務所</th>
+            <td><%= @lawyer.office %></td>
+          </tr>
+          <tr>
+            <th>〒・都道府県</th>
+            <td>〒<%= @lawyer.postal_code %>, <%= @lawyer.prefecture %></td>
+          </tr>
+          <tr>
+            <th>市以下</th>
+            <td><%= @lawyer.address %></td>
+          </tr>
+          <tr>
+            <th>自己紹介</th>
+            <td><%= @lawyer.profile %></td>
+          </tr>
+      </table></br>
+    </div>
+  </div>
+  <div class = "row">
+    <div class="col-xs-5 col-xs-offset-3 actions">
+      <span><%= link_to "強制退会させる", admin_lawyer_path(@lawyer), data: { confirm: "退会させてよろしいでしょうか?" }, method: :delete ,class: "btn btn-danger col-xs-4" %>
+      </span>
+      <span class="col-xs-3"></span>
+      <span><%= link_to "復元させる", restore_admin_lawyer_path(@lawyer), data: { confirm: "復元してよろしいでしょうか?" }, method: :patch, class: "btn btn-warning col-xs-4" %>
+      </span>
+      <br/><br/><br/><br/><br/>
+    </div>
+  </div>
+</div>

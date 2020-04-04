@@ -1,22 +1,26 @@
 <table ~~~ class = "table text-center">
 
   <colgroup>
-     <col style = "width:40%;">
-     <col style = "width:60%;">
+     <col style = "width:25%;">
+     <col style = "width:75%;">
   </colgroup>
 
     <tr>
       <th>写真</th>
-      <td><%= attachment_image_tag(user, :image, :fill, 200, 200, size:'150x150') %></td>
+      <td><%= attachment_image_tag(user, :image, :fill, 200, 200, fallback: "no_image.jpg", size:'150x150') %></td>
     </tr>
   <% if lawyer_signed_in? %>
     <tr>
       <th>姓・名</th>
       <td><%= user.name %></td>
     </tr>
+    <tr>
+      <th>かな</th>
+      <td><%= user.name_kana %></td>
+    </tr>
   <% end %>
     <tr>
-      <th>名前</th>
+      <th>表示名</th>
       <td><%= user.nickname %></td>
     </tr>
     <tr>
@@ -28,6 +32,10 @@
             女性
           <% end %>
       </td>
+    </tr>
+    <tr>
+      <th>年齢</th>
+      <td><%= user.age %></td>
     </tr>
     <tr>
       <th>県</th>
@@ -42,5 +50,7 @@
 </table></br>
 
 <% if user_signed_in? %>
-  <%= link_to '編集する', edit_user_path, class: "btn btn-success col-xs-12" %>
+  <% if current_user.id == user.id %>
+    <%= link_to '編集する', edit_user_path, class: "btn btn-success col-xs-12" %>
+  <% end %>
 <% end %>
