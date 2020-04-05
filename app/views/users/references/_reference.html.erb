@@ -1,0 +1,11 @@
+<span id="reference-<%= comment.id %>">
+  <% if comment.referenced_by?(current_user) %>
+    <%= link_to comment_references_path(comment), method: :delete, remote: true do %>
+      <span class="glyphicon glyphicon-thumbs-up" style="color:#000080;">参考になった<%= comment.references.count %></span>
+    <% end %>
+  <% else %>
+    <%= link_to comment_references_path(comment), method: :post, remote: true do %>
+      <span class="glyphicon glyphicon-thumbs-up" style="color:#696969;">参考になった<%= comment.references.count %></span>
+    <% end %>
+  <% end %>
+</span>

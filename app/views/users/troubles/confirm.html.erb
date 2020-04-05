@@ -1,7 +1,7 @@
 <div class = "container">
   <div class = "row">
 
-    <div class="col-xs-6 col-xs-offset-2 actions">
+    <div class="col-xs-6 col-xs-offset-2 main">
       <h2><span class = "subject">投稿内容を確認する</span></h2></br>
         <div>
           <% if @trouble.errors.any? %>
@@ -26,11 +26,11 @@
         <label class="col-xs-2">カテゴリー</label>
           <span class ="col-xs-10"><%= @trouble.category.name %></span></br>
         <label class="col-xs-12">説明写真</label>
-          <span class ="col-xs-12"><%= attachment_image_tag @trouble, :image, :fill, 200, 200, size:'280x150' %></span>
+          <span class ="col-xs-12"><%= attachment_image_tag @trouble, :image, :fill, 600, 300, size:'600x300' %></span>
         <label class="col-xs-12">タイトル</label>
           <span class ="col-xs-7"><%= @trouble.title %></span>
         <label class="col-xs-12">投稿内容</label>
-          <span class ="col-xs-12"><%= @trouble.body%></span>
+          <span class ="col-xs-12"><%= safe_join(@trouble.body.split("\n"),tag(:br)) %></span>
 
     </div>
 

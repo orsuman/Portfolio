@@ -51,6 +51,7 @@
 
 <% if user_signed_in? %>
   <% if current_user.id == user.id %>
-    <%= link_to '編集する', edit_user_path, class: "btn btn-success col-xs-12" %>
+    <%= link_to '編集する', edit_user_path, class: "btn btn-info col-xs-12" %><br/><br/><br/><br/>
+    <%= link_to '参考になった投稿を見る', references_path, class: "btn btn-success col-xs-12" %>
   <% end %>
 <% end %>

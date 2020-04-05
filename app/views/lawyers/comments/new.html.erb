@@ -1,0 +1,75 @@
+<div class = "container">
+  <div class = "row">
+
+  	<div class="col-xs-6 col-xs-offset-2 main">
+      <h2><span class = "subject">相談に回答する</span></h2></br>
+        <div>
+          <% if @comment.errors.any? %>
+            <div class= "error">
+              <div id="error_explanation">
+                <h3>
+                  <%= pluralize(@comment.errors.count, "error") %>
+                  prohibited this comment from being saved:
+                </h3>
+                  <% @comment.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                  <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+    </div>
+
+    <div class="col-xs-7 col-xs-offset-2">
+
+      <%= form_for(@comment, url: confirm_comments_path) do |f| %>
+
+        <div class="field">
+          <h4 class="required">※ 回答はお一人様一度限りとなりますので、ご注意願います。</h4>
+          <%= f.label :回答内容, class:"col-xs-12" %>
+          <%= f.text_area :comment, class:"col-xs-12",size:'15x15',placeholder: "※2000文字以内で入力してください" %>
+          <%= f.hidden_field :trouble_id %>
+        </div>
+
+    </div>
+
+    <div class="col-xs-7 col-xs-offset-2"><br/>
+
+        <div class="actions">
+          <%= f.submit "回答内容を確認する", class:"btn btn-primary col-xs-12" %>
+        </div>
+    </div>
+
+    <div class="col-xs-6 col-xs-offset-2 content">
+      <h3>＜相談内容＞</h3>
+    </div>
+
+    <div class="col-xs-6 col-xs-offset-2">
+        <label class="col-xs-3">相談者の名前</label>
+          <span class ="col-xs-9">
+              <%= @trouble.user.nickname %> 様
+          </span>
+    </div>
+    <div class="col-xs-6 col-xs-offset-2">
+        <label class="col-xs-3">カテゴリー</label>
+          <span class ="col-xs-9"><%= @trouble.category.name %></span>
+    </div>
+    <div class="col-xs-7 col-xs-offset-2">
+        <% unless @trouble.image_id.nil? %>
+        <label class="col-xs-12">説明写真</label>
+          <span class ="col-xs-12"><%= attachment_image_tag @trouble, :image, :fill, 600, 300, size:'600x300' %></span>
+        <% end %>
+    </div>
+    <div class="col-xs-7 col-xs-offset-2"><br/>
+        <label class="col-xs-12">タイトル</label>
+          <span class ="col-xs-7"><%= @trouble.title %></span>
+    </div>
+    <div class="col-xs-7 col-xs-offset-2"><br/>
+        <label class="col-xs-12">投稿内容</label>
+          <span class ="col-xs-12"><%= @trouble.body%></span>
+    </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>

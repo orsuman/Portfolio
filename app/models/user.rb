@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :troubles
+  has_many :references
 
   attachment :image
 
@@ -15,7 +16,7 @@ class User < ApplicationRecord
   enum age: {十九歳以下:1, 二十歳代:2, 三十歳代:3, 四十歳代:4, 五十歳代:5, 六十歳代:6, 七十歳以上:7 }
 
   validates :name, presence: true
-  validates :nickname, presence: true
+  validates :nickname, presence: true, uniqueness: true
   validates :sex, inclusion: { in: [true, false] }
   validates :age, presence: true
   validates :prefecture, presence: true

@@ -13,13 +13,13 @@ class Admin::LawyersController < ApplicationController
     def restore
        @lawyer = Lawyer.with_deleted.find(params[:id])
        @lawyer.restore
-       redirect_to admin_user_path(@lawyer)
+       redirect_to admin_lawyer_path(@lawyer)
     end
 
     def destroy
        @lawyer = Lawyer.with_deleted.find(params[:id])
        @lawyer.destroy
-       redirect_to admin_user_path(@lawyer)
+       redirect_to admin_lawyer_path(@lawyer)
     end
 
 end

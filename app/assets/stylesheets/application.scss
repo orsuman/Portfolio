@@ -18,34 +18,56 @@
     @import "bootstrap";
 
 header {
-	background-color: #FFDAB9;
+	background-color: #ffa500;
 	width: 100%;
-	height: 70px;
+	height: 80px;
 }
 nav {
     position: relative;
 	width: 1196px;
 	height: 70px;
-	color: #FAFAFA;
 	margin: 0 auto;
 }
 .header-links {
 	position: absolute;
-	top: 25px;
+	top: 30px;
 	right: 0;
 }
 .header-link {
 	display: inline-block;
 	font-size: 16px;
-	margin: 0 15px;
-	top: 25px;
-	right: 0;
+	margin: 0 20px;
+}
+.log-name {
+	font-size: 14px;
+	margin:0 50px;
+}
+footer {
+	background-color: #0000cd;
+	color: #ffffff;
+	width: 100%;
+	text-align:center;
+	position: fixed;
+	bottom: 0;
+}
+.wrapper{
+    padding-bottom: 150px;
 }
 .attachment_field {
 	display: none;
 }
 .error {
     color:red;
+}
+.logins {
+	margin-top:100px;
+	margin-bottom: 30px;
+}
+.logs-footer {
+	margin-bottom: 100px;
+}
+.main {
+	margin-top: 50px;
 }
 .actions {
     margin-top: 30px;

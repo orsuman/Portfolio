@@ -4,6 +4,11 @@ class Lawyers::LawyersController < ApplicationController
 
 	def show
        @lawyer = Lawyer.find(params[:id])
+       reference = []
+       @lawyer.comments.each do |comment|
+       	 reference << comment.references.count
+         @references = reference.sum
+       end
 	end
 
 	def edit

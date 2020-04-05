@@ -65,13 +65,12 @@
   </div>
 
   <div class = "row">
-    <div class="col-xs-5 col-xs-offset-3 actions">
-      <span><%= link_to "強制退会させる", admin_user_path(@user), data: { confirm: "退会させてよろしいでしょうか?" }, method: :delete ,class: "btn btn-danger col-xs-4" %>
-      </span>
-      <span class="col-xs-3"></span>
-      <span><%= link_to "復元させる", restore_admin_user_path(@user),data: { confirm: "復元してよろしいでしょうか?" }, method: :patch, class: "btn btn-warning col-xs-4" %>
-      </span>
-      <br/><br/><br/><br/><br/>
+    <div class="col-xs-5 col-xs-offset-4 actions">
+      <% if @user.deleted_at == nil %>
+        <%= link_to "強制退会させる", admin_user_path(@user), data: { confirm: "退会させてよろしいでしょうか?" }, method: :delete ,class: "btn btn-danger col-xs-7" %>
+      <% else %>
+        <%= link_to "復元させる", restore_admin_user_path(@user),data: { confirm: "復元してよろしいでしょうか?" }, method: :patch, class: "btn btn-warning col-xs-7" %>
+      <% end %>
     </div>
   </div>
 </div>

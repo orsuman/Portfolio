@@ -38,6 +38,7 @@ class Users::TroublesController < ApplicationController
 
 	def show
 	   @trouble = Trouble.find(params[:id])
+	   @comment = Comment.new
 	end
 
 

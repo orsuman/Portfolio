@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-6 col-xs-offset-3 actions">
-      <h2><span class="subject">士業の先生としてログインする</span></h2></br>
+    <div class="col-xs-6 col-xs-offset-4 logins">
+      <h2><span class="subject">先生としてログインする</span></h2></br>
     </div>
 
-    <div class="col-xs-4 col-xs-offset-3">
+    <div class="col-xs-4 col-xs-offset-4">
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
@@ -16,19 +16,19 @@
         <div class="field">
           <%= f.label :パスワード, class:"col-xs-5" %>
           <%= f.password_field :password, autocomplete: "current-password", class:"col-xs-7" %>
-        </div></br>
+        </div><br/><br/>
 
     </div>
 
-        <div class="actions col-xs-8 col-xs-offset-3">
+        <div class="actions col-xs-8 col-xs-offset-4">
           <%= f.submit "ログインする", class:"btn btn-primary col-xs-6" %>
         </div>
 
       <% end %>
-  </div></br>
+  </div><br/><br/>
 
-  <div class="row">
-      <div class="col-xs-6 col-xs-offset-3">
+  <div class="row logs-footer">
+      <div class="col-xs-6 col-xs-offset-4">
         登録が済んでいない方は、<%= link_to "こちらから",new_lawyer_registration_path %>新規登録してください。
     　</div>
   </div>

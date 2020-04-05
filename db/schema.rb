@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_02_132142) do
+ActiveRecord::Schema.define(version: 2020_04_05_142224) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,6 +27,14 @@ ActiveRecord::Schema.define(version: 2020_04_02_132142) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.boolean "is_active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "comment"
+    t.integer "lawyer_id"
+    t.integer "trouble_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -54,6 +62,13 @@ ActiveRecord::Schema.define(version: 2020_04_02_132142) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_lawyers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_lawyers_on_reset_password_token", unique: true
+  end
+
+  create_table "references", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "troubles", force: :cascade do |t|

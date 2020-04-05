@@ -1,7 +1,7 @@
 <div class = "container">
   <div class = "row">
 
-    <div class="col-xs-6 col-xs-offset-2 actions">
+    <div class="col-xs-6 col-xs-offset-2 main">
       <h2><span class = "subject">相談事例</span></h2></br>
     </div>
 
@@ -22,7 +22,7 @@
     <div class="col-xs-7 col-xs-offset-2">
         <% unless @trouble.image_id.nil? %>
         <label class="col-xs-12">説明写真</label>
-          <span class ="col-xs-12"><%= attachment_image_tag @trouble, :image, :fill, 300, 300, size:'280x150' %></span>
+          <span class ="col-xs-12"><%= attachment_image_tag @trouble, :image, :fill, 600, 300, size:'600x300' %></span>
         <% end %>
     </div>
     <div class="col-xs-7 col-xs-offset-2"><br/>
@@ -31,7 +31,47 @@
     </div>
     <div class="col-xs-7 col-xs-offset-2"><br/>
         <label class="col-xs-12">投稿内容</label>
-          <span class ="col-xs-12"><%= @trouble.body%></span>
+          <span class ="col-xs-12"><%= safe_join(@trouble.body.split("\n"),tag(:br)) %></span>
     </div>
+
+    <% if lawyer_signed_in? %>
+      <div class="col-xs-7 col-xs-offset-2 actions">
+          <%= link_to "この相談に回答する", new_comments_path(trouble_id: @trouble.id), class:"btn btn-primary col-xs-12" %>
+      </div>
+    <% end %>
+
+    <% @trouble.comments.each do |comment| %>
+      <div class="col-xs-4 col-xs-offset-2 actions">
+        <label class="col-xs-3">回答者</label>
+          <span class ="col-xs-9">
+            <% if  admin_signed_in?  %>
+              <%=link_to lawyer_path(comment.lawyer_id) do %><%= comment.lawyer.name %><% end %> 様より
+            <% elsif lawyer_signed_in? %>
+              <% if current_lawyer.id == comment.lawyer.id %>
+                <%=link_to lawyer_path(comment.lawyer_id) do %><%= comment.lawyer.name %><% end %> 様より
+              <% else %>
+                <%= comment.lawyer.prefecture %>の<%= comment.lawyer.profession %>の先生より
+              <% end %>
+            <% elsif user_signed_in? %>
+              <% if current_user.id == @trouble.user.id %>
+                <%=link_to lawyer_path(comment.lawyer_id) do %><%= comment.lawyer.name %><% end %> 様より
+              <% else %>
+                <%= comment.lawyer.prefecture %>の<%= comment.lawyer.profession %>の先生より
+              <% end %>
+            <% end %>
+          </span>
+      </div>
+      <div class="col-xs-7 col-xs-offset-2">
+        <label class="col-xs-12">回答内容</label>
+          <span class ="col-xs-12"><%= safe_join(comment.comment.split("\n"),tag(:br)) %></span>
+      </div>
+      <div class="col-xs-7 col-xs-offset-7">
+        <% if user_signed_in? %>
+          <%= render 'users/references/reference', comment: comment %>
+        <% else %>
+          <span class="glyphicon glyphicon-thumbs-up" style="color:#000000;">参考になった<%= comment.references.count %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>

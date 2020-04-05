@@ -1,7 +1,7 @@
 <div class = "container">
   <div class = "row">
 
-  	<div class="col-xs-6 col-xs-offset-2 actions">
+  	<div class="col-xs-6 col-xs-offset-2 main">
       <h2><span class = "subject">先生に相談してみる</span></h2></br>
         <div>
           <% if @trouble.errors.any? %>
@@ -32,7 +32,7 @@
         <div class="field">
           <%= f.label :説明の写真, class:"col-xs-12" %>
           <% unless @trouble.image.nil? %>
-          <span class ="col-xs-12"><%= attachment_image_tag @trouble, :image, :fill, 200, 200, size:'280x150' %></span>
+          <span class ="col-xs-12"><%= attachment_image_tag @trouble, :image, :fill, 600, 300, size:'600x300' %></span>
           <% end %>
           <%= f.attachment_field :image, class:"col-xs-5" %>
         </div></br></br>
@@ -49,14 +49,13 @@
 
     </div>
 
-    <div class="col-xs-7 col-xs-offset-2"><br/>
+    <div class="col-xs-7 col-xs-offset-2"><br/><br/>
 
         <div class="actions">
           <%= f.submit "投稿内容を確認する", class:"btn btn-primary col-xs-12" %>
         </div>
 
       <% end %>
-      <br/><br/><br/><br/><br/>
     </div>
   </div>
 </div>

@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-5 col-xs-offset-2 main">
+      <h2><span class="subject">参考になった一覧</span></h2><br/>
+    </div>
+  </div>
+
+  <table ~~~ class = "table actions">
+
+    <colgroup>
+      <col style = "width:10%;">
+      <col style = "width:20%;">
+      <col style = "width:50%;">
+      <col style = "width:20%;">
+    </colgroup>
+
+	<tr class= "info">
+	  <th>写真</th>
+	  <th>名前</th>
+      <th>コメント内容</th>
+      <th>タイトル</th>
+	</tr>
+  <% current_user.references.each do |reference| %>
+
+    <tr>
+      <td><%= attachment_image_tag(reference.comment.lawyer, :image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40') %></td>
+      <td><%= reference.comment.lawyer.name %> 様</td>
+      <td><%= reference.comment.comment.truncate(20) %></td>
+      <td><%= link_to 'この投稿があるページへ', trouble_path(reference.comment.trouble_id) ,class: "btn btn-sucess" %></td>
+    </tr>
+
+  <% end %>
+
+  </table>
+</div>

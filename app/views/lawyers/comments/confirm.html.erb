@@ -1,0 +1,57 @@
+<div class = "container">
+  <div class = "row">
+
+    <div class="col-xs-6 col-xs-offset-2 main">
+      <h2><span class = "subject">回答内容を確認する</span></h2></br>
+        <div>
+          <% if @comment.errors.any? %>
+            <div class= "error">
+              <div id="error_explanation">
+                <h3>
+                  <%= pluralize(@comment.errors.count, "error") %>
+                  prohibited this comment from being saved:
+                </h3>
+                  <% @comment.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                  <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+    </div>
+
+    <div class="col-xs-7 col-xs-offset-2">
+
+        <h4 class="required">※ 一度投稿すると編集・削除することはできませんので、よくご確認ください!!</h4>
+        <label class="col-xs-12">回答内容</label>
+          <span class ="col-xs-12"><%= safe_join(@comment.comment.split("\n"),tag(:br)) %></span>
+
+    </div>
+
+    <div class="actions col-xs-7 col-xs-offset-2">
+
+      <%= form_for(@comment, url: comments_path) do |f| %>
+
+        <%= f.hidden_field :comment, :value => @comment.comment %>
+        <%= f.hidden_field :trouble_id, :value => @comment.trouble.id %>
+
+        <%= f.submit "内容を確認した上で、投稿する", class:"btn btn-success col-xs-12" %>
+
+      <% end %>
+
+    </div>
+
+    <div class="actions col-xs-7 col-xs-offset-2">
+
+      <%= form_for(@comment, url: new_comments_path) do |f| %>
+
+        <%= f.hidden_field :comment, :value => @comment.comment %>
+        <%= f.hidden_field :trouble_id, :value => @comment.trouble.id %>
+
+        <%= f.submit "内容を訂正する", class:"btn btn-primary col-xs-12" %>
+
+      <% end %><br/><br/><br/><br/><br/>
+    </div>
+
+  </div>
+</div>
