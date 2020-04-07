@@ -1,10 +1,32 @@
-<div class = "container">
+<div class = "container yield">
+
   <div class = "row">
-
-  	<div class="col-xs-3 col-xs-offset-1 main">
-      <h2><span class = "subject">皆の相談一覧</span></h2></br>
+  	<div class="col-xs-7 col-xs-offset-1">
+      <h2><span class = "subject">皆の相談一覧</span>（
+      	  <% unless @category.nil? %>
+		    <%= @category.name %>：全 <%= @category.troubles.count %> 件
+		  <%else%>
+				全 <%= @true_troubles.count %> 件
+		  <%end%>）
+	  </h2></br>
     </div>
+  </div>
+  <div class = "row">
+    <div class="col-xs-8 col-xs-offset-4">
+      <%= form_with( url: troubles_path, method: :get, local:true) do |f| %>
+        カテゴリー別に見る➡️
+        <%= f.collection_select :category_id, @true_categories, :id, :name %>
+        <%= f.submit '検索する', class: "btn btn-primary" %>
+          <% unless @category.nil? %>
+            <%= link_to '全ての投稿を見る', troubles_path, class: "col-xs-offset-1" %>
+          <% end %>
+      <% end %>
+    </div>
+  </div><br/>
 
+  <div class="col-xs-5 col-xs-offset-1">
+  	<h4>ー<%= @troubles.count %>件を表示中ー（投稿の新しい順）</h4>
+  </div>
 
     <table ~~~ class = "table">
 
@@ -26,13 +48,21 @@
 	  <% @troubles.each do |trouble| %>
 	    <tr>
 	      <td>
-	      	<%= attachment_image_tag trouble.user, :image, :fill, 40, 40, fallback: "no_image.jpg",  size:'40x40' %>
+	      	<% if trouble.user.deleted_at == nil %>
+	      	  <%= attachment_image_tag trouble.user, :image, :fill, 40, 40, fallback: "no_image.jpg",  size:'40x40' %>
+	      	<% else %>
+	      	  <%= image_tag "no_image.jpg",size:"40x40" %>
+	      	<% end %>
 	      </td>
 	      <td>
-	      	<% if lawyer_signed_in? || admin_signed_in? %>
-	      	  <%= link_to user_path(trouble.user) do %><%= trouble.user.nickname %><% end %> 様
+	      	<% if trouble.user.deleted_at == nil %>
+	      	  <% if lawyer_signed_in? || admin_signed_in? %>
+	      	    <%= link_to user_path(trouble.user) do %><%= trouble.user.nickname %><% end %> 様
+	      	  <% else %>
+	      	    <%= trouble.user.nickname %> 様
+	      	  <% end %>
 	      	<% else %>
-	      	  <%= trouble.user.nickname %> 様
+	      	  退会したユーザー
 	      	<% end %>
 	      </td>
 		  <td>
@@ -48,5 +78,7 @@
 	  <%end%>
     </table>
 
-  </div>
+	<div class = "col-xs-12"><br/>
+	  <%= paginate @troubles, class: "paginate" %>
+    </div>
 </div>

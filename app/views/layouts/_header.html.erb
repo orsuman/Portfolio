@@ -3,9 +3,9 @@
     <nav class="clearfix">
 
       <% if admin_signed_in? || lawyer_signed_in? || user_signed_in?  %>
-        <span><%=link_to home_about_path do%>気軽にできる！法律相談所<% end %></span>
+        <span><%=link_to home_about_path do%><img src="/assets/lawyer.png" class="nav-img"><% end %></span>
       <% else %>
-        <span><%=link_to root_path do%>気軽にできる！法律相談所<% end %></span>
+        <span><%=link_to root_path do%><img src="/assets/lawyer.png" class="nav-img"><% end %></span>
       <% end %>
 
       <ul class="header-links">
@@ -14,8 +14,8 @@
           <li class="header-link">管理者がログイン中です</li>
           <li class="header-link"><%= link_to '先生一覧', admin_lawyers_path  %></li>
           <li class="header-link"><%= link_to '相談者一覧', admin_users_path  %></li>
-          <li class="header-link"><%= link_to '相談投稿一覧', troubles_path %></li>
-          <li class="header-link"><%= link_to 'コメント一覧', '' %></li>
+          <li class="header-link"><%= link_to '相談一覧', troubles_path %></li>
+          <li class="header-link"><%= link_to 'カテゴリー編集', admin_categories_path %></li>
           <li class="header-link"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
         <!-----先生ログイン後----->
         <% elsif lawyer_signed_in? %>

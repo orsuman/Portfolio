@@ -7,3 +7,11 @@
 	text-size: 30px;
 	text-align: center;
 }
+
+.top {
+	width: 100%;
+	background-image: image-url("top.jpg");
+	background-size: cover;
+	background-position: center;
+	min-height: 100%;
+}

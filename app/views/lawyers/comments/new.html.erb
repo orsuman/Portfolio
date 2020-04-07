@@ -1,7 +1,7 @@
-<div class = "container">
+<div class = "container yield">
   <div class = "row">
 
-  	<div class="col-xs-6 col-xs-offset-2 main">
+  	<div class="col-xs-6 col-xs-offset-2">
       <h2><span class = "subject">相談に回答する</span></h2></br>
         <div>
           <% if @comment.errors.any? %>
@@ -66,10 +66,10 @@
     </div>
     <div class="col-xs-7 col-xs-offset-2"><br/>
         <label class="col-xs-12">投稿内容</label>
-          <span class ="col-xs-12"><%= @trouble.body%></span>
+          <span class ="col-xs-12"><%= safe_join(@trouble.body.split("\n"),tag(:br)) %></span>
     </div>
 
       <% end %>
-    </div>
+
   </div>
 </div>

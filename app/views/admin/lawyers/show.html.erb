@@ -1,7 +1,7 @@
-<div class = "container">
+<div class = "container yield">
   <div class = "row">
 
-    <div class="col-xs-3 col-xs-offset-2 actions">
+    <div class="col-xs-3 col-xs-offset-3">
       <h2><span class = "subject">士業の先生詳細</span></h2></br>
     </div>
   </div>
@@ -67,6 +67,14 @@
           <tr>
             <th>市以下</th>
             <td><%= @lawyer.address %></td>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <td><%= @lawyer.phone_number %></td>
+          </tr>
+          <tr>
+            <th>URL</th>
+            <td><%= link_to @lawyer.url do %><%= @lawyer.url %><% end %></td>
           </tr>
           <tr>
             <th>自己紹介</th>

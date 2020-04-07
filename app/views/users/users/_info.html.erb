@@ -9,7 +9,7 @@
       <th>写真</th>
       <td><%= attachment_image_tag(user, :image, :fill, 200, 200, fallback: "no_image.jpg", size:'150x150') %></td>
     </tr>
-  <% if lawyer_signed_in? %>
+  <% if lawyer_signed_in? || current_user %>
     <tr>
       <th>姓・名</th>
       <td><%= user.name %></td>
@@ -41,7 +41,7 @@
       <th>県</th>
       <td><%= user.prefecture %></td>
     </tr>
-  <% if lawyer_signed_in? %>
+  <% if lawyer_signed_in? || current_user %>
     <tr>
       <th>市</th>
       <td><%= user.city %></td>

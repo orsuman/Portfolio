@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container yield">
   <div class="row">
-    <div class="col-xs-5 col-xs-offset-2 main">
+    <div class="col-xs-5 col-xs-offset-2">
       <h2><span class="subject">ユーザー情報を編集する</span></h2><br/>
     </div>
 
@@ -31,13 +31,13 @@
 
         <div class="field">
           <%= f.label :名前（姓・名） %> <span class="required">※必須</span>（姓・名の間に一文字スペースを入れてください）<br />
-          <%= f.text_field :name, autofocus: true, autocomplete: "name"%>
-        </div></br>
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", class:"col-xs-3" %>
+        </div></br></br>
 
         <div class="field">
           <%= f.label :名前（せい・めい） %> <span class="recommendation">推奨</span>（せい・めいの間に一文字スペースを入れてください）<br />
-          <%= f.text_field :name_kana, autofocus: true, autocomplete: "name_kana"%>
-        </div></br>
+          <%= f.text_field :name_kana, autofocus: true, autocomplete: "name_kana", class:"col-xs-3" %>
+        </div></br></br>
 
         <div class="field">
           <%= f.label :このサイトで使う名前 %> <span class="required">※必須（個人を特定できない名前にしてください）</span></br>
@@ -75,7 +75,7 @@
 
         <div class="actions">
           <%= link_to "< 更新せずに戻る", user_path(current_user) %>
-        </div></br></br>
+        </div>
 
     </div>
   </div>

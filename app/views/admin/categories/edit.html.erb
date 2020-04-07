@@ -1,7 +1,9 @@
-<div class = "container">
+<div class = "container yield">
   <div class = "row">
-    <div class="col-xs-5 col-xs-offset-3 actions">
+    <div class="col-xs-5 col-xs-offset-3">
 	    <h2><span class = "subject">カテゴリーを編集する</span></h2>
+
+        <h3>このカテゴリーには投稿が<%= @category.troubles.count %>件あります</h3>
 
       　<div>
 
@@ -19,12 +21,14 @@
             </div>
           <% end %>
 
+
           <%= form_for(@category, url: admin_category_path) do |f| %>
 
             <div class="form">
           	  <%= f.label :ジャンル, class:"col-xs-3" %>
           	  <%= f.text_field :name %>
             </div></br>
+
 
             <div class="form">
               <%= f.label :ステータス, class:"col-xs-3" %>
@@ -38,11 +42,9 @@
               </span>
             </div></br></br></br>
 
-            <span class = "col-xs-2"></span>
-          	<%= f.submit "変更を保存", class: "btn btn-info col-xs-3" %>
-            <span class = "col-xs-1"></span>
-            <%= link_to "削除する", admin_category_path, method: :delete, "data-confirm"  => "削除してもよろしいでしょうか？", class: "btn btn-danger col-xs-3" %>
-            </br></br>
+            <div class = "col-xs-7 col-xs-offset-3">
+          	<%= f.submit "変更を保存", class: "btn btn-info col-xs-6" %>
+            </div></br></br>
 
           <% end %>
             </br></br>

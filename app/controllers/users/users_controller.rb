@@ -4,7 +4,13 @@ class Users::UsersController < ApplicationController
 	before_action :login_model, only: [:show]
 
 	def show
-     @user = User.find(params[:id])
+     @user = User.with_deleted.find(params[:id])
+     @true_troubles = []
+       @user.troubles.each do |trouble|
+         if trouble.category.is_active == true
+           @true_troubles << trouble
+         end
+       end
 	end
 
 	def edit
@@ -37,7 +43,7 @@ class Users::UsersController < ApplicationController
       def correct_user
         user = User.find(params[:id])
           if user_signed_in?
-            if current_user != user
+            if current_user.id != user.id
               redirect_to edit_user_path(current_user)
             end
           elsif lawyer_signed_in?
@@ -47,14 +53,26 @@ class Users::UsersController < ApplicationController
           end
       end
       def login_model
-        user = User.find(params[:id])
-          if user_signed_in?
-            if current_user != user
-              redirect_to user_path(current_user)
+        user = User.with_deleted.find(params[:id])
+          if user.deleted_at == nil
+            if user_signed_in?
+              if current_user.id != user.id
+                redirect_to user_path(current_user)
+              end
+            elsif lawyer_signed_in?
+            elsif admin_signed_in?
+            else
+                redirect_to root_path
             end
-          elsif lawyer_signed_in? || admin_signed_in?
           else
-              redirect_to root_path
+            if user_signed_in?
+                redirect_to user_path(current_user)
+            elsif lawyer_signed_in?
+                redirect_to lawyer_path(current_lawyer)
+            elsif admin_signed_in?
+            else
+                redirect_to root_path
+            end
           end
-     end
+      end
 end

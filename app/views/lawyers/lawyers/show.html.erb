@@ -1,17 +1,17 @@
-<div class="container">
+<div class="container yield">
   <div class="row">
-    <div class="col-xs-5 col-xs-offset-2 main">
+    <div class="col-xs-5 col-xs-offset-2">
       <h2><span class="subject">先生の情報を見る</span></h2><br/>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-xs-3">
+    <div class="col-xs-4">
       <%= render 'info', lawyer: @lawyer %>
     </div>
     <div class="col-xs-1"></div>
-    <div class="col-xs-8">
-      <%= render 'list', lawyer: @lawyer, references: @references %>
+    <div class="col-xs-7">
+      <%= render 'list', comments: @true_comments, references: @true_references %>
     </div>
   </div>
 </div>

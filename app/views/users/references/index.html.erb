@@ -1,35 +1,50 @@
-<div class="container">
+<div class="container yield">
   <div class="row">
-    <div class="col-xs-5 col-xs-offset-2 main">
-      <h2><span class="subject">参考になった一覧</span></h2><br/>
+    <div class="col-xs-5 col-xs-offset-2">
+      <h2><span class="subject">参考になった一覧</span>（全<%= @true_references.count %>件）</h2><br/>
     </div>
+  </div>
+
+  <div class="col-xs-5 col-xs-offset-1">
+    <h4>ー<%= @references.count %>件を表示中ー（<span class="glyphicon glyphicon-thumbs-up" style="color:#000000;">参考になったを押した新しい順）</h4>
   </div>
 
   <table ~~~ class = "table actions">
 
     <colgroup>
       <col style = "width:10%;">
-      <col style = "width:20%;">
-      <col style = "width:50%;">
+      <col style = "width:15%;">
+      <col style = "width:55%;">
       <col style = "width:20%;">
     </colgroup>
 
 	<tr class= "info">
 	  <th>写真</th>
 	  <th>名前</th>
-      <th>コメント内容</th>
+      <th>回答内容</th>
       <th>タイトル</th>
 	</tr>
-  <% current_user.references.each do |reference| %>
+
+  <% @true_references.each do |reference| %>
 
     <tr>
       <td><%= attachment_image_tag(reference.comment.lawyer, :image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40') %></td>
-      <td><%= reference.comment.lawyer.name %> 様</td>
-      <td><%= reference.comment.comment.truncate(20) %></td>
-      <td><%= link_to 'この投稿があるページへ', trouble_path(reference.comment.trouble_id) ,class: "btn btn-sucess" %></td>
+      <td>
+        <% if reference.comment.lawyer.deleted_at == nil %>
+          <%= link_to lawyer_path(reference.comment.lawyer.id) do %><%= reference.comment.lawyer.name %><% end %> 様
+        <% else %>
+          退会したユーザー
+        <% end %>
+      </td>
+      <td><%= reference.comment.comment.truncate(45) %></td>
+      <td><%= link_to 'この投稿があるページへ', trouble_path(reference.comment.trouble_id), class: "btn btn-success"%></td>
     </tr>
 
   <% end %>
 
   </table>
+
+  <div class = "col-xs-12"><br/>
+    <%= paginate @references, class: "paginate" %>
+  </div>
 </div>

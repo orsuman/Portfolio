@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container yield">
   <div class="row">
-    <div class="col-xs-6 col-xs-offset-2 main">
+    <div class="col-xs-6 col-xs-offset-2">
       <h2><span class="subject">士業の先生として、新規登録する</span></h2><br/>
     </div>
 
@@ -32,17 +32,17 @@
 
         <div class="field">
           <%= f.label :名前（姓・名） %> <span class="required">※必須</span>（姓・名の間に一文字スペースを入れてください）<br />
-          <%= f.text_field :name, autofocus: true, autocomplete: "name"%>
-        </div></br>
+          <%= f.text_field :name, class:"col-xs-2" %>
+        </div></br></br>
 
         <div class="field">
           <%= f.label :名前（せい・めい） %> <span class="required">※必須</span>（せい・めいの間に一文字スペースを入れてください）<br />
-          <%= f.text_field :name_kana, autofocus: true, autocomplete: "name_kana"%>
-        </div></br>
+          <%= f.text_field :name_kana, class:"col-xs-2" %>
+        </div></br></br>
 
         <div class="field">
           <%= f.label :事務所の名前 %> <span class="required">※必須</span><br />
-          <%= f.text_field :office, autofocus: true, autocomplete: "office", class:"col-xs-3"%>
+          <%= f.text_field :office, class:"col-xs-3"%>
         </div></br></br>
 
         <div class="field">
@@ -62,23 +62,28 @@
 
         <div class="field">
           <%= f.label :郵便番号 %>（ハイフン無しで数字のみ入力してください）<span class="required">※必須</span><br />
-          <%= f.text_field :postal_code %>
-        </div></br>
+          <%= f.text_field :postal_code, class:"col-xs-2" %>
+        </div></br></br>
 
          <div class="field">
           <%= f.label :県 %> <span class="required">※必須</span><br />
-          <%= f.select :prefecture, User.prefectures.keys.to_a, :prompt => "--選択--" %>
+          <%= f.collection_select :prefecture, JpPrefecture::Prefecture.all, :name, :name ,:prompt => "--選択--" %>
         </div></br>
 
         <div class="field">
           <%= f.label :市以下の住所 %> <span class="required">※必須</span><br />
-          <%= f.text_field :address, autofocus: true, autocomplete: "address", class:"col-xs-5"%>
+          <%= f.text_field :address, class:"col-xs-5"%>
         </div></br></br>
 
         <div class = "field">
-          <%= f.label :電話番号 %>（ハイフン無しで数字のみ入力してください）<span class="required">※必須</span><br/>
-          <%= f.text_field :phone_number %>
-        </div></br>
+          <%= f.label :電話番号 %>（ハイフン無しで数字のみ入力してください） <span class="recommendation">推奨</span><br/>
+          <%= f.text_field :phone_number, class:"col-xs-2"%>
+        </div></br><br/>
+
+        <div class = "field">
+          <label>URL</label> <span class="recommendation">推奨</span><br/>
+          <%= f.text_field :url, class:"col-xs-5" %>
+        </div></br><br/>
 
         <div class="actions">
           <%= f.submit "以上の情報で登録する", class: "btn btn-info col-xs-3" %>
@@ -87,7 +92,7 @@
 
         <div class="actions">
           <%= link_to "< 登録せずに戻る", root_path %>
-        </div></br></br>
+        </div>
 
     </div>
   </div>

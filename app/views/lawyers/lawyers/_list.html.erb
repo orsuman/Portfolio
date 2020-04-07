@@ -1,9 +1,9 @@
-<% if lawyer.comments.count == 0 %>
+<% if comments.count == 0 %>
   <h2>このユーザーのコメント投稿は０件です</h2>
 
 <% else %>
 
-  <h3>コメント投稿件数 <%= lawyer.comments.count %>件（"<span class="glyphicon glyphicon-thumbs-up"></span>参考になった"が全部で<%= references %>件ついています）</h3></br>
+  <h3>回答件数 <%= comments.count %>件（"<span class="glyphicon glyphicon-thumbs-up"></span>参考になった"が<%= references %>件ついています）</h3></br>
 
   <table ~~~ class = "table">
 
@@ -17,7 +17,7 @@
   	<th>タイトル</th>
     </tr>
 
-  <% lawyer.comments.each do |comment| %>
+  <% comments.each do |comment| %>
     <tr>
   	<td class = "text-center">
       <%= comment.trouble.category.name %>

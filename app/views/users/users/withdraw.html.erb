@@ -1,11 +1,12 @@
-<div class="container">
+<div class="container bottom">
   <div class="row">
     <div class="withdraw">
 
       <h3>本当に退会してよろしいでしょうか？</h3><br/>
 
-          同じメールアドレスでの再度の登録は不可能です。<br/>
-          退会しても、相談事例のデータは削除されませんので、御了承願います。</br>
+          同じメールアドレスでの再度の登録は不可能となります。<br/>
+          パスワードを変更されたい場合は、<%= link_to "こちら", edit_user_registration_path(current_user) %>からお願い致します。<br/>
+          退会しても相談投稿のデータは削除されませんので、御了承願います。</br>
           それでも退会する場合は、「退会する」をクリックしてください。<br/><br/>
 
 

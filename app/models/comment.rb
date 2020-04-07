@@ -1,6 +1,6 @@
 class Comment < ApplicationRecord
 
-	belongs_to :lawyer
+	belongs_to :lawyer, -> {with_deleted}
 	belongs_to :trouble
 
     has_many :references, dependent: :destroy

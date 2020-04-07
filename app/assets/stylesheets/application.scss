@@ -17,57 +17,73 @@
     @import "bootstrap-sprockets";
     @import "bootstrap";
 
+html,body{
+     width: 100%;
+     height:100%;
+}
+.wrapper{
+     width: 100%;
+     position: relative;
+     min-height: 100%;
+}
 header {
 	background-color: #ffa500;
 	width: 100%;
-	height: 80px;
+	height: 100px;
 }
 nav {
     position: relative;
-	width: 1196px;
-	height: 70px;
+	width: 1184px;
+	height: 100px;
 	margin: 0 auto;
+}
+.nav-img {
+	width:25vw;
+	padding-top: 4px;
+	height:96px;
+	margin:0 auto;
+	float: left;
 }
 .header-links {
 	position: absolute;
-	top: 30px;
+	top: 40px;
 	right: 0;
 }
 .header-link {
 	display: inline-block;
 	font-size: 16px;
-	margin: 0 20px;
+	margin: 0 15px;
 }
 .log-name {
 	font-size: 14px;
 	margin:0 50px;
 }
-footer {
+main{
+     padding-bottom:20px;
+}
+.yield {
+	margin-top: 60px;
+	padding-bottom: 80px;
+}
+footer{
 	background-color: #0000cd;
 	color: #ffffff;
-	width: 100%;
-	text-align:center;
-	position: fixed;
-	bottom: 0;
-}
-.wrapper{
-    padding-bottom: 150px;
-}
-.attachment_field {
-	display: none;
+     height:20px;
+     position:absolute;
+     width: 100%;
+     bottom:0;
+     text-align: center;
 }
 .error {
     color:red;
 }
 .logins {
-	margin-top:100px;
+	margin-top:150px;
 	margin-bottom: 30px;
+	padding-bottom: 80px;
 }
 .logs-footer {
 	margin-bottom: 100px;
-}
-.main {
-	margin-top: 50px;
 }
 .actions {
     margin-top: 30px;

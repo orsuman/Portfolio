@@ -1,10 +1,26 @@
 class Users::TroublesController < ApplicationController
 
     before_action :login, only: [:index]
+    before_action :true_category, only: [:index]
+    before_action :true_trouble, only: [:show]
 	before_action :user_login, only: [:new, :confirm, :create, :back]
+	before_action :true_categories, only: [:index, :new, :confirm, :create, :back]
 
 	def index
-	   @troubles = Trouble.all
+	    @categories = Category.all
+        if params[:category_id].nil?
+          troubles = Trouble.all.order(created_at: :desc)
+          @true_troubles =[]
+          troubles.each do |trouble|
+            if trouble.category.is_active == true
+              @true_troubles << trouble
+            end
+          end
+          @troubles = Kaminari.paginate_array(@true_troubles).page(params[:page])
+        else
+          @category = Category.find(params[:category_id])
+          @troubles = @category.troubles.order(created_at: :desc).page(params[:page])
+        end
 	end
 
 	def new
@@ -38,7 +54,6 @@ class Users::TroublesController < ApplicationController
 
 	def show
 	   @trouble = Trouble.find(params[:id])
-	   @comment = Comment.new
 	end
 
 
@@ -51,10 +66,33 @@ class Users::TroublesController < ApplicationController
 	  	  redirect_to root_path
 	  	end
 	  end
+      def true_category
+        unless params[:category_id].nil?
+          category = Category.find(params[:category_id])
+          if category.is_active == false
+            redirect_to troubles_path
+          end
+        end
+      end
+      def true_trouble
+        trouble = Trouble.find(params[:id])
+        if trouble.category.is_active == false
+          redirect_to troubles_path
+        end
+      end
 	  def user_login
 	  	unless user_signed_in?
 	  	  redirect_to troubles_path
 	  	end
 	  end
+      def true_categories
+          categories = Category.all
+          @true_categories = []
+          categories.each do |c|
+            if c.is_active == true
+               @true_categories << c
+            end
+          end
+      end
 
 end

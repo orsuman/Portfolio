@@ -1,7 +1,7 @@
-<div class = "container">
+<div class = "container yield">
   <div class = "row">
 
-  	<div class="col-xs-6 col-xs-offset-2 main">
+  	<div class="col-xs-6 col-xs-offset-2">
       <h2><span class = "subject">先生に相談してみる</span></h2></br>
         <div>
           <% if @trouble.errors.any? %>
@@ -24,9 +24,9 @@
 
       <%= form_for(@trouble, url: confirm_troubles_path) do |f| %>
 
-      　 <div class="field">
+      　<div class="field">
           <%= f.label :カテゴリー, class:"col-xs-2" %>
-          <%= f.collection_select :category_id, @categories, :id, :name, :prompt => "選択" %>
+          <%= f.collection_select :category_id, @true_categories, :id, :name, :prompt => "選択" %>
         </div></br>
 
         <div class="field">

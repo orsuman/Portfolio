@@ -40,17 +40,26 @@
       <td><%= lawyer.age %></td>
     </tr>
     <tr>
-      <th>県</th>
+      <th>都道府県</th>
       <td><%= lawyer.prefecture %></td>
     </tr>
     <tr>
       <th>住所</th>
       <td><%= lawyer.address %></td>
     </tr>
-      <th>自己文</th>
-      <td class="text-left"><%= lawyer.profile %></td>
     <tr>
+      <th>電話番号</th>
+      <td><%= lawyer.phone_number %></td>
     </tr>
+    <tr>
+      <th>URL</th>
+      <td><%= link_to lawyer.url do %><%= lawyer.url %><% end %></td>
+    </tr>
+    <tr>
+      <th>自己紹介</th>
+      <td class="text-left"><%= lawyer.profile %></td>
+    </tr>
+
 </table></br>
 
 <% if lawyer_signed_in? %>

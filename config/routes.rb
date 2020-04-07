@@ -16,7 +16,9 @@ Rails.application.routes.draw do
         patch 'restore'
       end
     end
-    resources :categories, only: [:index, :create, :edit, :update, :destroy]
+    resources :categories, only: [:index, :create, :edit, :update]
+    resources :comments, only: [:destroy]
+    resources :troubles, only: [:destroy]
   end
 
   devise_for :lawyers, :controllers => {

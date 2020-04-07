@@ -1,21 +1,26 @@
-<div class = "container">
+<div class = "container yield">
   <div class = "row">
 
-    <div class="col-xs-6 col-xs-offset-2 main">
+    <div class="col-xs-6 col-xs-offset-2">
       <h2><span class = "subject">相談事例</span></h2></br>
     </div>
 
-    <div class="col-xs-6 col-xs-offset-2">
+    <div class="col-xs-7 col-xs-offset-2">
         <label class="col-xs-3">相談者の名前</label>
           <span class ="col-xs-9">
-            <% if lawyer_signed_in? || admin_signed_in? %>
-              <%= link_to user_path(@trouble.user) do %><%= @trouble.user.nickname %><% end %> 様
+            <% if @trouble.user.deleted_at == nil %>
+              <% if lawyer_signed_in? || admin_signed_in? %>
+                <%= link_to user_path(@trouble.user) do %><%= @trouble.user.nickname %><% end %> 様
+              <% else %>
+                <%= @trouble.user.nickname %> 様
+              <% end %>
             <% else %>
-              <%= @trouble.user.nickname %> 様
+              退会したユーザー
             <% end %>
           </span>
     </div>
-    <div class="col-xs-6 col-xs-offset-2">
+
+    <div class="col-xs-7 col-xs-offset-2">
         <label class="col-xs-3">カテゴリー</label>
           <span class ="col-xs-9"><%= @trouble.category.name %></span>
     </div>
@@ -34,30 +39,42 @@
           <span class ="col-xs-12"><%= safe_join(@trouble.body.split("\n"),tag(:br)) %></span>
     </div>
 
-    <% if lawyer_signed_in? %>
-      <div class="col-xs-7 col-xs-offset-2 actions">
-          <%= link_to "この相談に回答する", new_comments_path(trouble_id: @trouble.id), class:"btn btn-primary col-xs-12" %>
+    <% if admin_signed_in? %>
+      <div class="col-xs-3 col-xs-offset-7"><br/>
+        <%= link_to "強制削除する", admin_trouble_path(@trouble), method: :delete, "data-confirm"  => "[要確認!!]コメントも一緒に削除されます!!本当に削除しますか？" %>
       </div>
+    <% end %>
+
+    <% if lawyer_signed_in? %>
+      <% unless Comment.exists?(trouble_id: @trouble.id, lawyer_id: current_lawyer.id) %>
+      <div class="col-xs-7 col-xs-offset-2 actions">
+        <%= link_to "この相談に回答する", new_comments_path(trouble_id: @trouble.id), class:"btn btn-primary col-xs-12" %><br/>
+      </div>
+      <% else %>
+      <div class="col-xs-7 col-xs-offset-2">
+        <h5 class="required", style="text-align:center;">※既に回答して頂いているので、再度の回答はできません。</h5>
+      </div>
+      <% end %>
     <% end %>
 
     <% @trouble.comments.each do |comment| %>
       <div class="col-xs-4 col-xs-offset-2 actions">
         <label class="col-xs-3">回答者</label>
           <span class ="col-xs-9">
-            <% if  admin_signed_in?  %>
-              <%=link_to lawyer_path(comment.lawyer_id) do %><%= comment.lawyer.name %><% end %> 様より
-            <% elsif lawyer_signed_in? %>
-              <% if current_lawyer.id == comment.lawyer.id %>
+            <% if comment.lawyer.deleted_at == nil %>
+              <% if admin_signed_in?  %>
                 <%=link_to lawyer_path(comment.lawyer_id) do %><%= comment.lawyer.name %><% end %> 様より
-              <% else %>
-                <%= comment.lawyer.prefecture %>の<%= comment.lawyer.profession %>の先生より
+              <% elsif lawyer_signed_in? %>
+                <% if current_lawyer.id == comment.lawyer.id %>
+                  <%=link_to lawyer_path(comment.lawyer_id) do %><%= comment.lawyer.name %><% end %> 様より
+                <% else %>
+                  <%= comment.lawyer.prefecture %>の<%= comment.lawyer.profession %>の先生より
+                <% end %>
+              <% elsif user_signed_in? %>
+                  <%=link_to lawyer_path(comment.lawyer_id) do %><%= comment.lawyer.name %><% end %> 様より
               <% end %>
-            <% elsif user_signed_in? %>
-              <% if current_user.id == @trouble.user.id %>
-                <%=link_to lawyer_path(comment.lawyer_id) do %><%= comment.lawyer.name %><% end %> 様より
-              <% else %>
-                <%= comment.lawyer.prefecture %>の<%= comment.lawyer.profession %>の先生より
-              <% end %>
+            <% else %>
+              退会したユーザー
             <% end %>
           </span>
       </div>
@@ -65,13 +82,22 @@
         <label class="col-xs-12">回答内容</label>
           <span class ="col-xs-12"><%= safe_join(comment.comment.split("\n"),tag(:br)) %></span>
       </div>
-      <div class="col-xs-7 col-xs-offset-7">
-        <% if user_signed_in? %>
+
+      <% if admin_signed_in? %>
+        <div class="col-xs-4 col-xs-offset-6"><br/>
+          <%= link_to "強制削除する", admin_comment_path(comment), method: :delete, "data-confirm"  => "[要確認!!]本当に削除しますか？" %>&nbsp;&nbsp;
+          <span class="glyphicon glyphicon-thumbs-up" style="color:#000000;">参考になった<%= comment.references.count %></span>
+        </div>
+      <% elsif user_signed_in? %>
+        <div class="col-xs-4 col-xs-offset-7"><br/>
           <%= render 'users/references/reference', comment: comment %>
-        <% else %>
-          <span class="glyphicon glyphicon-thumbs-up" style="color:#000000;">参考になった<%= comment.references.count %>
-        <% end %>
-      </div>
+        </div>
+      <% else %>
+        <div class="col-xs-4 col-xs-offset-7"><br/>
+          <span class="glyphicon glyphicon-thumbs-up" style="color:#000000;">参考になった<%= comment.references.count %></span>
+        </div>
+      <% end %>
     <% end %>
+
   </div>
 </div>

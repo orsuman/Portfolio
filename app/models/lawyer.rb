@@ -21,7 +21,6 @@ class Lawyer < ApplicationRecord
   validates :postal_code, presence: true, length: { is: 7 }
   validates :prefecture, presence: true
   validates :address, presence: true
-  validates :phone_number, presence: true, length: { minimum: 10, maximum: 11 }
 
   acts_as_paranoid
 end

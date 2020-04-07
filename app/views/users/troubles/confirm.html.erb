@@ -1,7 +1,7 @@
-<div class = "container">
+<div class = "container yield">
   <div class = "row">
 
-    <div class="col-xs-6 col-xs-offset-2 main">
+    <div class="col-xs-6 col-xs-offset-2">
       <h2><span class = "subject">投稿内容を確認する</span></h2></br>
         <div>
           <% if @trouble.errors.any? %>
@@ -58,7 +58,7 @@
         <span class="attachment_field"><%= f.attachment_field :image, :value => @trouble.image %></span>
         <%= f.submit "内容を訂正する", class:"btn btn-primary col-xs-12" %>
 
-      <% end %><br/><br/><br/><br/><br/>
+      <% end %>
     </div>
 
   </div>

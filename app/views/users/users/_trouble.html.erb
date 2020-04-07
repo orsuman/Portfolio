@@ -1,23 +1,23 @@
-<% if user.troubles.count == 0 %>
+<% if troubles.count == 0 %>
   <h2>このユーザーの投稿は０件です</h2>
 
 <% else %>
 
-  <h3>相談件数 <%= user.troubles.count %>件</h3></br>
+  <h3>相談件数 <%= troubles.count %>件</h3></br>
 
   <table ~~~ class = "table">
 
     <colgroup>
-       <col style = "width:40%;">
-       <col style = "width:60%;">
+       <col style = "width:30%;">
+       <col style = "width:70%;">
     </colgroup>
 
     <tr class= "info">
   	<th class = "text-center">カテゴリー</th>
-  	<th>タイトル</th>
+  	<th>相談投稿</th>
     </tr>
 
-  <% user.troubles.each do |trouble| %>
+  <% troubles.each do |trouble| %>
     <tr>
   	<td class = "text-center">
   	  <%= trouble.category.name %>

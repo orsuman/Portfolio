@@ -13,19 +13,6 @@
 //= require rails-ujs
 //= require activestorage
 //= require jquery
+//= require jquery.jposta
 //= require bootstrap-sprockets
 //= require_tree .
-
-$(function() {
-  $(document).on('turbolinks:load', () => {
-    $('#lawyer_postal_code').jpostal({
-      postcode : [
-        '#lawyer_postal_code'
-      ],
-      address: {
-        "#lawyer_prefecture": "%3", // # 都道府県が入力される
-        "#lawyer_address"   : "%4%5%6%7", // # 市区町村と町域と大口事務所の番地と名称が入力される
-      }
-    });
-  });
-});
