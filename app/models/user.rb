@@ -6,6 +6,11 @@ class User < ApplicationRecord
 
   has_many :troubles
   has_many :references
+  has_many :rooms
+
+  def chat(lawyer_id)
+    troubles.joins(:comments).where("comments.lawyer_id = " + lawyer_id.to_s ).group(:comment_id).count
+  end
 
   attachment :image
 

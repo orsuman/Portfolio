@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'rooms/show'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: "home#top"
   get "home/about"
@@ -34,7 +35,9 @@ Rails.application.routes.draw do
         post :new, path: :new, as: :new, action: :back
       end
     end
+    resources :rooms, only: [:index]
   end
+
 
   devise_for :users, :controllers => {
   :registrations => 'users/registrations'
@@ -53,6 +56,10 @@ Rails.application.routes.draw do
       resource :references, only: [:create, :destroy]
     end
     resources :references, only: [:index]
+  end
+
+    resources :rooms, only: [:show, :create] do
+    resources :messages, only: [:create]
   end
 
 end

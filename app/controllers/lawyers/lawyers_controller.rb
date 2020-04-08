@@ -14,6 +14,15 @@ class Lawyers::LawyersController < ApplicationController
            @true_references = reference.sum
          end
      end
+    if user_signed_in?
+      @lawyers = Lawyer.all
+      rooms = current_user.rooms
+      #自分が入ってるroomの相手のidを格納する
+      @lawyer_ids = []
+      rooms.each do |room|
+        @lawyer_ids << room.lawyer_id
+      end
+    end
 	end
 
 	def edit

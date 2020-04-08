@@ -15,27 +15,27 @@
           <li class="header-link"><%= link_to '先生一覧', admin_lawyers_path  %></li>
           <li class="header-link"><%= link_to '相談者一覧', admin_users_path  %></li>
           <li class="header-link"><%= link_to '相談一覧', troubles_path %></li>
-          <li class="header-link"><%= link_to 'カテゴリー編集', admin_categories_path %></li>
+          <li class="header-link"><%= link_to 'カテゴリー編集', admin_categories_path %></span></li>
           <li class="header-link"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
         <!-----先生ログイン後----->
         <% elsif lawyer_signed_in? %>
           <li class="header-link log-name"><%= current_lawyer.name %> 様としてログイン中</li>
-          <li class="header-link"><%= link_to 'マイページ', lawyer_path(current_lawyer) %></li>
-          <li class="header-link"><%= link_to '相談一覧', troubles_path %></li>
-          <li class="header-link"><%= link_to 'コメント一覧', '' %></li>
-          <li class="header-link"><%= link_to 'ログアウト', destroy_lawyer_session_path, method: :delete %></li>
+          <li class="header-link"><%= link_to lawyer_path(current_lawyer) do %><span class="glyphicon glyphicon-user each_link">マイページ</span><% end %></li>
+          <li class="header-link"><%= link_to troubles_path do %><span class="glyphicon glyphicon-list each_link">相談一覧</span><% end %></li>
+          <li class="header-link"><%= link_to rooms_path do %><span class="glyphicon glyphicon-envelope each_link">チャット一覧</span><% end %></li>
+          <li class="header-link"><%= link_to destroy_lawyer_session_path, method: :delete do %><span class="glyphicon glyphicon-log-out each_link">ログアウト</span><% end %></li>
         <!-----利用者ログイン後----->
         <% elsif user_signed_in? %>
           <li class="header-link"><%= current_user.nickname %> 様としてログイン中</li>
-          <li class="header-link"><%= link_to 'マイページ', user_path(current_user) %></li>
-          <li class="header-link"><%= link_to '相談する', new_trouble_path %></li>
-          <li class="header-link"><%= link_to '相談一覧', troubles_path %></li>
-          <li class="header-link"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+          <li class="header-link"><%= link_to user_path(current_user) do %><span class="glyphicon glyphicon-user each_link">マイページ</span><% end %></li>
+          <li class="header-link"><%= link_to new_trouble_path do %><span class="glyphicon glyphicon-edit each_link">相談する</span><% end %></li>
+          <li class="header-link"><%= link_to troubles_path do %><span class="glyphicon glyphicon-list each_link">相談一覧</span><% end %></li>
+          <li class="header-link"><%= link_to destroy_user_session_path, method: :delete do %><span class="glyphicon glyphicon-log-out each_link">ログアウト</span><% end %></li>
         <!-----その他----->
         <% else %>
-          <li class="header-link"><%= link_to 'サイト説明', home_about_path %></li>
-          <li class="header-link"><%= link_to '先生ログイン', new_lawyer_session_path %></li>
-          <li class="header-link"><%= link_to '相談者ログイン', new_user_session_path %></li>
+          <li class="header-link"><%= link_to home_about_path do %><span class="glyphicon glyphicon-bell each_link">サイト説明</span><% end %></li>
+          <li class="header-link"><%= link_to new_lawyer_session_path do %><span class="glyphicon glyphicon-log-in each_link">先生ログイン</span><% end %></li>
+          <li class="header-link"><%= link_to new_user_session_path do %><span class="glyphicon glyphicon-log-in each_link">相談者ログイン</span><% end %></li>
         <% end %>
       </ul>
     </nav>

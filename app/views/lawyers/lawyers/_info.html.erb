@@ -67,3 +67,16 @@
     <%= link_to '編集する', edit_lawyer_path, class: "btn btn-info col-xs-12" %>
   <% end %>
 <% end %>
+
+<% if user_signed_in? %>
+  <% if current_user.chat(lawyer.id).count != 0 %>
+  <% if @lawyer_ids.include?(lawyer.id) %>
+    <%= link_to "直接相談する", room_path(current_user.rooms.find_by(lawyer_id: lawyer.id)), class: "btn btn-warning col-xs-12" %><br>
+  <% else %>
+    <%= form_for Room.new do |f| %>
+      <%= f.hidden_field :lawyer_id, :value => lawyer.id %>
+      <%= f.submit "直接相談する", class: "btn btn-warning col-xs-12" %>
+    <% end %>
+  <% end %>
+  <% end %>
+<% end %>

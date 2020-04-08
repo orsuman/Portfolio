@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_07_175438) do
+ActiveRecord::Schema.define(version: 2020_04_08_062547) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -65,11 +65,29 @@ ActiveRecord::Schema.define(version: 2020_04_07_175438) do
     t.index ["reset_password_token"], name: "index_lawyers_on_reset_password_token", unique: true
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.integer "room_id"
+    t.boolean "is_user"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_messages_on_room_id"
+  end
+
   create_table "references", force: :cascade do |t|
     t.integer "user_id"
     t.integer "comment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "lawyer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lawyer_id"], name: "index_rooms_on_lawyer_id"
+    t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
   create_table "troubles", force: :cascade do |t|
