@@ -19,10 +19,13 @@
             <% end %>
           </span>
     </div>
-
     <div class="col-xs-7 col-xs-offset-2">
         <label class="col-xs-3">カテゴリー</label>
           <span class ="col-xs-9"><%= @trouble.category.name %></span>
+    </div>
+    <div class="col-xs-7 col-xs-offset-2">
+        <label class="col-xs-3">投稿日時</label>
+          <span class ="col-xs-9"><%= @trouble.created_at.strftime('%Y年%m月%d日 %H時%M分') %></span>
     </div>
     <div class="col-xs-7 col-xs-offset-2">
         <% unless @trouble.image_id.nil? %>
@@ -46,19 +49,21 @@
     <% end %>
 
     <% if lawyer_signed_in? %>
-      <% unless Comment.exists?(trouble_id: @trouble.id, lawyer_id: current_lawyer.id) %>
-      <div class="col-xs-7 col-xs-offset-2 actions">
-        <%= link_to "この相談に回答する", new_comments_path(trouble_id: @trouble.id), class:"btn btn-primary col-xs-12" %><br/>
-      </div>
-      <% else %>
-      <div class="col-xs-7 col-xs-offset-2">
-        <h5 class="required", style="text-align:center;">※既に回答して頂いているので、再度の回答はできません。</h5>
-      </div>
+      <% if @trouble.user.deleted_at == nil %>
+        <% unless Comment.exists?(trouble_id: @trouble.id, lawyer_id: current_lawyer.id) %>
+          <div class="col-xs-7 col-xs-offset-2 actions">
+            <%= link_to "この相談に回答する", new_comments_path(trouble_id: @trouble.id), class:"btn btn-primary col-xs-12" %><br/>
+          </div>
+        <% else %>
+          <div class="col-xs-7 col-xs-offset-2">
+            <h5 class="required", style="text-align:center;">※既に回答して頂いているので、再度の回答はできません。</h5>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
 
     <% @trouble.comments.each do |comment| %>
-      <div class="col-xs-4 col-xs-offset-2 actions">
+      <div class="col-xs-6 col-xs-offset-2 actions">
         <label class="col-xs-3">回答者</label>
           <span class ="col-xs-9">
             <% if comment.lawyer.deleted_at == nil %>
@@ -77,12 +82,15 @@
               退会したユーザー
             <% end %>
           </span>
-      </div>
+      </div></br></br>
+      <div class="col-xs-6 col-xs-offset-2">
+        <label class="col-xs-3">回答日時</label>
+          <span class ="col-xs-9"><%= comment.created_at.strftime('%Y年%m月%d日 %H時%M分') %></span>
+    　</div>
       <div class="col-xs-7 col-xs-offset-2">
         <label class="col-xs-12">回答内容</label>
           <span class ="col-xs-12"><%= safe_join(comment.comment.split("\n"),tag(:br)) %></span>
       </div>
-
       <% if admin_signed_in? %>
         <div class="col-xs-4 col-xs-offset-6"><br/>
           <%= link_to "強制削除する", admin_comment_path(comment), method: :delete, "data-confirm"  => "[要確認!!]本当に削除しますか？" %>&nbsp;&nbsp;

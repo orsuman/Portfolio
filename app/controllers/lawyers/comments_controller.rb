@@ -40,10 +40,14 @@ class Lawyers::CommentsController < ApplicationController
 	  def lawyer_new
 	  	trouble = Trouble.find(params[:trouble_id])
 	  	if lawyer_signed_in?
-	  	  #回答は一人一度限りを設定
+	  	  if trouble.user.deleted_at == nil
+	  	    #回答は一人一度限りを設定
 	  	  	if Comment.exists?(trouble_id: trouble.id, lawyer_id: current_lawyer.id)
-	  	  	redirect_to trouble_path(trouble)
+	  	  	  redirect_to trouble_path(trouble)
 	  	    end
+	  	  else
+	  	  	redirect_to trouble_path(trouble)
+	  	  end
 	    else
 	  	  redirect_to troubles_path
 	  	end
@@ -52,10 +56,14 @@ class Lawyers::CommentsController < ApplicationController
 	  	comment = Comment.new(comment_params)
 	  	trouble = Trouble.find(comment.trouble_id)
 	  	if lawyer_signed_in?
-	  	  #回答は一人一度限りを設定
-	  	  if Comment.exists?(trouble_id: trouble.id, lawyer_id: current_lawyer.id)
-	  	  	redirect_to trouble_path(trouble)
+	  	  if trouble.user.deleted_at == nil
+	  	    #回答は一人一度限りを設定
+	  	    if Comment.exists?(trouble_id: trouble.id, lawyer_id: current_lawyer.id)
+	  	  	  redirect_to trouble_path(trouble)
 	  	    end
+	  	  else
+	  	  	redirect_to trouble_path(trouble)
+	  	  end
 	    else
 	  	  redirect_to troubles_path
 	  	end

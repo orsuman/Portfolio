@@ -63,8 +63,7 @@ class Lawyers::LawyersController < ApplicationController
               if current_lawyer.id != lawyer.id
                 redirect_to lawyer_path(current_lawyer)
               end
-            elsif user_signed_in?
-            elsif admin_signed_in?
+            elsif admin_signed_in? || user_signed_in?
             else
                 redirect_to root_path
             end

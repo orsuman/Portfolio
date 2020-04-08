@@ -32,12 +32,12 @@
 
         <div class="field">
           <%= f.label :名前（姓・名） %> <span class="required">※必須</span>（姓・名の間に一文字スペースを入れてください）<br />
-          <%= f.text_field :name, autofocus: true, autocomplete: "name", class:"col-xs-2" %>
+          <%= f.text_field :name, class:"col-xs-2" %>
         </div></br></br>
 
         <div class="field">
           <%= f.label :このサイトで使う名前 %> <span class="required">※必須（個人を特定できない名前にしてください）</span></br>
-          <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname", class:"col-xs-2" %>
+          <%= f.text_field :nickname, class:"col-xs-2" %>
         </div></br></br>
 
         <div class="field">
@@ -53,6 +53,11 @@
         <div class="field">
           <%= f.label :県 %> <span class="required">※必須</span><br />
           <%= f.select :prefecture, User.prefectures.keys.to_a, :prompt => "--選択--" %>
+        </div></br>
+
+        <div class="field">
+          <%= f.label :市 %> <span class="required">※必須</span><br />
+          <%= f.text_field :city, class:"col-xs-2"%>
         </div></br>
 
         <div class="actions">

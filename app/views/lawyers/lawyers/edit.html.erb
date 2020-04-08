@@ -55,7 +55,7 @@
         </div></br>
 
         <div class="field">
-          <%= f.label :郵便番号 %>（ハイフン無しで数字のみ入力してください）<span class="required">※必須</span><br />
+          <%= f.label :郵便番号 %>（ハイフン無しで半角数字のみ入力してください）<span class="required">※必須</span><br />
           <%= f.text_field :postal_code, class:"col-xs-2" %>
         </div></br></br>
 
@@ -66,11 +66,11 @@
 
         <div class="field">
           <%= f.label :市以下の住所 %> <span class="required">※必須</span><br />
-          <%= f.text_field :address, autofocus: true, autocomplete: "address", class:"col-xs-5"%>
+          <%= f.text_field :address, class:"col-xs-5"%>
         </div></br></br>
 
         <div class = "field">
-          <%= f.label :電話番号 %>（ハイフン無しで数字のみ入力してください） <span class="recommendation">推奨</span><br/>
+          <%= f.label :電話番号 %>（ハイフン無しで半角数字のみ入力してください） <span class="recommendation">推奨</span><br/>
           <%= f.text_field :phone_number, class:"col-xs-2"%>
         </div></br><br/>
 

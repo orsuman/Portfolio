@@ -55,9 +55,9 @@
         </div></br>
 
         <div class="field">
-          <%= f.label :市 %> <span class="recommendation">推奨</span><br />
-          <%= f.text_field :city, autofocus: true, autocomplete: "city"%>
-        </div></br>
+          <%= f.label :市 %> <span class="required">※必須</span><br />
+          <%= f.text_field :city, class:"col-xs-2"%>
+        </div></br></br>
 
         <div class = "field">
           <%= f.label :プロフィール写真 %>

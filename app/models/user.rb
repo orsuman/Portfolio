@@ -20,6 +20,7 @@ class User < ApplicationRecord
   validates :sex, inclusion: { in: [true, false] }
   validates :age, presence: true
   validates :prefecture, presence: true
+  validates :city, presence: true
 
   acts_as_paranoid
 end

@@ -18,7 +18,7 @@
         <%= f.collection_select :category_id, @true_categories, :id, :name %>
         <%= f.submit '検索する', class: "btn btn-primary" %>
           <% unless @category.nil? %>
-            <%= link_to '全ての投稿を見る', troubles_path, class: "col-xs-offset-1" %>
+            <%= link_to '全ての投稿を見る', troubles_path, class: "btn btn-warning col-xs-offset-1" %>
           <% end %>
       <% end %>
     </div>
