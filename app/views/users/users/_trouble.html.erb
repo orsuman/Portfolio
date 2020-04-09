@@ -9,12 +9,14 @@
 
     <colgroup>
        <col style = "width:30%;">
-       <col style = "width:70%;">
+       <col style = "width:52%;">
+       <col style = "width:18%;">
     </colgroup>
 
-    <tr class= "info">
+    <tr class= "tr-color">
   	<th class = "text-center">カテゴリー</th>
   	<th>相談投稿</th>
+    <th class = "text-center">回答数</th>
     </tr>
 
   <% troubles.each do |trouble| %>
@@ -23,8 +25,11 @@
   	  <%= trouble.category.name %>
   	</td>
   	<td>
-  	  <%= link_to trouble_path(trouble) do %><%= trouble.title %><% end %>
+  	  <%= link_to trouble_path(trouble) do %><%= trouble.title.truncate(18) %><% end %>
   	</td>
+    <td class = "text-center">
+      全 <%= trouble.comments.count %> 件
+    </td>
     </tr>
   <%end%>
 

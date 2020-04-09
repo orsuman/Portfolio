@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :troubles
   has_many :references
-  has_many :rooms
+  has_many :rooms, dependent: :destroy
 
   def chat(lawyer_id)
     troubles.joins(:comments).where("comments.lawyer_id = " + lawyer_id.to_s ).group(:comment_id).count
@@ -21,6 +21,7 @@ class User < ApplicationRecord
   enum age: {十九歳以下:1, 二十歳代:2, 三十歳代:3, 四十歳代:4, 五十歳代:5, 六十歳代:6, 七十歳以上:7 }
 
   validates :name, presence: true
+  validates :name_kana, presence: true
   validates :nickname, presence: true, uniqueness: true
   validates :sex, inclusion: { in: [true, false] }
   validates :age, presence: true

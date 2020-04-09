@@ -9,8 +9,14 @@
         <label class="col-xs-3">相談者の名前</label>
           <span class ="col-xs-9">
             <% if @trouble.user.deleted_at == nil %>
-              <% if lawyer_signed_in? || admin_signed_in? %>
+              <% if admin_signed_in? %>
                 <%= link_to user_path(@trouble.user) do %><%= @trouble.user.nickname %><% end %> 様
+              <% elsif lawyer_signed_in? %>
+                <% if @users.include?(@trouble.user.id) %>
+                  <%= link_to user_path(@trouble.user) do %><%= @trouble.user.nickname %><% end %> 様
+                <% else %>
+                  <%= @trouble.user.nickname %> 様
+                <% end %>
               <% else %>
                 <%= @trouble.user.nickname %> 様
               <% end %>

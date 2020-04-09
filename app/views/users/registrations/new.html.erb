@@ -36,6 +36,11 @@
         </div></br></br>
 
         <div class="field">
+          <%= f.label :名前（せい・めい） %> <span class="required">※必須</span>（せい・めいの間に一文字スペースを入れてください）<br />
+          <%= f.text_field :name_kana, autofocus: true, autocomplete: "name_kana", class:"col-xs-2" %>
+        </div></br></br>
+
+        <div class="field">
           <%= f.label :このサイトで使う名前 %> <span class="required">※必須（個人を特定できない名前にしてください）</span></br>
           <%= f.text_field :nickname, class:"col-xs-2" %>
         </div></br></br>

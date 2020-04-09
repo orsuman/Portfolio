@@ -2,13 +2,13 @@
 
   <div class = "row">
   	<div class="col-xs-7 col-xs-offset-1">
-      <h2><span class = "subject">皆の相談一覧</span>（
+      <h2><span class = "subject">皆の相談一覧（
       	  <% unless @category.nil? %>
 		    <%= @category.name %>：全 <%= @category.troubles.count %> 件
 		  <%else%>
 				全 <%= @true_troubles.count %> 件
 		  <%end%>）
-	  </h2></br>
+	  </span></h2></br>
     </div>
   </div>
   <div class = "row">
@@ -38,7 +38,7 @@
          <col style = "width:30%;">
       </colgroup>
 
-	    <tr class= "info">
+	    <tr class= "tr-color">
 	      <th></th>
 	      <th>名前</th>
 		  <th>カテゴリー</th>
@@ -49,15 +49,21 @@
 	    <tr>
 	      <td>
 	      	<% if trouble.user.deleted_at == nil %>
-	      	  <%= attachment_image_tag trouble.user, :image, :fill, 40, 40, fallback: "no_image.jpg",  size:'40x40' %>
+	      	  <%= attachment_image_tag trouble.user, :image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40' %>
 	      	<% else %>
 	      	  <%= image_tag "no_image.jpg",size:"40x40" %>
 	      	<% end %>
 	      </td>
 	      <td>
 	      	<% if trouble.user.deleted_at == nil %>
-	      	  <% if lawyer_signed_in? || admin_signed_in? %>
+	      	  <% if admin_signed_in? %>
 	      	    <%= link_to user_path(trouble.user) do %><%= trouble.user.nickname %><% end %> 様
+	      	  <% elsif lawyer_signed_in?%>
+	      	    <% if @users.include?(trouble.user.id) %>
+	      	      <%= link_to user_path(trouble.user) do %><%= trouble.user.nickname %><% end %> 様
+	      	    <% else %>
+	      	      <%= trouble.user.nickname %> 様
+	      	    <% end %>
 	      	  <% else %>
 	      	    <%= trouble.user.nickname %> 様
 	      	  <% end %>

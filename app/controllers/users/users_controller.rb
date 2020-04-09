@@ -60,6 +60,13 @@ class Users::UsersController < ApplicationController
                 redirect_to user_path(current_user)
               end
             elsif lawyer_signed_in?
+              users = []
+                current_lawyer.comments.each do |comment|
+                users << comment.trouble.user.id
+                end
+                  unless users.include?(user.id)
+                    redirect_to lawyer_path(current_lawyer)
+                  end
             elsif admin_signed_in?
             else
                 redirect_to root_path

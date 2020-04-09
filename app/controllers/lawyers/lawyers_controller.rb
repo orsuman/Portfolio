@@ -14,15 +14,6 @@ class Lawyers::LawyersController < ApplicationController
            @true_references = reference.sum
          end
      end
-    if user_signed_in?
-      @lawyers = Lawyer.all
-      rooms = current_user.rooms
-      #自分が入ってるroomの相手のidを格納する
-      @lawyer_ids = []
-      rooms.each do |room|
-        @lawyer_ids << room.lawyer_id
-      end
-    end
 	end
 
 	def edit
@@ -72,7 +63,14 @@ class Lawyers::LawyersController < ApplicationController
               if current_lawyer.id != lawyer.id
                 redirect_to lawyer_path(current_lawyer)
               end
-            elsif admin_signed_in? || user_signed_in?
+            elsif user_signed_in?
+                rooms = current_user.rooms
+                #自分が入ってるroomの相手のidを格納する
+                @lawyer_ids = []
+                   rooms.each do |room|
+                   @lawyer_ids << room.lawyer_id
+                end
+            elsif admin_signed_in?
             else
                 redirect_to root_path
             end

@@ -1,10 +1,11 @@
 class Users::TroublesController < ApplicationController
 
+    before_action :user_link, only: [:index, :show]
     before_action :login, only: [:index]
     before_action :true_category, only: [:index]
     before_action :true_trouble, only: [:show]
-	before_action :user_login, only: [:new, :confirm, :create, :back]
-	before_action :true_categories, only: [:index, :new, :confirm, :create, :back]
+	  before_action :user_login, only: [:new, :confirm, :create, :back]
+	  before_action :true_categories, only: [:index, :new, :confirm, :create, :back]
 
 	def index
 	    @categories = Category.all
@@ -66,33 +67,41 @@ class Users::TroublesController < ApplicationController
 	  	  redirect_to root_path
 	  	end
 	  end
-      def true_category
-        unless params[:category_id].nil?
-          category = Category.find(params[:category_id])
-          if category.is_active == false
-            redirect_to troubles_path
-          end
-        end
-      end
-      def true_trouble
-        trouble = Trouble.find(params[:id])
-        if trouble.category.is_active == false
+    def true_category
+      unless params[:category_id].nil?
+        category = Category.find(params[:category_id])
+        if category.is_active == false
           redirect_to troubles_path
         end
       end
-	  def user_login
-	  	unless user_signed_in?
-	  	  redirect_to troubles_path
-	  	end
-	  end
-      def true_categories
-          categories = Category.all
-          @true_categories = []
-          categories.each do |c|
-            if c.is_active == true
-               @true_categories << c
-            end
+    end
+    def true_trouble
+      trouble = Trouble.find(params[:id])
+      if trouble.category.is_active == false
+        redirect_to troubles_path
+      end
+    end
+    def user_login
+  	unless user_signed_in?
+  	  redirect_to troubles_path
+  	end
+    end
+    def true_categories
+       categories = Category.all
+       @true_categories = []
+       categories.each do |c|
+         if c.is_active == true
+           @true_categories << c
+         end
+        end
+    end
+    def user_link
+      if lawyer_signed_in?
+        @users = []
+          current_lawyer.comments.each do |comment|
+          @users << comment.trouble.user.id
           end
       end
+    end
 
 end
