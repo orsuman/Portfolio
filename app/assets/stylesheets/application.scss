@@ -55,7 +55,10 @@ nav {
 	margin: 0 15px;
 }
 .each_link {
-	color: gray;
+	color: #008b8b;
+}
+.each_link:hover {
+	color: #20b2aa;
 }
 .log-name {
 	font-size: 14px;
