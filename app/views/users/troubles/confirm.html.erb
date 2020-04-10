@@ -9,7 +9,7 @@
               <div id="error_explanation">
                 <h3>
                   <%= pluralize(@trouble.errors.count, "error") %>
-                  prohibited this category from being saved:
+                  prohibited this trouble from being saved:
                 </h3>
                   <% @trouble.errors.full_messages.each do |msg| %>
                   <li><%= msg %></li>

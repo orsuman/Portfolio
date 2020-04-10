@@ -6,11 +6,12 @@ class Users::UsersController < ApplicationController
 	def show
      @user = User.with_deleted.find(params[:id])
      @true_troubles = []
-       @user.troubles.each do |trouble|
+       @user.troubles.order(created_at: :desc).each do |trouble|
          if trouble.category.is_active == true
            @true_troubles << trouble
          end
        end
+     @troubles = Kaminari.paginate_array(@true_troubles).page(params[:page]).per(15)
 	end
 
 	def edit

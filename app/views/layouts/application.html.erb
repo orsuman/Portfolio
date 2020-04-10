@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>Portfolio</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
   </head>
 
   <body>
-    <div class="wrapper">
-      <%= render 'layouts/header' %>
-      <main>
-        <%= yield %>
-      </main>
-      <%= render 'layouts/footer' %>
-    </div>
+
+      <div class="wrapper">
+        <header>
+          <%= render 'layouts/header' %>
+        </header>
+        <main>
+          <%= yield %>
+        </main>
+        <footer>
+          <%= render 'layouts/footer' %>
+        </footer>
+      </div>
+
   </body>
+
 </html>

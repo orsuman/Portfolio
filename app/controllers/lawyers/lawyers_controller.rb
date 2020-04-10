@@ -7,7 +7,7 @@ class Lawyers::LawyersController < ApplicationController
      @lawyer = Lawyer.with_deleted.find(params[:id])
      @true_comments = []
      reference = []
-       @lawyer.comments.each do |comment|
+       @lawyer.comments.order(created_at: :desc).each do |comment|
          if comment.trouble.category.is_active == true
            @true_comments << comment
            reference << comment.references.count

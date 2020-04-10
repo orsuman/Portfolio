@@ -27,7 +27,7 @@
 		  <th>メッセージ数</th>
 		  <th></th>
 	    </tr>
-	  <% current_lawyer.rooms.each do |room| %>
+	  <% @rooms.each do |room| %>
 	    <tr>
 	      <td>
 	      	<%= attachment_image_tag room.user, :image, :fill, 40, 40, fallback: "no_image.jpg",  size:'40x40' %>
@@ -47,4 +47,8 @@
 	    </tr>
 	  <%end%>
     </table>
+
+	<div class = "col-xs-12"><br/>
+	  <%= paginate @rooms, class: "paginate" %>
+    </div>
 </div>

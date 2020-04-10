@@ -1,20 +1,20 @@
 <div class="top">
-<div class = "container">
+</div>
+
+<div class = "container" style="text-align:center;">
+  <div class="login-link">
   <div class = "row">
-  	<div class = "col-xs-7 col-xs-offset-2">
-      <h2>以下の該当するものをクリックしてください</h2>
+
+    <div class="col-xs-6">
+      <h1><i class="fas fa-user-tie"></i>法専門家の方はこちら</h1>
+      <h4><%=link_to '先生 ログイン', new_lawyer_session_path, class: "btn btn-warning col-xs-8 col-xs-offset-2" %></h4>
     </div>
 
-    <div class = "col-xs-3 col-xs-offset-3">
-
-      <h3>士業の先生の方</h3>
-      <h4><%=link_to '先生ログイン', new_lawyer_session_path %></h4>
-      <h4><%=link_to '先生新規登録', new_lawyer_registration_path %></h4>
-
-      <h3>先生に相談したい方</h3>
-      <h4><%=link_to '相談者ログイン', new_user_session_path %></h4>
-      <h4><%=link_to '相談者新規登録', new_user_registration_path %></h4>
+    <div class="col-xs-6">
+      <h1><i class="fas fa-user"></i>相談を御希望の方はこちら</h1>
+      <h4><%=link_to '相談者 ログイン', new_user_session_path, class: "btn btn-warning col-xs-8 col-xs-offset-2" %></h4>
     </div>
+
   </div>
 </div>
 </div>
