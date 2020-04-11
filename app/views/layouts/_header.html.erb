@@ -10,7 +10,7 @@
     <!-----管理者ログイン後----->
     <% if admin_signed_in? %>
       <li class="header-link log-name">管理者がログイン中です</li>
-      <li class="header-link"><%= link_to admin_lawyers_path do %><span class="each_link">先生一覧</span><% end %></li>
+      <li class="header-link"><%= link_to admin_lawyers_path do %><span class="each_link">法専門家一覧</span><% end %></li>
       <li class="header-link"><%= link_to admin_users_path do %><span class="each_link">相談者一覧</span><% end %></li>
       <li class="header-link"><%= link_to troubles_path do %><span class="each_link">相談一覧</span><% end %></li>
       <li class="header-link"><%= link_to admin_categories_path do %><span class="each_link">カテゴリー編集</span><% end %></li>
@@ -32,7 +32,7 @@
     <!-----その他----->
     <% else %>
       <li class="header-link"><%= link_to home_about_path do %><span class="page_link"><i class="fas fa-check-square"></i>このサイトの目的</span><% end %></li>
-      <li class="header-link"><%= link_to new_lawyer_session_path do %><span class="page_link"><i class="fas fa-user-tie"></i>先生ログイン</span><% end %></li>
+      <li class="header-link"><%= link_to new_lawyer_session_path do %><span class="page_link"><i class="fas fa-user-tie"></i>法専門家ログイン</span><% end %></li>
       <li class="header-link"><%= link_to new_user_session_path do %><span class="page_link"><i class="fas fa-user"></i>相談者ログイン</span><% end %></li>
     <% end %>
   </ul>

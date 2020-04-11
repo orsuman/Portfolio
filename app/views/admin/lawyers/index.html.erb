@@ -1,31 +1,33 @@
 <div class = "container yield">
   <div class = "row">
 
-  	<div class="col-xs-6 col-xs-offset-3">
-      <h2><span class = "subject">&nbsp;&nbsp;&nbsp;士業の先生一覧（全 <%= @lawyer_all.count %> ユーザー）</span></h2></br>
+  	<div class="col-xs-7 col-xs-offset-2">
+      <h2><span class = "subject">&nbsp;&nbsp;&nbsp;法専門家一覧（全 <%= @lawyer_all.count %> ユーザー）</span></h2></br>
     </div>
 
   </div>
 
   <div class = "row">
 
-    <div class="col-xs-6 col-xs-offset-3 actions">
+    <div class="col-xs-7 col-xs-offset-2 actions">
 
       <table ~~~ class = "table">
 
         <colgroup>
            <col style = "width:5%;">
+           <col style = "width:13%;">
+           <col style = "width:30%;">
            <col style = "width:15%;">
-           <col style = "width:35%;">
-           <col style = "width:15%;">
-           <col style = "width:15%;">
-           <col style = "width:15%;">
+           <col style = "width:13%;">
+           <col style = "width:13%;">
+           <col style = "width:11%;">
         </colgroup>
 
   	    <tr>
   	      <th>ID</th>
   	      <th>写真</th>
   		    <th>姓名</th>
+          <th>職業</th>
   		    <th>性別</th>
   		    <th>状況</th>
   		    <th></th>
@@ -41,6 +43,9 @@
   	      <td>
   	      	<%= link_to lawyer_path(lawyer) do %><span class="each_link"><%= lawyer.name %></span><% end %>
   	      </td>
+          <td>
+            <%= lawyer.profession %>
+          </td>
   		    <td>
   		  	  <% if lawyer.sex == true %>
                 男性
