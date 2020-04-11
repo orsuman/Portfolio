@@ -1,15 +1,24 @@
 <table ~~~ class = "table text-center">
 
   <colgroup>
-     <col style = "width:25%;">
-     <col style = "width:75%;">
+     <col style = "width:30%;">
+     <col style = "width:70%;">
   </colgroup>
 
     <tr>
       <th>写真</th>
       <td><%= attachment_image_tag(user, :image, :fill, 200, 200, fallback: "no_image.jpg", size:'150x150') %></td>
     </tr>
-  <% if admin_signed_in? || lawyer_signed_in? || current_user.id == user.id %>
+  <% if lawyer_signed_in? && @users.include?(user.id) %>
+    <tr>
+      <th>姓・名</th>
+      <td><%= user.name %></td>
+    </tr>
+    <tr>
+      <th>かな</th>
+      <td><%= user.name_kana %></td>
+    </tr>
+  <% elsif admin_signed_in? || user_signed_in? %>
     <tr>
       <th>姓・名</th>
       <td><%= user.name %></td>
@@ -38,12 +47,12 @@
       <td><%= user.age %></td>
     </tr>
     <tr>
-      <th>県</th>
+      <th>都道府県</th>
       <td><%= user.prefecture %></td>
     </tr>
-  <% if admin_signed_in? || lawyer_signed_in? || current_user.id == user.id %>
+  <% if admin_signed_in? || lawyer_signed_in? || user_signed_in? %>
     <tr>
-      <th>市</th>
+      <th>市・区</th>
       <td><%= user.city %></td>
     </tr>
   <% end %>
@@ -51,7 +60,7 @@
 
 <% if user_signed_in? %>
   <% if current_user.id == user.id %>
-    <%= link_to '編集する', edit_user_path, class: "btn btn-info col-xs-12" %><br/><br/><br/><br/>
-    <%= link_to '参考になった投稿を見る', references_path, class: "btn btn-success col-xs-12" %>
+    <%= link_to '編集する', edit_user_path, class: "btn btn-success col-xs-12" %><br/><br/><br/><br/>
+    <%= link_to references_path, class: "btn btn-info col-xs-12" do %>"<span class="glyphicon glyphicon-thumbs-up"></span>参考になった"回答を見る<% end %>
   <% end %>
 <% end %>

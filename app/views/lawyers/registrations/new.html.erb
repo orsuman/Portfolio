@@ -1,7 +1,7 @@
 <div class="container yield">
   <div class="row">
     <div class="col-xs-6 col-xs-offset-2">
-      <h2><span class="subject">士業の先生として、新規登録する</span></h2><br/>
+      <h2><span class="subject">&nbsp;&nbsp;士業の先生として、新規登録する&nbsp;&nbsp;</span></h2><br/>
     </div>
 
     <div class="col-xs-10 col-xs-offset-3">
@@ -81,7 +81,7 @@
         </div></br><br/>
 
         <div class = "field">
-          <label>URL</label> <span class="recommendation">推奨</span><br/>
+          <label>URL</label>（http又はhttpsから始まるURLを入力してください） <span class="recommendation">推奨</span><br/>
           <%= f.text_field :url, class:"col-xs-5" %>
         </div></br><br/>
 
@@ -91,7 +91,7 @@
       <% end %></br></br></br>
 
         <div class="actions">
-          <%= link_to "< 登録せずに戻る", root_path %>
+          <%= link_to root_path do %><span class="each_link">< 登録せずに戻る</span><% end %>
         </div>
 
     </div>

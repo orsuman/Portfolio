@@ -1,17 +1,21 @@
 <div class="container yield">
   <div class="row">
     <div class="col-xs-5 col-xs-offset-2">
-      <h2><span class="subject">先生の情報を見る</span></h2><br/>
+      <% if lawyer_signed_in? %>
+        <h2><span class="subject">&nbsp;&nbsp;<i class="fas fa-user-tie"></i>&nbsp;マイページ&nbsp;<i class="fas fa-user-tie"></i>&nbsp;&nbsp;</span></h2>
+      <% else %>
+        <h2><span class="subject">&nbsp;<i class="fas fa-user-tie"></i>&nbsp;先生の情報を見る&nbsp;<i class="fas fa-user-tie"></i>&nbsp;</span></h2>
+      <% end %><br/><br/>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-xs-4">
+    <div class="col-xs-4"><br/>
       <%= render 'info', lawyer: @lawyer %>
     </div>
     <div class="col-xs-1"></div>
     <div class="col-xs-7">
-      <%= render 'list', comments: @true_comments, references: @true_references %>
+      <%= render 'list', trues: @true_comments, references: @true_references %>
     </div>
   </div>
 </div>

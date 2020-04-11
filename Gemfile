@@ -78,3 +78,7 @@ gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.4.1'
 # address
 gem 'jp_prefecture'
+#seeds.rb
+gem 'seed-fu'
+#環境変数
+gem 'dotenv-rails'

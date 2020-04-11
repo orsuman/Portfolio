@@ -1,36 +1,36 @@
 <div class = "container yield">
   <div class = "row">
 
-  	<div class="col-xs-3 col-xs-offset-3">
-      <h2><span class = "subject">相談者一覧</span></h2></br>
+  	<div class="col-xs-6 col-xs-offset-2">
+      <h2><span class = "subject">&nbsp;&nbsp;&nbsp;相談者一覧（全 <%= @user_all.count %> ユーザー）</span></h2></br>
     </div>
 
   </div>
 
   <div class = "row">
 
-    <div class="col-xs-8 col-xs-offset-2 actions">
+    <div class="col-xs-7 col-xs-offset-2 actions">
 
       <table ~~~ class = "table">
 
         <colgroup>
            <col style = "width:5%;">
            <col style = "width:10%;">
-           <col style = "width:23%;">
-           <col style = "width:23%;">
+           <col style = "width:27%;">
+           <col style = "width:27%;">
            <col style = "width:10%;">
            <col style = "width:10%;">
-           <col style = "width:14%;">
+           <col style = "width:11%;">
         </colgroup>
 
-  	    <tr class= "tr-color">
+  	    <tr>
   	      <th>ID</th>
-  	      <th></th>
+  	      <th>写真</th>
   	      <th>表示名</th>
-  		  <th>姓名</th>
-  		  <th>性別</th>
-  		  <th>状況</th>
-  		  <th></th>
+  		    <th>姓名</th>
+  		    <th>性別</th>
+  		    <th>状況</th>
+  		    <th></th>
   	    </tr>
   	  <% @users.each do |user| %>
   	    <tr>
@@ -41,7 +41,7 @@
   	      	<%= attachment_image_tag user, :image, :fill, 40, 40, fallback: "no_image.jpg",  size:'40x40' %>
   	      </td>
   	      <td>
-  	      	<%= link_to user_path(user) do %><%= user.nickname %><% end %>
+  	      	<%= link_to user_path(user) do %><span class="each_link"><%= user.nickname %></span><% end %>
   	      </td>
   		  <td>
   		  	<%= user.name %>
@@ -61,11 +61,19 @@
             <%end%>
   		  </td>
   		  <td>
-  		    <%= link_to '編集する', admin_user_path(user), class: "btn btn-success" %>
+  		    <%= link_to '詳細', admin_user_path(user), class: "btn btn-success" %>
   		  </td>
   	  <%end%>
       </table>
 
     </div>
+
+
+      <div class = "col-xs-12 col-xs-offset-2"><br/>
+        <%= paginate @users %>
+      </div>
+
   </div>
 </div>
+
+

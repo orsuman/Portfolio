@@ -2,7 +2,7 @@
   <div class = "row">
     <div class="col-xs-5 col-xs-offset-3">
 
-      <h2><span class="subject">パスワードを変更する</span></h2>
+      <h2><span class="subject">&nbsp;&nbsp;パスワードを変更する&nbsp;&nbsp;</span></h2>
 
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
           <%= render "devise/shared/error_messages", resource: resource %>
@@ -44,7 +44,7 @@
           </div>
         <% end %><br/><br/>
 
-      <%= link_to "戻る", lawyer_path(current_lawyer), class:"btn btn-primary" %>
+      <%= link_to lawyer_path(current_lawyer) do %><span class="each_link">< 変更せずに戻る</span><% end %>
 
     </div>
   </div>

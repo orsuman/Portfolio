@@ -1,8 +1,8 @@
-<div class = "container">
+<div class = "container yield">
   <div class = "row">
 
     <div class="col-xs-3 col-xs-offset-3 actions">
-      <h2><span class = "subject">相談者詳細</span></h2></br>
+      <h2><span class = "subject">&nbsp;&nbsp;相談者詳細&nbsp;&nbsp;</span></h2></br>
     </div>
   </div>
 
@@ -31,6 +31,10 @@
             </td>
           </tr>
           <tr>
+            <th>メールアドレス</th>
+            <td><%= @user.email %></td>
+          </tr>
+          <tr>
             <th>姓・名</th>
             <td><%= @user.name %></td>
           </tr>
@@ -57,7 +61,7 @@
             <td><%= @user.age %></td>
           </tr>
           <tr>
-            <th>県・市</th>
+            <th>県・市町村</th>
             <td><%= @user.prefecture %> <%= @user.city %></td>
           </tr>
       </table></br>

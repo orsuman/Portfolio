@@ -1,6 +1,5 @@
 class Users::TroublesController < ApplicationController
 
-    before_action :user_link, only: [:index, :show]
     before_action :login, only: [:index]
     before_action :true_category, only: [:index]
     before_action :true_trouble, only: [:show]
@@ -94,14 +93,6 @@ class Users::TroublesController < ApplicationController
            @true_categories << c
          end
         end
-    end
-    def user_link
-      if lawyer_signed_in?
-        @users = []
-          current_lawyer.comments.each do |comment|
-          @users << comment.trouble.user.id
-          end
-      end
     end
 
 end

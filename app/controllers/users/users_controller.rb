@@ -11,7 +11,7 @@ class Users::UsersController < ApplicationController
            @true_troubles << trouble
          end
        end
-     @troubles = Kaminari.paginate_array(@true_troubles).page(params[:page]).per(15)
+     @troubles = Kaminari.paginate_array(@true_troubles).page(params[:page])
 	end
 
 	def edit
@@ -61,13 +61,10 @@ class Users::UsersController < ApplicationController
                 redirect_to user_path(current_user)
               end
             elsif lawyer_signed_in?
-              users = []
+              @users = []
                 current_lawyer.comments.each do |comment|
-                users << comment.trouble.user.id
-                end
-                  unless users.include?(user.id)
-                    redirect_to lawyer_path(current_lawyer)
-                  end
+                @users << comment.trouble.user.id
+            end
             elsif admin_signed_in?
             else
                 redirect_to root_path

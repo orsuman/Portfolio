@@ -1,8 +1,8 @@
 <div class = "container yield">
   <div class = "row">
 
-  	<div class="col-xs-3 col-xs-offset-3">
-      <h2><span class = "subject">士業の先生一覧</span></h2></br>
+  	<div class="col-xs-6 col-xs-offset-3">
+      <h2><span class = "subject">&nbsp;&nbsp;&nbsp;士業の先生一覧（全 <%= @lawyer_all.count %> ユーザー）</span></h2></br>
     </div>
 
   </div>
@@ -22,9 +22,9 @@
            <col style = "width:15%;">
         </colgroup>
 
-  	    <tr class= "tr-color">
+  	    <tr>
   	      <th>ID</th>
-  	      <th></th>
+  	      <th>写真</th>
   		    <th>姓名</th>
   		    <th>性別</th>
   		    <th>状況</th>
@@ -39,7 +39,7 @@
   	      	<%= attachment_image_tag lawyer, :image, :fill, 40, 40, fallback: "no_image.jpg",  size:'40x40' %>
   	      </td>
   	      <td>
-  	      	<%= link_to lawyer_path(lawyer) do %><%= lawyer.name %><% end %>
+  	      	<%= link_to lawyer_path(lawyer) do %><span class="each_link"><%= lawyer.name %></span><% end %>
   	      </td>
   		    <td>
   		  	  <% if lawyer.sex == true %>
@@ -56,11 +56,16 @@
             <%end%>
   		    </td>
   		  <td>
-  		    <%= link_to '編集する', admin_lawyer_path(lawyer), class: "btn btn-success" %>
+  		    <%= link_to '詳細', admin_lawyer_path(lawyer), class: "btn btn-success" %>
   		  </td>
   	  <%end%>
       </table>
 
     </div>
+
+      <div class = "col-xs-12 col-xs-offset-3"><br/>
+        <%= paginate @lawyers %>
+      </div>
+
   </div>
 </div>

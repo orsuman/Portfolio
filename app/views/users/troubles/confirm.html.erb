@@ -2,7 +2,7 @@
   <div class = "row">
 
     <div class="col-xs-6 col-xs-offset-2">
-      <h2><span class = "subject">投稿内容を確認する</span></h2></br>
+      <h2><span class = "subject">&nbsp;&nbsp;投稿内容を確認する&nbsp;&nbsp;</span></h2></br>
         <div>
           <% if @trouble.errors.any? %>
             <div class= "error">
@@ -26,7 +26,7 @@
         <label class="col-xs-2">カテゴリー</label>
           <span class ="col-xs-10"><%= @trouble.category.name %></span></br>
         <label class="col-xs-12">説明写真</label>
-          <span class ="col-xs-12"><%= attachment_image_tag @trouble, :image, :fill, 600, 300, size:'600x300' %></span>
+          <span class ="col-xs-12 text-center"><%= attachment_image_tag @trouble, :image, class: "image_tag"  %></span>
         <label class="col-xs-12">タイトル</label>
           <span class ="col-xs-7"><%= @trouble.title %></span>
         <label class="col-xs-12">投稿内容</label>

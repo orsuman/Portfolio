@@ -2,7 +2,7 @@
   <div class = "row">
 
     <div class="col-xs-3 col-xs-offset-3">
-      <h2><span class = "subject">士業の先生詳細</span></h2></br>
+      <h2><span class = "subject">&nbsp;&nbsp;士業の先生詳細&nbsp;&nbsp;</span></h2></br>
     </div>
   </div>
 
@@ -29,6 +29,10 @@
                 退会ユーザー
               <%end%>
             </td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td><%= @lawyer.email %></td>
           </tr>
           <tr>
             <th>姓・名</th>
@@ -65,7 +69,7 @@
             <td>〒<%= @lawyer.postal_code %>, <%= @lawyer.prefecture %></td>
           </tr>
           <tr>
-            <th>市以下</th>
+            <th>市以下住所</th>
             <td><%= @lawyer.address %></td>
           </tr>
           <tr>
@@ -74,7 +78,7 @@
           </tr>
           <tr>
             <th>URL</th>
-            <td><%= link_to @lawyer.url do %><%= @lawyer.url %><% end %></td>
+            <td><%= link_to @lawyer.url, :target=>["_blank"] do %><%= @lawyer.url %><% end %></td>
           </tr>
           <tr>
             <th>自己紹介</th>

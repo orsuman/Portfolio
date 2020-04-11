@@ -1,9 +1,9 @@
-<% if comments.count == 0 %>
-  <h2>このユーザーのコメント投稿は０件です</h2>
+<% if trues.count == 0 %>
+  <h2>このユーザーの回答投稿は０件です</h2>
 
 <% else %>
 
-  <h3>回答件数 <%= comments.count %>件（"<span class="glyphicon glyphicon-thumbs-up"></span>参考になった"が<%= references %>件ついています）</h3></br>
+  <h3>回答件数 <%= trues.count %>件（"<span class="glyphicon glyphicon-thumbs-up"></span>参考になった"が<%= references %>件ついています）</h3></br>
 
   <table ~~~ class = "table">
 
@@ -17,7 +17,7 @@
   	<th>タイトル</th>
     </tr>
 
-  <% comments.each do |comment| %>
+  <% trues.each do |comment| %>
     <tr>
   	<td class = "text-center">
       <%= comment.trouble.category.name %>

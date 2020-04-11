@@ -2,7 +2,7 @@
   <div class="row">
 
     <div class="col-xs-6 col-xs-offset-4">
-      <h2><span class="subject">相談者としてログインする</span></h2><br/><br/>
+      <h2><span class="subject">&nbsp;&nbsp;相談者としてログインする&nbsp;&nbsp;</span></h2><br/><br/>
     </div>
 
     <div class="col-xs-4 col-xs-offset-4">
@@ -31,7 +31,7 @@
 
   <div class="row">
       <div class="col-xs-6 col-xs-offset-4">
-        登録が済んでいない方は、<%= link_to "こちらから",new_user_registration_path %>新規登録してください。
+        登録が済んでいない方は、<%= link_to new_user_registration_path do %><span class="each_link">こちら</span><% end %>から新規登録してください。
     　</div>
   </div>
 </div>

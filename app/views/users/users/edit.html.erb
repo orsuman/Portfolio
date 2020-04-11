@@ -1,7 +1,7 @@
 <div class="container yield">
   <div class="row">
     <div class="col-xs-5 col-xs-offset-2">
-      <h2><span class="subject">ユーザー情報を編集する</span></h2><br/>
+      <h2><span class="subject">&nbsp;&nbsp;ユーザー情報を編集する&nbsp;&nbsp;</span></h2><br/>
     </div>
 
     <div class="col-xs-10 col-xs-offset-3">
@@ -50,12 +50,12 @@
         </div></br>
 
         <div class="field">
-          <%= f.label :県 %> <span class="required">※必須</span><br />
+          <%= f.label :都道府県 %> <span class="required">※必須</span><br />
           <%= f.select :prefecture, User.prefectures.keys.to_a, :prompt => "--選択--" %>
         </div></br>
 
         <div class="field">
-          <%= f.label :市 %> <span class="required">※必須</span><br />
+          <%= f.label :市・区 %> <span class="required">※必須</span><br />
           <%= f.text_field :city, class:"col-xs-2"%>
         </div></br></br>
 
@@ -74,7 +74,7 @@
         </div></br></br></br>
 
         <div class="actions">
-          <%= link_to "< 更新せずに戻る", user_path(current_user) %>
+          <%= link_to user_path(current_user) do %><span class="each_link">< 更新せずに戻る</span><% end %>
         </div>
 
     </div>

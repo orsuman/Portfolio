@@ -2,7 +2,7 @@
 
   <div class = "row">
   	<div class="col-xs-7 col-xs-offset-1">
-      <h2><span class="subject">チャット一覧</span></h2>
+      <h2><span class="subject">&nbsp;&nbsp;チャット一覧&nbsp;&nbsp;</span></h2>
     </div>
   </div>
 
@@ -33,7 +33,7 @@
 	      	<%= attachment_image_tag room.user, :image, :fill, 40, 40, fallback: "no_image.jpg",  size:'40x40' %>
 	      </td>
 	      <td>
-	      	<%= link_to user_path(room.user) do %><%= room.user.nickname %><% end %>
+	      	<%= link_to user_path(room.user) do %><span class="each_link"><%= room.user.nickname %></span><% end %>
 	      </td>
 	      <td>
 	      	<%= room.user.name %> 様

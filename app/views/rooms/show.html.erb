@@ -2,9 +2,9 @@
 
   <div class="row">
     <% if user_signed_in? %>
-      <h2><span class="subject"><%= link_to lawyer_path(@lawyer) do %><%= @lawyer.name %><% end %> 先生（<%= @lawyer.office %>）に直接相談する</span></h2>
+      <h2><span class="subject">&nbsp;<%= link_to lawyer_path(@lawyer) do %><span class="each_link"><%= @lawyer.name %></span><% end %> 先生（<%= @lawyer.office %>）に直接相談する&nbsp;</span></h2>
     <% elsif lawyer_signed_in?%>
-      <h2><span class="subject"><%= link_to user_path(@user) do %><%= @user.name %><% end %>（<%= @user.nickname %>）様の相談に回答する</span></h2>
+      <h2><span class="subject">&nbsp;<%= link_to user_path(@user) do %><span class="each_link"><%= @user.name %></span><% end %>（<%= @user.nickname %>）様の相談に回答する&nbsp;</span></h2>
     <% end %><br/>
 
     <%= form_for [@room, @message] do |f| %>

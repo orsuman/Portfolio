@@ -2,8 +2,8 @@
 
   <div class = "row">
   	<div class="col-xs-7 col-xs-offset-1">
-      <h2><span class = "subject">皆の相談一覧（
-      	  <% unless @category.nil? %>
+      <h2><span class = "subject">&nbsp;&nbsp;&nbsp;皆の相談一覧（
+      	  <% if @category != nil %>
 		    <%= @category.name %>：全 <%= @category.troubles.count %> 件
 		  <%else%>
 				全 <%= @true_troubles.count %> 件
@@ -16,8 +16,8 @@
       <%= form_with( url: troubles_path, method: :get, local:true) do |f| %>
         カテゴリー別に見る➡️
         <%= f.collection_select :category_id, @true_categories, :id, :name %>
-        <%= f.submit '検索する', class: "btn btn-primary" %>
-          <% unless @category.nil? %>
+        <%= button_tag :type => "submit", class: "btn btn-primary" do %>&nbsp;&nbsp;<i class="fa fa-search"></i>&nbsp;&nbsp;<% end %>
+          <% if @category != nil %>
             <%= link_to '全ての投稿を見る', troubles_path, class: "btn btn-warning col-xs-offset-1" %>
           <% end %>
       <% end %>
@@ -38,7 +38,7 @@
          <col style = "width:30%;">
       </colgroup>
 
-	    <tr class= "tr-color">
+	    <tr>
 	      <th></th>
 	      <th>名前</th>
 		  <th>カテゴリー</th>
@@ -56,14 +56,8 @@
 	      </td>
 	      <td>
 	      	<% if trouble.user.deleted_at == nil %>
-	      	  <% if admin_signed_in? %>
-	      	    <%= link_to user_path(trouble.user) do %><%= trouble.user.nickname %><% end %> 様
-	      	  <% elsif lawyer_signed_in?%>
-	      	    <% if @users.include?(trouble.user.id) %>
-	      	      <%= link_to user_path(trouble.user) do %><%= trouble.user.nickname %><% end %> 様
-	      	    <% else %>
-	      	      <%= trouble.user.nickname %> 様
-	      	    <% end %>
+	      	  <% if admin_signed_in? || lawyer_signed_in? %>
+	      	    <%= link_to user_path(trouble.user) do %><span class="each_link"><%= trouble.user.nickname %></span><% end %> 様
 	      	  <% else %>
 	      	    <%= trouble.user.nickname %> 様
 	      	  <% end %>
@@ -75,7 +69,7 @@
 		  	<%= trouble.category.name %>
 		  </td>
 		  <td>
-		    <%= link_to trouble_path(trouble) do %><%= trouble.title %><% end %>
+		    <%= link_to trouble_path(trouble) do %><span class="each_link"><%= trouble.title %></span><% end %>
 		  </td>
 		  <td>
             <%= trouble.body.truncate(20) %>

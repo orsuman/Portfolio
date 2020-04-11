@@ -1,21 +1,15 @@
 <div class = "container yield">
 
     <div class="col-xs-6 col-xs-offset-2">
-      <h2><span class = "subject">相談事例</span></h2></br>
+      <h2><span class = "subject">&nbsp;&nbsp;相談事例&nbsp;&nbsp;</span></h2></br>
     </div>
 
     <div class="col-xs-7 col-xs-offset-2">
         <label class="col-xs-3">相談者の名前</label>
           <span class ="col-xs-9">
             <% if @trouble.user.deleted_at == nil %>
-              <% if admin_signed_in? %>
-                <%= link_to user_path(@trouble.user) do %><%= @trouble.user.nickname %><% end %> 様
-              <% elsif lawyer_signed_in? %>
-                <% if @users.include?(@trouble.user.id) %>
-                  <%= link_to user_path(@trouble.user) do %><%= @trouble.user.nickname %><% end %> 様
-                <% else %>
-                  <%= @trouble.user.nickname %> 様
-                <% end %>
+              <% if admin_signed_in? || lawyer_signed_in? %>
+                <%= link_to user_path(@trouble.user) do %><span class="each_link"><%= @trouble.user.nickname %></span><% end %> 様
               <% else %>
                 <%= @trouble.user.nickname %> 様
               <% end %>
@@ -33,9 +27,9 @@
           <span class ="col-xs-9"><%= @trouble.created_at.strftime('%Y年%m月%d日 %H時%M分') %></span>
     </div>
     <div class="col-xs-7 col-xs-offset-2">
-        <% unless @trouble.image_id.nil? %>
+        <% if @trouble.image_id != nil %>
         <label class="col-xs-12">説明写真</label>
-          <span class ="col-xs-12"><%= attachment_image_tag @trouble, :image, :fill, 600, 300, size:'600x300' %></span>
+          <span class ="col-xs-12 text-center"><%= attachment_image_tag @trouble, :image, class: "image_tag" %></span>
         <% end %>
     </div>
     <div class="col-xs-7 col-xs-offset-2"><br/>
@@ -55,13 +49,13 @@
 
     <% if lawyer_signed_in? %>
       <% if @trouble.user.deleted_at == nil %>
-        <% unless Comment.exists?(trouble_id: @trouble.id, lawyer_id: current_lawyer.id) %>
+        <% if Comment.exists?(trouble_id: @trouble.id, lawyer_id: current_lawyer.id) %>
           <div class="col-xs-7 col-xs-offset-2 actions">
-            <%= link_to "この相談に回答する", new_comments_path(trouble_id: @trouble.id), class:"btn btn-primary col-xs-12" %><br/>
+            <h5 class="required", style="text-align:center;">※既に回答して頂いているので、再度の回答はできません。</h5>
           </div>
         <% else %>
           <div class="col-xs-7 col-xs-offset-2 actions">
-            <h5 class="required", style="text-align:center;">※既に回答して頂いているので、再度の回答はできません。</h5>
+            <%= link_to "この相談に回答する", new_comments_path(trouble_id: @trouble.id), class:"btn btn-primary col-xs-12" %><br/>
           </div>
         <% end %>
       <% end %>
@@ -77,15 +71,15 @@
           <span class ="col-xs-9">
             <% if comment.lawyer.deleted_at == nil %>
               <% if admin_signed_in?  %>
-                <%=link_to lawyer_path(comment.lawyer_id) do %><%= comment.lawyer.name %><% end %> 様より
+                <%=link_to lawyer_path(comment.lawyer_id) do %><span class="each_link"><%= comment.lawyer.name %></span><% end %> 様より
               <% elsif lawyer_signed_in? %>
                 <% if current_lawyer.id == comment.lawyer.id %>
-                  <%=link_to lawyer_path(comment.lawyer_id) do %><%= comment.lawyer.name %><% end %> 様より
+                  <%=link_to lawyer_path(comment.lawyer_id) do %><span class="each_link"><%= comment.lawyer.name %></span><% end %> 様より
                 <% else %>
                   <%= comment.lawyer.prefecture %>の<%= comment.lawyer.profession %>の先生より
                 <% end %>
               <% elsif user_signed_in? %>
-                  <%=link_to lawyer_path(comment.lawyer_id) do %><%= comment.lawyer.name %><% end %> 様より
+                  <%=link_to lawyer_path(comment.lawyer_id) do %><span class="each_link"><%= comment.lawyer.name %></span><% end %> 様より
               <% end %>
             <% else %>
               退会したユーザー

@@ -26,6 +26,7 @@ html,body{
      position: relative;
      min-height: 100%;
 	 background: #fff9f4;
+	 overflow: hidden;
 }
 header {
 	background-color: #ffba75;
@@ -34,7 +35,7 @@ header {
 }
 nav {
     position: relative;
-	width: 1184px;
+	width: 100%;
 	height: 120px;
 	margin: 0 auto;
 }
@@ -42,6 +43,7 @@ nav {
 	width:25vw;
 	height:104px;
 	margin:8px 0;
+	margin-left: 100px;
 	float: left;
 	background-image: image-url("lawconsultation.png");
     background-size: cover;
@@ -51,19 +53,20 @@ nav {
 	position: absolute;
 	top: 50px;
 	right: 0;
+	padding-right: 100px;
 }
 .header-link {
 	display: inline-block;
 	font-size: 16px;
 	margin: 0 15px;
 }
-.each_link {
+.page_link {
 	color: #008b8b;
 	font-weight:bold;
     display: inline-block;
     text-decoration: none;
 }
-.each_link:hover {
+.page_link:hover {
 	color: #20b2aa;
 }
 .log-name {
@@ -77,6 +80,10 @@ main{
 	margin-top: 60px;
 	padding-bottom: 80px;
 }
+.logins {
+	margin-top:150px;
+	padding-bottom: 80px;
+}
 footer{
 	background-color: #0000cd;
 	color: #ffffff;
@@ -86,28 +93,28 @@ footer{
      bottom:0;
      text-align: center;
 }
+.each_link {
+	color: #0033cc;
+	text-decoration: underline;
+}
+.each_link:hover {
+	color: #3366ff;
+}
 .error {
     color:red;
-}
-.logins {
-	margin-top:150px;
-	padding-bottom: 80px;
 }
 .actions {
     margin-top: 30px;
 }
 table tr:nth-child(odd) td {
-	background: #fff8dc
+	background: #fff8dc;
 } tr:nth-child(even) td {
-	background: #ffffef
+	background: #ffffef;
 }
 table tr:nth-child(odd) th {
-	background: #fff8dc
+	background: #fff8dc;
 } tr:nth-child(even) th {
-	background: #ffffef
-}
-.tr-color {
-	background: black;
+	background: #ffffef;
 }
 .required {
 	color: red;
@@ -116,5 +123,9 @@ table tr:nth-child(odd) th {
 	color: blue;
 }
 .subject {
-	background: #ffff66;
+	background: #ffcc00;
+}
+.image_tag {
+  max-width: 100%;
+  max-height: 350px;
 }

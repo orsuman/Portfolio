@@ -3,7 +3,8 @@ class Admin::LawyersController < ApplicationController
 	before_action :authenticate_admin!
 
     def index
-       @lawyers = Lawyer.all.with_deleted.page(params[:page]).per(10)
+       @lawyers = Lawyer.all.with_deleted.order(created_at: :desc).page(params[:page]).per(10)
+       @lawyer_all = Lawyer.all.with_deleted
     end
 
     def show
