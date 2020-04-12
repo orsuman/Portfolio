@@ -1,7 +1,7 @@
 <div class = "container yield">
   <div class = "row">
 
-  	<div class="col-xs-6 col-xs-offset-3">
+  	<div class="col-xs-12 center">
       <h2><span class = "subject">&nbsp;&nbsp;カテゴリー一覧・追加&nbsp;&nbsp;</span></h2></br>
         <div>
           <% if @category.errors.any? %>
@@ -20,17 +20,17 @@
         </div>
     </div>
 
-    <div class="col-xs-5 col-xs-offset-3">
+    <div class="col-xs-6 col-xs-offset-3">
 
   		  <%= form_for(@category, url: admin_categories_path) do |f| %>
 
   		    <div class="field">
-  		      <%= f.label :カテゴリー名, class:"col-xs-4" %>
+  		      <%= f.label :カテゴリー名, class:"col-xs-3" %>
   		      <%= f.text_field :name, class:"col-xs-5" %>
   		    </div></br></br>
 
           <div class="field">
-            <%= f.label :ステータス, class:"col-xs-4" %>
+            <%= f.label :ステータス, class:"col-xs-3" %>
             <span class= "col-xs-2">
   		      <%= f.radio_button :is_active, true %>
   		      <%= f.label :有効 %>

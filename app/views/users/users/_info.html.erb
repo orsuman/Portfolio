@@ -60,7 +60,9 @@
 
 <% if user_signed_in? %>
   <% if current_user.id == user.id %>
-    <%= link_to '編集する', edit_user_path, class: "btn btn-success col-xs-12" %><br/><br/><br/><br/>
-    <%= link_to references_path, class: "btn btn-info col-xs-12" do %>"<span class="glyphicon glyphicon-thumbs-up"></span>参考になった"回答を見る<% end %>
+    <div class="col-xs-10 col-xs-offset-1">
+      <%= link_to '編集する', edit_user_path, class: "btn btn-success col-xs-12" %><br/><br/><br/><br/>
+      <%= link_to references_path, class: "btn btn-info col-xs-12" do %>"<span class="glyphicon glyphicon-thumbs-up"></span>参考になった"回答を見る<% end %>
+    </div>
   <% end %>
 <% end %>

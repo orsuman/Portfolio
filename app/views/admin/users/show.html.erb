@@ -1,19 +1,19 @@
 <div class = "container yield">
   <div class = "row">
 
-    <div class="col-xs-3 col-xs-offset-3 actions">
+    <div class="col-xs-12 center">
       <h2><span class = "subject">&nbsp;&nbsp;相談者詳細&nbsp;&nbsp;</span></h2></br>
     </div>
   </div>
 
   <div class = "row">
-    <div class="col-xs-5 col-xs-offset-3 actions">
+    <div class="col-xs-4 col-xs-offset-4 actions">
 
       <table ~~~ class = "table text-center">
 
         <colgroup>
-           <col style = "width:30%;">
-           <col style = "width:70%;">
+           <col style = "width:35%;">
+           <col style = "width:65%;">
         </colgroup>
 
           <tr>
@@ -69,11 +69,11 @@
   </div>
 
   <div class = "row">
-    <div class="col-xs-5 col-xs-offset-4 actions">
+    <div class="col-xs-4 col-xs-offset-4 actions">
       <% if @user.deleted_at == nil %>
-        <%= link_to "強制退会させる", admin_user_path(@user), data: { confirm: "退会させてよろしいでしょうか?" }, method: :delete ,class: "btn btn-danger col-xs-7" %>
+        <%= link_to "強制退会させる", admin_user_path(@user), data: { confirm: "退会させてよろしいでしょうか?" }, method: :delete ,class: "btn btn-danger col-xs-12" %>
       <% else %>
-        <%= link_to "復元させる", restore_admin_user_path(@user),data: { confirm: "復元してよろしいでしょうか?" }, method: :patch, class: "btn btn-warning col-xs-7" %>
+        <%= link_to "復元させる", restore_admin_user_path(@user),data: { confirm: "復元してよろしいでしょうか?" }, method: :patch, class: "btn btn-warning col-xs-12" %>
       <% end %>
     </div>
   </div>

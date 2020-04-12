@@ -1,7 +1,7 @@
 <div class = "container yield">
   <div class = "row">
 
-  	<div class="col-xs-6 col-xs-offset-2">
+  	<div class="col-xs-12 center">
       <h2><span class = "subject">&nbsp;&nbsp;&nbsp;ー&nbsp;法専門家に相談する&nbsp;ー&nbsp;&nbsp;&nbsp;</span></h2></br>
         <div>
           <% if @trouble.errors.any? %>
@@ -20,12 +20,12 @@
         </div>
     </div>
 
-    <div class="col-xs-7 col-xs-offset-2">
+    <div class="col-xs-6 col-xs-offset-3">
 
       <%= form_for(@trouble, url: confirm_troubles_path) do |f| %>
 
       　<div class="field">
-          <%= f.label :カテゴリー, class:"col-xs-2" %>
+          <%= f.label :カテゴリー, class:"col-xs-3" %>
           <%= f.collection_select :category_id, @true_categories, :id, :name, :prompt => "選択" %>
         </div></br>
 
@@ -34,12 +34,12 @@
           <% if @trouble.image != nil %>
             <span class ="col-xs-12"><%= attachment_image_tag @trouble, :image, class: "image_tag" %></span>
           <% end %>
-          <%= f.attachment_field :image, class:"col-xs-5" %>
+          <%= f.attachment_field :image, class:"col-xs-6" %>
         </div></br></br>
 
         <div class="field"></br>
           <%= f.label :タイトル, class:"col-xs-12" %><br/>
-          <%= f.text_field :title, class:"col-xs-7",placeholder: "※20文字以内で入力してください" %>
+          <%= f.text_field :title, class:"col-xs-12",placeholder: "※20文字以内で入力してください" %>
         </div></br></br>
 
         <div class="field">
@@ -49,7 +49,7 @@
 
     </div>
 
-    <div class="col-xs-7 col-xs-offset-2"><br/><br/>
+    <div class="col-xs-6 col-xs-offset-3"><br/><br/>
 
         <div class="actions">
           <%= f.submit "投稿内容を確認する", class:"btn btn-primary col-xs-12" %>

@@ -1,7 +1,7 @@
 <div class="container logins">
   <div class="row">
 
-    <div class="text-center">
+    <div class="col-xs-12 center">
       <h2><span class="subject">&nbsp;&nbsp;&nbsp;相談者としてログインする&nbsp;&nbsp;&nbsp;</span></h2><br/><br/>
     </div>
 
@@ -21,17 +21,14 @@
 
     </div>
 
-    <div class="actions col-xs-8 col-xs-offset-4">
-      <%= f.submit "ログインする", class:"btn btn-primary col-xs-6" %>
+    <div class="col-xs-4 col-xs-offset-4 actions">
+      <%= f.submit "ログインする", class: "btn btn-primary col-xs-12" %>
     </div>
 
       <% end %>
 
-  </div><br/><br/><br/>
-
-  <div class="row">
-      <div class="col-xs-6 col-xs-offset-4">
-        登録が済んでいない方は、<%= link_to new_user_registration_path do %><span class="each_link">こちら</span><% end %>から新規登録してください。
-    　</div>
+    <div class="col-xs-6 col-xs-offset-4  actions"><br/>
+      登録が済んでいない方は、<%= link_to new_user_registration_path do %><span class="each_link">こちら</span><% end %>から新規登録してください。
+    </div>
   </div>
 </div>

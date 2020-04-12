@@ -1,17 +1,17 @@
 <div class="container logins">
   <div class="row">
-    <div class="col-xs-6 col-xs-offset-4">
-      <h2><span class="subject">&nbsp;&nbsp;ログイン画面&nbsp;&nbsp;</span></h2></br>
+    <div class="col-xs-12 center">
+      <h2><span class="subject">&nbsp;&nbsp;管理者ログイン画面&nbsp;&nbsp;</span></h2></br>
     </div>
 
-    <div class="col-xs-4 col-xs-offset-4">
+    <div class="col-xs-4 col-xs-offset-4"><br/>
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
         <div class="field">
           <%= f.label :メールアドレス, class:"col-xs-5" %>
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-xs-7" %>
-        </div></br></br>
+        </div></br></br><br/>
 
         <div class="field">
           <%= f.label :パスワード, class:"col-xs-5" %>
@@ -20,8 +20,8 @@
 
     </div>
 
-        <div class="actions col-xs-8 col-xs-offset-4">
-          <%= f.submit "ログインする", class:"btn btn-primary col-xs-6" %>
+        <div class="actions col-xs-4 col-xs-offset-4"><br/>
+          <%= f.submit "ログインする", class: "btn btn-primary col-xs-12" %>
         </div>
       <% end %>
 
