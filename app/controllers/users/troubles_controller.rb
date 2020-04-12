@@ -54,6 +54,7 @@ class Users::TroublesController < ApplicationController
 
 	def show
 	   @trouble = Trouble.find(params[:id])
+     @comments = @trouble.comments.order(created_at: :desc)
 	end
 
 

@@ -14,6 +14,7 @@ class Lawyers::LawyersController < ApplicationController
            @true_references = reference.sum
          end
      end
+     @comments = Kaminari.paginate_array(@true_comments).page(params[:page])
 	end
 
 	def edit
