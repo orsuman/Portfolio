@@ -5,7 +5,7 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id]) #ルーム情報の取得
     @message = Message.new #新規メッセージ投稿
-    @messages = @room.messages #このルームのメッセージを全て取得
+    @messages = @room.messages.order(created_at: :desc) #このルームのメッセージを全て取得
     @lawyer = @room.lawyer
     @user = @room.user
   end

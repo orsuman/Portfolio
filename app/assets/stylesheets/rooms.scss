@@ -2,16 +2,19 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.left-message{
-  text-align: left;
-  padding-right: 120px;
+.user_message {
+	background: #d6ffd6;
 }
 
-.right-message{
-  text-align: right;
-  padding-left: 120px;
+.lawyer_message {
+	background: #c6ffff;
 }
 
 .name_link {
-	color: #191970;
+	color: #d6ffff;
+}
+
+.mesubmit {
+	margin-top: 15px;
+	margin-left: 20px;
 }

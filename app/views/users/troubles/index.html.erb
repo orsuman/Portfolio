@@ -22,7 +22,7 @@
           <% end %>
       <% end %>
     </div>
-  </div><br/>
+  </div>
 
   <div class="col-xs10 col-xs-offset-1">
   	<h4>ー<%= @troubles.count %>件を表示中ー（投稿の新しい順）</h4>
@@ -32,10 +32,11 @@
 
       <colgroup>
          <col style = "width:7%;">
-         <col style = "width:16%;">
-         <col style = "width:17%;">
-         <col style = "width:30%;">
-         <col style = "width:30%;">
+         <col style = "width:15%;">
+         <col style = "width:15%;">
+         <col style = "width:28%;">
+         <col style = "width:28%;">
+         <col style = "width:7%;">
       </colgroup>
 
 	    <tr>
@@ -44,6 +45,7 @@
 		  <th>カテゴリー</th>
 		  <th>タイトル</th>
 		  <th>内容</th>
+		  <th class="center">回答数</th>
 	    </tr>
 	  <% @troubles.each do |trouble| %>
 	    <tr>
@@ -73,6 +75,9 @@
 		  </td>
 		  <td>
             <%= trouble.body.truncate(20) %>
+		  </td>
+		  <td class="center">
+		  	<%= trouble.comments.count %>件
 		  </td>
 	    </tr>
 	  <%end%>

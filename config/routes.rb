@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   }
   scope module: :lawyers do
     get 'lawyers/:id/withdraw' => 'lawyers#withdraw',as: 'lawyer_withdraw'
+    get 'lawyers/:id/map' => 'map#show',as: 'map'
     resources :lawyers, only: [:show, :edit, :update, :destroy]
     resources :comments, only: [:new, :create] do
       collection do

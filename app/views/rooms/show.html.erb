@@ -1,43 +1,69 @@
 <div class = "container yield">
 
   <div class="row">
-    <% if user_signed_in? %>
-      <h2><span class="subject">&nbsp;<%= link_to lawyer_path(@lawyer) do %><span class="each_link"><%= @lawyer.name %></span><% end %> 先生（<%= @lawyer.office %>）に直接相談する&nbsp;</span></h2>
-    <% elsif lawyer_signed_in?%>
-      <h2><span class="subject">&nbsp;<%= link_to user_path(@user) do %><span class="each_link"><%= @user.name %></span><% end %>（<%= @user.nickname %>）様の相談に回答する&nbsp;</span></h2>
-    <% end %><br/>
+    <div class="col-xs-12 center">
+      <% if user_signed_in? %>
+        <h2><span class="subject">&nbsp;<%= link_to lawyer_path(@lawyer) do %><span class="each_link"><%= @lawyer.name %></span><% end %> 先生（<%= @lawyer.office %>）に直接相談する&nbsp;</span></h2>
+      <% elsif lawyer_signed_in?%>
+        <h2><span class="subject">&nbsp;<%= link_to user_path(@user) do %><span class="each_link"><%= @user.name %></span><% end %>（<%= @user.nickname %>）様の相談に回答する&nbsp;</span></h2>
+      <% end %><br/>
+    </div>
 
-    <%= form_for [@room, @message] do |f| %>
-      <%= f.text_area :content, class: "col-xs-9", size:'10x2' %>
-      <%= f.submit "メッセージを送信", class: "btn btn-primary"%>
-    <% end %>
-  </div><br/><br/>
+    <div class="col-xs-12">
+      <%= form_for [@room, @message] do |f| %>
+        <%= f.text_area :content, class: "col-xs-7 col-xs-offset-2", size:'10x3' %>
+        <%= f.submit "メッセージを送信", class: "btn btn-primary mesubmit"%>
+      <% end %><br/><br/>
+    </div>
 
-	<div class="col-xs-9">
-    <% if user_signed_in? %>
-      <% @messages.each do |message| %>
+    <% @messages.each do |message| %>
+      <% if user_signed_in? %>
         <% if message.is_user == true %>
-          <div class="left-message">
-            <%= @user.name %> 様 : <%= message.content %>
+          <div class="row comment">
+            <div class="col-xs-2 right">
+              <%= @user.name %> 様 :
+            </div>
+            <div class="col-xs-7 user_message">
+              <%= safe_join(message.content.split("\n"),tag(:br)) %>
+              <div class="right">（<%= message.created_at.strftime('%Y年%m月%d日 %H時%M分') %> 送信）</div>
+            </div>
+            <div class="col-xs-3"></div>
           </div>
         <% else %>
-          <div class="right-message">
-            <%= message.content %> : <%= @lawyer.name %> 様
+          <div class="row comment">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-7 lawyer_message">
+              <%= safe_join(message.content.split("\n"),tag(:br)) %>
+              <div class="right">（<%= message.created_at.strftime('%Y年%m月%d日 %H時%M分') %> 送信）</div>
+            </div>
+            <div class="col-xs-2">
+              : <%= @lawyer.name %> 様
+            </div>
           </div>
         <% end %>
-      <% end %>
 
-    <% elsif lawyer_signed_in?%>
-      <% @messages.each do |message| %>
+      <% elsif lawyer_signed_in?%>
         <% if message.is_user == true %>
-          <!-- メッセージがuserによるものだったら右に寄せる -->
-          <div class="right-message">
-            <%= message.content %> : <%= @user.name %> 様
+          <div class="row comment">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-7 user_message">
+              <%= safe_join(message.content.split("\n"),tag(:br)) %><br/>
+              <div class="right">（<%= message.created_at.strftime('%Y年%m月%d日 %H時%M分') %> 送信）</div>
+            </div>
+            <div class="col-xs-2">
+              : <%= @user.name %> 様
+            </div>
           </div>
         <% else %>
-          <!-- メッセージがlawyerによるものだったら左に寄せる -->
-          <div class="left-message">
-            <%= @lawyer.name %> 様 : <%= message.content %>
+          <div class="row comment">
+            <div class="col-xs-2 right">
+              <%= @lawyer.name %> 様 :
+            </div>
+            <div class="col-xs-7 lawyer_message">
+              <%= safe_join(message.content.split("\n"),tag(:br)) %>
+              <div class="right">（<%= message.created_at.strftime('%Y年%m月%d日 %H時%M分') %> 送信）</div>
+            </div>
+            <div class="col-xs-3"></div>
           </div>
         <% end %>
       <% end %>
