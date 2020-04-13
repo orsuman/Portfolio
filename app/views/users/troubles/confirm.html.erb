@@ -24,20 +24,17 @@
     <div class="col-xs-8 col-xs-offset-2 center">
       <h4 class="required">※ 一度投稿すると編集・削除することはできませんので、よくご確認ください!!</h4>
     </div>
-    <div class="col-xs-6 col-xs-offset-3"><br/>
-      <label class="col-xs-3">カテゴリー</label>
-        <span class ="col-xs-9"><%= @trouble.category.name %></span></br>
-    </div>
-    <div class="col-xs-6 col-xs-offset-3">
+
+    <div class="col-xs-6 col-xs-offset-3 frame">
+        <label class="col-xs-3">相談者の名前</label>
+          <p class ="col-xs-9"><%= @trouble.user.nickname %></p>
+        <label class="col-xs-3">カテゴリー</label>
+          <p class ="col-xs-9"><%= @trouble.category.name %></p>
         <label class="col-xs-12">説明写真</label>
-          <span class ="col-xs-12 text-center"><%= attachment_image_tag @trouble, :image, class: "image_tag"  %></span>
-    </div>
-    <div class="col-xs-6 col-xs-offset-3"><br/>
-        <label class="col-xs-12">タイトル</label>
+          <span class ="col-xs-12 text-center"><%= attachment_image_tag @trouble, :image, class: "image_tag" %></span>
+        <label class="col-xs-12"><br/>タイトル</label>
           <span class ="col-xs-12"><%= @trouble.title %></span>
-    </div>
-    <div class="col-xs-6 col-xs-offset-3"><br/>
-        <label class="col-xs-12">投稿内容</label>
+        <label class="col-xs-12"><br/>投稿内容</label>
           <span class ="col-xs-12"><%= safe_join(@trouble.body.split("\n"),tag(:br)) %></span>
     </div>
 
