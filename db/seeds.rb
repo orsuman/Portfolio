@@ -6,5 +6,5 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Admin.create!(email: "dwc@portfolio",
-	          password: "KK-portfolio")
+Admin.create!(email: ENV['DB_admin_id'],
+	          password: ENV['DB_admin_pass'])

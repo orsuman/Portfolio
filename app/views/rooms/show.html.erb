@@ -47,7 +47,7 @@
           <div class="row comment">
             <div class="col-xs-3"></div>
             <div class="col-xs-7 user_message">
-              <%= safe_join(message.content.split("\n"),tag(:br)) %><br/>
+              <%= safe_join(message.content.split("\n"),tag(:br)) %>
               <div class="right">（<%= message.created_at.strftime('%Y年%m月%d日 %H時%M分') %> 送信）</div>
             </div>
             <div class="col-xs-2">
