@@ -42,7 +42,7 @@ class Lawyers::LawyersController < ApplicationController
     private
 
       def lawyer_params
-        params.require(:lawyer).permit(:name, :name_kana, :office, :profession, :age, :postal_code, :prefecture, :address, :profile, :phone_number, :url, :image, :email)
+        params.require(:lawyer).permit(:name, :name_kana, :office, :profession, :age, :postal_code, :prefecture, :address, :latitude, :longitude, :profile, :phone_number, :url, :image, :email)
       end
 
       def correct_lawyer

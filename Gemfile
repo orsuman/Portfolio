@@ -82,5 +82,8 @@ gem 'jp_prefecture'
 gem 'seed-fu'
 #環境変数
 gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
 #Google map
 gem 'geocoder'
