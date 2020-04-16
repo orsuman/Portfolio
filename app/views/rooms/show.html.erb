@@ -3,16 +3,24 @@
   <div class="row">
     <div class="col-xs-12 center">
       <% if user_signed_in? %>
-        <h2><span class="subject">&nbsp;<%= link_to lawyer_path(@lawyer) do %><span class="each_link"><%= @lawyer.name %></span><% end %> 先生（<%= @lawyer.office %>）に直接相談する&nbsp;</span></h2>
+          <% if @room.lawyer.deleted_at == nil %>
+            <h2><span class="subject">&nbsp;<%= link_to lawyer_path(@lawyer) do %><span class="each_link"><%= @lawyer.name %></span><% end %> 先生（<%= @lawyer.office %>）に直接相談する&nbsp;</span></h2>
+          <% else %>
+            <h2><span class="subject">&nbsp;<%= @lawyer.name %> 先生（<%= @lawyer.office %>）に相談した内容&nbsp;</span></h2>
+          <% end %>
       <% elsif lawyer_signed_in?%>
         <h2><span class="subject">&nbsp;<%= link_to user_path(@user) do %><span class="each_link"><%= @user.name %></span><% end %>（<%= @user.nickname %>）様の相談に回答する&nbsp;</span></h2>
       <% end %><br/>
     </div>
 
     <div class="col-xs-12">
-      <%= form_for [@room, @message] do |f| %>
-        <%= f.text_area :content, class: "col-xs-7 col-xs-offset-2", size:'10x3' %>
-        <%= f.submit "メッセージを送信", class: "btn btn-primary mesubmit"%>
+      <% if @room.lawyer.deleted_at != nil %>
+        <h3 class= "col-xs-9 col-xs-offset-3 error">相手が退会している為、メッセージの送信はできません。</h3>
+      <% else %>
+        <%= form_for [@room, @message] do |f| %>
+          <%= f.text_area :content, class: "col-xs-7 col-xs-offset-2", size:'10x3' %>
+          <%= f.submit "メッセージを送信", class: "btn btn-primary mesubmit"%>
+        <% end %>
       <% end %><br/><br/>
     </div>
 
@@ -68,5 +76,6 @@
         <% end %>
       <% end %>
     <% end %>
+  </div>
 </div>
 

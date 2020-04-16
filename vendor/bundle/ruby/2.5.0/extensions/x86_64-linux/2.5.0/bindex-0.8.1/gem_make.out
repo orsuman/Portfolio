@@ -1,0 +1,21 @@
+current directory: /vagrant/Portfolio/vendor/bundle/ruby/2.5.0/gems/bindex-0.8.1/ext/skiptrace
+/usr/bin/ruby2.5 -r ./siteconf20200416-2055-lxbohb.rb extconf.rb
+creating Makefile
+
+current directory: /vagrant/Portfolio/vendor/bundle/ruby/2.5.0/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR=" clean
+make: Warning: File 'Makefile' has modification time 0.83 s in the future
+make: warning:  Clock skew detected.  Your build may be incomplete.
+
+current directory: /vagrant/Portfolio/vendor/bundle/ruby/2.5.0/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR="
+make: Warning: File 'Makefile' has modification time 0.8 s in the future
+compiling cruby.c
+linking shared-object skiptrace/internal/cruby.so
+make: warning:  Clock skew detected.  Your build may be incomplete.
+
+current directory: /vagrant/Portfolio/vendor/bundle/ruby/2.5.0/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR=" install
+make: Warning: File 'Makefile' has modification time 0.21 s in the future
+/usr/bin/install -c -m 0755 cruby.so ./.gem.20200416-2055-1ge0r4w/skiptrace/internal
+make: warning:  Clock skew detected.  Your build may be incomplete.

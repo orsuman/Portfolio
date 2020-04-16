@@ -1,2 +1,0 @@
-module Lawyers::RoomsHelper
-end

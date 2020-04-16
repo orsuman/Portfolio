@@ -36,7 +36,6 @@ Rails.application.routes.draw do
         post :new, path: :new, as: :new, action: :back
       end
     end
-    resources :rooms, only: [:index]
   end
 
 
@@ -59,7 +58,7 @@ Rails.application.routes.draw do
     resources :references, only: [:index]
   end
 
-    resources :rooms, only: [:show, :create] do
+    resources :rooms, only: [:index, :show, :create] do
     resources :messages, only: [:create]
   end
 

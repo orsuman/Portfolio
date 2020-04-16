@@ -1,6 +1,10 @@
 class RoomsController < ApplicationController
 
   before_action :room_show, only: [:show]
+  before_action :room_index, only: [:index]
+
+  def index
+  end
 
   def show
     @room = Room.find(params[:id]) #ルーム情報の取得
@@ -35,6 +39,14 @@ class RoomsController < ApplicationController
 
     def room_user_params
       params.require(:room).permit(:user_id)
+    end
+
+    def room_index
+      if lawyer_signed_in?
+        @rooms = current_lawyer.rooms.order(created_at: :desc).page(params[:page])
+      elsif user_signed_in?
+        @rooms = current_user.rooms.order(created_at: :desc).page(params[:page])
+      end
     end
 
     def room_show
