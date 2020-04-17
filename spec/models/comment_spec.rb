@@ -2,16 +2,17 @@ require 'rails_helper'
 
 RSpec.describe 'Commentモデルのテスト', type: :model do
   describe 'バリデーションのテスト' do
-    context "データが正しく保存されない" do
-        before do
-            @comment = Comment.new
-            @comment.comment = ""
-            @comment.save
-        end
-        it "回答が入力されていない" do
-            expect(@comment).to be_invalid
-            expect(@comment.errors[:comment]).to include("can't be blank")
-        end
+    let(:lawyer) { create(:lawyer) }
+    let!(:comment) { build(:comment, lawyer_id: lawyer.id) }
+    context 'commentカラム' do
+      it '空欄でないこと' do
+        comment.comment = ''
+        expect(comment.valid?).to eq false;
+      end
+      it '2000文字以下であること' do
+        comment.comment = Faker::Lorem.characters(number:2001)
+        expect(comment.valid?).to eq false;
+      end
     end
   end
   describe 'アソシエーションのテスト' do

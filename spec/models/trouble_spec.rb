@@ -2,20 +2,29 @@ require 'rails_helper'
 
 RSpec.describe 'Troubleモデルのテスト', type: :model do
   describe 'バリデーションのテスト' do
-    context "相談投稿が正しく保存されない" do
-        before do
-            @trouble = Trouble.new
-            @trouble.title = ""
-            @trouble.body = ""
-            @trouble.category_id = ""
-            @trouble.save
-        end
-        it "title, bodyが入力されていない、またcategoryが選択されていないので保存されない" do
-            expect(@trouble).to be_invalid
-            expect(@trouble.errors[:title]).to include("can't be blank")
-            expect(@trouble.errors[:body]).to include("can't be blank")
-            expect(@trouble.errors[:category_id]).to include("can't be blank")
-        end
+    let(:user) { create(:user) }
+    let!(:trouble) { build(:trouble, user_id: user.id) }
+    context 'titleカラム' do
+      it '空欄でないこと' do
+        trouble.title = ''
+        expect(trouble.valid?).to eq false;
+      end
+    end
+    context 'bodyカラム' do
+      it '空欄でないこと' do
+        trouble.body = ''
+        expect(trouble.valid?).to eq false;
+      end
+      it '2000文字以下であること' do
+        trouble.body = Faker::Lorem.characters(number:2001)
+        expect(trouble.valid?).to eq false;
+      end
+    end
+    context 'categoryカラム' do
+      it '空欄でないこと' do
+        trouble.category_id = ''
+        expect(trouble.valid?).to eq false;
+      end
     end
   end
   describe 'アソシエーションのテスト' do
