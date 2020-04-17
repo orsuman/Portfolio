@@ -28,7 +28,7 @@ class RoomsController < ApplicationController
     if @room.save
       redirect_to room_path(@room)
     else
-      redirect_to root_path
+      redirect_to room_path(@room)
     end
   end
 

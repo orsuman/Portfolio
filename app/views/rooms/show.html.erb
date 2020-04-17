@@ -15,7 +15,7 @@
 
     <div class="col-xs-12">
       <% if @room.lawyer.deleted_at != nil %>
-        <h3 class= "col-xs-9 col-xs-offset-3 error">相手が退会している為、メッセージの送信はできません。</h3>
+        <h3 class= "center error">相手が退会している為、メッセージの送信はできません。</h3>
       <% else %>
         <%= form_for [@room, @message] do |f| %>
           <%= f.text_area :content, class: "col-xs-7 col-xs-offset-2", size:'10x3' %>

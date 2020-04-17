@@ -25,6 +25,7 @@ class Lawyer < ApplicationRecord
   validates :postal_code, presence: true, length: { is: 7 }
   validates :prefecture, presence: true
   validates :address, presence: true
+  validates :phone_number, length: { minimum: 10, maximum: 11 }
   validates :url, format: /\A#{URI::regexp(%w(http https))}\z/
 
   acts_as_paranoid
