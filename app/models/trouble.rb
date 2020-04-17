@@ -8,6 +8,6 @@ class Trouble < ApplicationRecord
   attachment :image
 
   validates :title, presence: true, length: {maximum: 20}
-  validates :body ,presence: true, length: {minimum: 10, maximum: 2000}
+  validates :body ,presence: true, length: {maximum: 2000}
   validates :category_id, presence: true
 end

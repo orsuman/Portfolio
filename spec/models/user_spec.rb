@@ -25,4 +25,11 @@ RSpec.describe 'Userモデルのテスト', type: :model do
         end
     end
   end
+  describe 'アソシエーションのテスト' do
+    context 'Troubleモデルとの関係' do
+      it '1:Nとなっている' do
+        expect(User.reflect_on_association(:troubles).macro).to eq :has_many
+      end
+    end
+  end
 end

@@ -34,4 +34,11 @@ RSpec.describe 'Lawyerモデルのテスト', type: :model do
         end
     end
   end
+  describe 'アソシエーションのテスト' do
+    context 'Commentモデルとの関係' do
+      it '1:Nとなっている' do
+        expect(Lawyer.reflect_on_association(:comments).macro).to eq :has_many
+      end
+    end
+  end
 end
