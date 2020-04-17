@@ -95,3 +95,4 @@ group :production do
 end
 #Google map
 gem 'geocoder'
+gem 'gmaps4rails'
