@@ -2,7 +2,7 @@
 lock "~> 3.13.0"
 
 set :application, "Portfolio"
-set :repo_url, "git@github.com:orsuman/Portfolio.git "
+set :repo_url, "git@github.com:orsuman/Portfolio.git"
 
 set :deploy_to, "/home/ec2-user/Portfolio"
 set :rbenv_ruby, '2.5.7'
