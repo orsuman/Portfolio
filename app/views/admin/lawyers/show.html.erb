@@ -65,6 +65,10 @@
             <td><%= @lawyer.office %></td>
           </tr>
           <tr>
+            <th>事務所の場所</th>
+            <td><%= link_to '事務所の場所を確認する', map_path(@lawyer) %></td>
+          </tr>
+          <tr>
             <th>〒・都道府県</th>
             <td>〒<%= @lawyer.postal_code %>, <%= @lawyer.prefecture %></td>
           </tr>

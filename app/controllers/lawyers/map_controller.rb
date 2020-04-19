@@ -1,17 +1,35 @@
 class Lawyers::MapController < ApplicationController
 
-    before_action :login, only: [:show]
+    before_action :login_model, only: [:show]
 
 	def show
-	   @lawyer = Lawyer.find(params[:id])
+	   @lawyer = Lawyer.with_deleted.find(params[:id])
 	end
 
 
 	private
-	  def login
-	  	unless user_signed_in? || lawyer_signed_in? || admin_signed_in?
-	  	  redirect_to root_path
-	    end
-	  end
-
+      def login_model
+        lawyer = Lawyer.with_deleted.find(params[:id])
+          if lawyer.deleted_at == nil
+	  	    unless user_signed_in? || admin_signed_in?
+	  	    	if lawyer_signed_in?
+	  	    	  if current_lawyer.id != lawyer.id
+	  	    	  	redirect_to lawyer_path(current_lawyer)
+	  	    	  end
+	  	    	else
+	  	          redirect_to root_path
+	  	        end
+	        end
+          else
+            unless admin_signed_in?
+              if lawyer_signed_in?
+                redirect_to lawyer_path(current_lawyer)
+              elsif user_signed_in?
+                redirect_to user_path(current_user)
+              else
+                redirect_to root_path
+              end
+            end
+          end
+      end
 end
