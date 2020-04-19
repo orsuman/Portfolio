@@ -21,5 +21,10 @@ RSpec.describe 'Commentモデルのテスト', type: :model do
         expect(Comment.reflect_on_association(:lawyer).macro).to eq :belongs_to
       end
     end
+    context 'Troubleモデルとの関係' do
+      it 'N:1となっている' do
+        expect(Comment.reflect_on_association(:trouble).macro).to eq :belongs_to
+      end
+    end
   end
 end

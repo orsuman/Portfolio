@@ -10,7 +10,7 @@ RSpec.describe 'Categoryモデルのテスト', type: :model do
       end
     end
     context 'is_activeカラム' do
-      it '空欄でないこと' do
+      it '選択してあること' do
         category.is_active = ''
         expect(category.valid?).to eq false;
       end
