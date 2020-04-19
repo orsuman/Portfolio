@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :rooms, dependent: :destroy
 
   def chat(lawyer_id)
-    troubles.joins(:comments).where("comments.lawyer_id = " + lawyer_id.to_s ).group(:comment_id).count
+    troubles.joins(:comments).where(comments: { lawyer_id: lawyer_id }).group(:comment_id).count
   end
 
   attachment :image
