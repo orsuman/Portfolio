@@ -4,27 +4,29 @@
   	<div class="col-xs-12 center">
       <h2><span class = "subject">&nbsp;&nbsp;&nbsp;ー&nbsp;管理者に問合せする&nbsp;ー&nbsp;&nbsp;&nbsp;</span></h2></br>
     </div>
-        <div class="col-xs-4 col-xs-offset-4">
-          <div class= "required">
-           ※御本人確認が出来てから順次回答させて頂きます。<br/>
-           以下の内容について、正しく記載お願い申し上げます。<br/>
-           確認が取れなかった場合、回答はできかねますので、<br/>
-           ご了承願います。<br/>
+    <div class="col-xs-4 col-xs-offset-4">
+      <div class= "required">
+        ※御本人確認が出来てから順次回答させて頂きます。<br/>
+        以下の内容について、正しく記載お願い申し上げます。<br/>
+        確認が取れなかった場合、回答はできかねますので、<br/>
+        ご了承願います。<br/>
+      </div>
+    </div>
+    <div class="col-xs-6 col-xs-offset-3">
+      <% if @inquiry.errors.any? %>
+        <div class= "error">
+          <div id="error_explanation">
+            <h3>
+              <%= pluralize(@inquiry.errors.count, "error") %>
+              prohibited this trouble from being saved:
+            </h3>
+              <% @inquiry.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+              <% end %>
           </div>
-          <% if @inquiry.errors.any? %>
-            <div class= "error">
-              <div id="error_explanation">
-                <h3>
-                  <%= pluralize(@inquiry.errors.count, "error") %>
-                  prohibited this trouble from being saved:
-                </h3>
-                  <% @inquiry.errors.full_messages.each do |msg| %>
-                  <li><%= msg %></li>
-                  <% end %>
-              </div>
-            </div>
-          <% end %><br/><br/>
         </div>
+      <% end %><br/><br/>
+    </div>
 
     <div class="col-xs-6 col-xs-offset-3">
 
@@ -32,7 +34,7 @@
 
         <div class="field">
           <%= f.label :以下について問い合わせする %> <span class="required">※必須</span><br />
-          <%= f.select :subject, Inquiry.subjects.keys.to_a, :prompt => "--選択--" %>
+          <%= f.select :subject, Inquiry.subjects.keys.to_a, :prompt => "---------------選択---------------" %>
         </div></br>
 
         <div class="field">
@@ -62,7 +64,7 @@
 
         <div class="field">
           <%= f.label :ご登録頂いたユーザー %> <span class="required">※必須</span><br />
-          <%= f.select :is_user,[["相談者", "true"], ["法専門家", "false"]], :prompt => "選択" %>
+          <%= f.select :is_user,[["相談者", "true"], ["法専門家", "false"]], :prompt => "--選択--" %>
         </div></br>
 
         <div class="field">
