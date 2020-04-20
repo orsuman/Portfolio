@@ -4,11 +4,12 @@
   	<div class="col-xs-12 center">
       <h2><span class = "subject">&nbsp;&nbsp;&nbsp;ー&nbsp;管理者に問合せする&nbsp;ー&nbsp;&nbsp;&nbsp;</span></h2></br>
     </div>
-        <div class="col-xs-6 col-xs-offset-3">
+        <div class="col-xs-4 col-xs-offset-4">
           <div class= "required">
            ※御本人確認が出来てから順次回答させて頂きます。<br/>
            以下の内容について、正しく記載お願い申し上げます。<br/>
-           ご確認が取れなかった場合、回答はできかねますのでご了承願います。<br/>
+           確認が取れなかった場合、回答はできかねますので、<br/>
+           ご了承願います。<br/>
           </div>
           <% if @inquiry.errors.any? %>
             <div class= "error">
@@ -50,7 +51,7 @@
         </div></br></br>
 
         <div class="field">
-          <%= f.label :ご登録頂いた名前（せい・めい） %> <span class="required">※必須</span>（せい・めいの間に一文字スペースを入れてください）<br />
+          <%= f.label :ご登録頂いた名前（かな） %> <span class="required">※必須</span>（せい・めいの間に一文字スペースを入れてください）<br />
           <%= f.text_field :name_kana, class:"col-xs-4" %>
         </div></br></br>
 
