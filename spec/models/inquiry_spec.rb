@@ -22,7 +22,7 @@ RSpec.describe 'Inquiryモデルのテスト', type: :model do
       end
     end
     context 'nameカラム' do
-      it '空欄であっても良い' do
+      it '空欄でないこと' do
         inquiry.name = ''
         expect(inquiry.valid?).to eq false;
       end
