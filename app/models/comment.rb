@@ -10,5 +10,5 @@ class Comment < ApplicationRecord
     	references.where(user_id: user.id).exists?
     end
 
-	validates :comment, presence: true ,length: { maximum: 2000 }
+	validates :comment, presence: true, length: { maximum: 2000 }
 end

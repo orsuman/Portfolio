@@ -8,5 +8,5 @@ class Inquiry < ApplicationRecord
   validates :email, presence: true
   validates :sex, inclusion: { in: [true, false] }
   validates :is_user, inclusion: { in: [true, false] }
-  validates :content, presence: true
+  validates :content, presence: true, length: { maximum: 500 }
 end
