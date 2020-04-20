@@ -5,7 +5,6 @@ class Admin::TroublesController < ApplicationController
 	def destroy
        trouble = Trouble.find(params[:id])
        trouble.destroy
-       flash[:success] = 'You have destroyed successfully.'
        redirect_to troubles_path
 	end
 

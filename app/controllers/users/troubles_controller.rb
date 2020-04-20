@@ -37,7 +37,7 @@ class Users::TroublesController < ApplicationController
   	end
 
   	def back
-         @trouble = Trouble.new(trouble_params)
+       @trouble = Trouble.new(trouble_params)
   	   @categories = Category.all
          render :new
   	end

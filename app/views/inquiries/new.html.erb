@@ -1,0 +1,83 @@
+<div class = "container yield">
+  <div class = "row">
+
+  	<div class="col-xs-12 center">
+      <h2><span class = "subject">&nbsp;&nbsp;&nbsp;ー&nbsp;管理者に問合せする&nbsp;ー&nbsp;&nbsp;&nbsp;</span></h2></br>
+    </div>
+        <div class="col-xs-6 col-xs-offset-3">
+          <div class= "required">
+           ※御本人確認が出来てから順次回答させて頂きます。<br/>
+           以下の内容について、正しく記載お願い申し上げます。<br/>
+           ご確認が取れなかった場合、回答はできかねますのでご了承願います。<br/>
+          </div>
+          <% if @inquiry.errors.any? %>
+            <div class= "error">
+              <div id="error_explanation">
+                <h3>
+                  <%= pluralize(@inquiry.errors.count, "error") %>
+                  prohibited this trouble from being saved:
+                </h3>
+                  <% @inquiry.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                  <% end %>
+              </div>
+            </div>
+          <% end %><br/><br/>
+        </div>
+
+    <div class="col-xs-6 col-xs-offset-3">
+
+      <%= form_for(@inquiry) do |f| %>
+
+        <div class="field">
+          <%= f.label :以下について問い合わせする %> <span class="required">※必須</span><br />
+          <%= f.select :subject, Inquiry.subjects.keys.to_a, :prompt => "--選択--" %>
+        </div></br>
+
+        <div class="field">
+          <%= f.label :ご登録頂いたメールアドレス %> <span class="required">※必須</span><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-xs-6" %>
+        </div></br></br>
+
+        <div class="field">
+          <%= f.label :ご返信の送信先メールアドレス %> (記載が無ければ上記のアドレスに送信させて頂きます)<br />
+          <%= f.email_field :send_email, autofocus: true, autocomplete: "email", class:"col-xs-6" %>
+        </div></br></br>
+
+        <div class="field">
+          <%= f.label :ご登録頂いた名前（姓・名） %> <span class="required">※必須</span>（姓・名の間に一文字スペースを入れてください）<br />
+          <%= f.text_field :name, class:"col-xs-4" %>
+        </div></br></br>
+
+        <div class="field">
+          <%= f.label :ご登録頂いた名前（せい・めい） %> <span class="required">※必須</span>（せい・めいの間に一文字スペースを入れてください）<br />
+          <%= f.text_field :name_kana, class:"col-xs-4" %>
+        </div></br></br>
+
+        <div class="field">
+          <%= f.label :ご登録頂いた性別 %> <span class="required">※必須</span><br />
+          <%= f.select :sex,[["男性", "true"], ["女性", "false"]], :prompt => "選択" %>
+        </div></br>
+
+        <div class="field">
+          <%= f.label :ご登録頂いたユーザー %> <span class="required">※必須</span><br />
+          <%= f.select :is_user,[["相談者", "true"], ["法専門家", "false"]], :prompt => "選択" %>
+        </div></br>
+
+        <div class="field">
+          <%= f.label :お問い合わせ内容, class:"col-xs-12" %>
+          <%= f.text_area :content, class:"col-xs-12",size:'15x10',placeholder: "※500文字以内で入力してください" %>
+        </div>
+
+    </div>
+
+    <div class="col-xs-6 col-xs-offset-3"><br/><br/>
+
+        <div class="actions">
+          <%= f.submit "以上の内容で問い合わせする", class:"btn btn-primary col-xs-12" %>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>

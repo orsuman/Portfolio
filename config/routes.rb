@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :categories, only: [:index, :create, :edit, :update]
     resources :comments, only: [:destroy]
     resources :troubles, only: [:destroy]
+    resources :inquiries, only: [:index, :show, :destroy]
   end
 
   devise_for :lawyers, :controllers => {
@@ -60,5 +61,9 @@ Rails.application.routes.draw do
     resources :rooms, only: [:index, :show, :create] do
     resources :messages, only: [:create]
   end
-
+    resources :inquiries, only: [:new, :create] do
+      collection do
+        get :thanks
+      end
+  end
 end

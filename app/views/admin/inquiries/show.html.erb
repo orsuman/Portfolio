@@ -1,0 +1,49 @@
+<div class = "container yield">
+  <div class = "row">
+
+    <div class="col-xs-12 center">
+      <h2><span class = "subject">&nbsp;&nbsp;&nbsp;ー&nbsp;問合せの詳細を確認する&nbsp;ー&nbsp;&nbsp;&nbsp;</span></h2></br>
+    </div>
+
+    <div class="col-xs-6 col-xs-offset-3 frame">
+        <label class="col-xs-3">問合せ名</label>
+          <p class ="col-xs-9"><%= @inquiry.subject %></p>
+        <label class="col-xs-3">登録アドレス</label>
+      <% unless @inquiry.send_email.empty? %>
+          <p class ="col-xs-9"><%= @inquiry.email %></p>
+      <% else %>
+          <p class ="col-xs-9"><a href="mailto:xxx@xxx.com" class="data"><%= @inquiry.email %></a></p>
+      <% end %>
+      <% unless @inquiry.send_email.empty? %>
+        <label class="col-xs-3">送信先アドレス</label>
+          <p class ="col-xs-9"><a href="mailto:xxx@xxx.com" class="data"><%= @inquiry.send_email %></a></p>
+      <% end %>
+        <label class="col-xs-3">姓・名</label>
+          <p class ="col-xs-9"><%= @inquiry.name %> 様</p>
+        <label class="col-xs-3">せい・めい</label>
+          <p class ="col-xs-9"><%= @inquiry.name_kana %> 様</p>
+        <label class="col-xs-3">性別</label>
+          <p class ="col-xs-9">
+          	<% if @inquiry.sex == true %>
+  		      <span>男性</span>
+  		    <%else%>
+  			  <span>女性</span>
+  			<% end %>
+  		  </p>
+        <label class="col-xs-3">ユーザー</label>
+          <p class ="col-xs-9">
+          	<% if @inquiry.is_user == true %>
+  		      <span>相談者</span>
+  		    <%else%>
+  			  <span>法専門家</span>
+  			<% end %>
+  		  </p>
+        <label class="col-xs-12">投稿内容</label>
+          <span class ="col-xs-12"><%= safe_join(@inquiry.content.split("\n"),tag(:br)) %></span>
+        <div class="right"><br/>
+          <%= link_to "削除する", admin_inquiry_path(@inquiry), method: :delete, "data-confirm"  => "[要確認!!]本当に削除しますか？", class: "btn btn-danger" %>
+        </div>
+    </div>
+
+  </div>
+</div>

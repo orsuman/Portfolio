@@ -1,0 +1,52 @@
+<div class = "container yield">
+
+  <div class = "row">
+  	<div class="col-xs-12 center">
+      <h2><span class = "subject">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-list-alt"></i>&nbsp;&nbsp;問合せ一覧（全 <%= @inquiry_all.count %> 件）&nbsp;&nbsp;
+	  </span></h2></br>
+    </div>
+  </div>
+
+  <div class="col-xs-6 col-xs-offset-3">
+  	<h4>ー<%= @inquiries.count %>件を表示中ー（新着順）</h4>
+  </div>
+
+  <div class="col-xs-6 col-xs-offset-3">
+    <table ~~~ class = "table">
+
+      <colgroup>
+         <col style = "width:3%;">
+         <col style = "width:24%;">
+         <col style = "width:51%;">
+         <col style = "width:22%;">
+      </colgroup>
+
+	    <tr>
+	      <th>ID</th>
+	      <th>名前</th>
+		  <th>問合せ名</th>
+		  <th></th>
+	    </tr>
+	  <% @inquiries.each do |inquiry| %>
+	    <tr>
+	      <td>
+	      	<%= inquiry.id %>
+	      </td>
+	      <td>
+	      	<%= inquiry.name %> 様
+	      </td>
+		  <td>
+		  	<%= inquiry.subject %>
+		  </td>
+		  <td>
+		  	<%= link_to '詳細を確認', admin_inquiry_path(inquiry), class: "btn btn-success" %>
+		  </td>
+	    </tr>
+	  <% end %>
+    </table>
+   </div>
+
+	<div class = "col-xs-12 center"><br/>
+	  <%= paginate @inquiries, class: "paginate" %>
+    </div>
+</div>

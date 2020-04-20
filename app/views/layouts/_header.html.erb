@@ -9,7 +9,7 @@
   <ul class="header-links">
     <!-----管理者ログイン後----->
     <% if admin_signed_in? %>
-      <li class="header-link log-name">管理者がログイン中です</li>
+      <li class="header-link"><%= link_to admin_inquiries_path do %><span class="each_link">問合せ一覧</span><% end %></li>
       <li class="header-link"><%= link_to admin_lawyers_path do %><span class="each_link">法専門家一覧</span><% end %></li>
       <li class="header-link"><%= link_to admin_users_path do %><span class="each_link">相談者一覧</span><% end %></li>
       <li class="header-link"><%= link_to troubles_path do %><span class="each_link">相談一覧</span><% end %></li>
@@ -20,7 +20,7 @@
       <li class="header-link log-name"><%= current_lawyer.name %> 様としてログイン中</li>
       <li class="header-link"><%= link_to lawyer_path(current_lawyer) do %><span class="page_link"><i class="fas fa-user-tie"></i>マイページ</span><% end %></li>
       <li class="header-link"><%= link_to troubles_path do %><span class="page_link"><i class="far fa-list-alt"></i>相談一覧</span><% end %></li>
-      <li class="header-link"><%= link_to rooms_path do %><span class="page_link"><i class="far fa-comments"></i>直接相談一覧</span><% end %></li>
+      <li class="header-link"><%= link_to rooms_path do %><span class="page_link"><i class="fas fa-comment-dots"></i>直接相談一覧</span><% end %></li>
       <li class="header-link"><%= link_to destroy_lawyer_session_path, method: :delete do %><span class="page_link"><i class="fas fa-sign-out-alt"></i>ログアウト</span><% end %></li>
     <!-----利用者ログイン後----->
     <% elsif user_signed_in? %>
@@ -34,6 +34,7 @@
       <li class="header-link"><%= link_to home_about_path do %><span class="page_link"><i class="fas fa-check-square"></i>このサイトの目的</span><% end %></li>
       <li class="header-link"><%= link_to new_lawyer_session_path do %><span class="page_link"><i class="fas fa-user-tie"></i>法専門家ログイン</span><% end %></li>
       <li class="header-link"><%= link_to new_user_session_path do %><span class="page_link"><i class="fas fa-user"></i>相談者ログイン</span><% end %></li>
+      <li class="header-link"><%= link_to new_inquiry_path do %><span class="page_link"><i class="far fa-comment-alt"></i>お問い合わせ</span><% end %></li>
     <% end %>
   </ul>
 </nav>
