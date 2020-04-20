@@ -1,5 +1,7 @@
 class Admin::InquiriesController < ApplicationController
 
+	before_action :authenticate_admin!
+
 	def index
 	  @inquiries = Inquiry.all.order(created_at: :desc).page(params[:page])
 	  @inquiry_all = Inquiry.all
