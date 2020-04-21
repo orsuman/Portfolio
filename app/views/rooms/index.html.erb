@@ -45,12 +45,16 @@
 	      	全<%= room.messages.count %>件あります
 	      </td>
 	      <td>
-	        <%= room.messages.order(created_at: :desc).first.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
-	          <% if room.messages.order(created_at: :desc).first.is_user == true %>
-	            （相手）
-	          <% else %>
-	            （自分）
-	          <% end %>
+	      	<% if room.messages.count > 0 %>
+	          <%= room.messages.order(created_at: :desc).first.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
+	            <% if room.messages.order(created_at: :desc).first.is_user == true %>
+	             （相手）
+	            <% else %>
+	             （自分）
+	            <% end %>
+	        <% else %>
+	          メッセージはまだありません
+	        <% end %>
 	      </td>
 	      <td>
 	      	<%= link_to 'このチャットルームへ移動する', room_path(room), class: "btn btn-warning" %>
@@ -116,12 +120,16 @@
 	      	全<%= room.messages.count %>件あります
 	      </td>
 	      <td>
-	        <%= room.messages.order(created_at: :desc).first.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
-	          <% if room.messages.order(created_at: :desc).first.is_user == true %>
-	            （自分）
-	          <% else %>
-	            （相手）
-	          <% end %>
+	      	<% if room.messages.count > 0 %>
+	          <%= room.messages.order(created_at: :desc).first.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
+	            <% if room.messages.order(created_at: :desc).first.is_user == true %>
+	              （自分）
+	            <% else %>
+	              （相手）
+	            <% end %>
+	        <% else %>
+	          メッセージはまだありません
+	        <% end %>
 	      </td>
 	      <td>
 	      	<%= link_to 'このチャットルームへ移動する', room_path(room), class: "btn btn-warning" %>
