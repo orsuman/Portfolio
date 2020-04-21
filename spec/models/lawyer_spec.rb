@@ -111,8 +111,8 @@ RSpec.describe 'Lawyerモデルのテスト', type: :model do
     end
     context 'profileカラム' do
       let(:test_lawyer) { lawyer }
-      it '75文字以下であること' do
-        test_lawyer.profile = Faker::Lorem.characters(number:76)
+      it '50文字以下であること' do
+        test_lawyer.profile = Faker::Lorem.characters(number:51)
         is_expected.to eq false
       end
     end

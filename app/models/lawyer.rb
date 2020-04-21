@@ -21,7 +21,7 @@ class Lawyer < ApplicationRecord
   validates :profession, presence: true
   validates :sex, inclusion: { in: [true, false] }
   validates :age, presence: true
-  validates :profile, length: { maximum: 75 }
+  validates :profile, length: { maximum: 50 }
   validates :postal_code, presence: true, length: { is: 7 }
   validates :prefecture, presence: true
   validates :address, presence: true
