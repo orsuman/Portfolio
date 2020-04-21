@@ -28,7 +28,8 @@
       <div class="field">
         <%= form_for(@comment, url: confirm_comments_path) do |f| %>
           <%= f.label :回答内容, class:"col-xs-12" %>
-          <%= f.text_area :comment, class:"col-xs-12",size:'15x15',placeholder: "※2000文字以内で入力してください" %>
+          <%= f.text_area :comment, class:"col-xs-12 body-text",size:'15x15',placeholder: "※2000文字以内で入力してください" %>
+          <p class="text-count">現在の文字数：0文字</p>
           <%= f.hidden_field :trouble_id %>
       </div>
     </div>
