@@ -13,11 +13,13 @@ class InquiriesController < ApplicationController
   	     end
   	end
 
-	def thanks
-	end
+	  def thanks
+	  end
 
   	private
+
   	  def inquiry_params
   	  	 params.require(:inquiry).permit(:subject, :email, :send_email, :name, :name_kana, :sex, :is_user, :content)
   	  end
+
 end

@@ -66,4 +66,5 @@ Rails.application.routes.draw do
         get :thanks
       end
   end
+
 end

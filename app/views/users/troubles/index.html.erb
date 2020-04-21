@@ -11,6 +11,7 @@
 	  </span></h2></br>
     </div>
   </div>
+
   <div class = "row">
     <div class="col-xs-8 col-xs-offset-4">
       <%= form_with( url: troubles_path, method: :get, local:true) do |f| %>
@@ -47,6 +48,7 @@
 		  <th>内容</th>
 		  <th class="center">回答数</th>
 	    </tr>
+
 	  <% @troubles.each do |trouble| %>
 	    <tr>
 	      <td>

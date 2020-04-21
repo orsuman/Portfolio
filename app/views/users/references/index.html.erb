@@ -1,5 +1,6 @@
 <div class="container yield">
   <div class="row">
+
     <div class="col-xs-12 center">
       <h2><span class="subject">&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-up" style="color:#000000;"></span>参考になった一覧（全<%= @true_references.count %>件）</span></h2><br/>
     </div>
@@ -21,15 +22,14 @@
         <col style = "width:20%;">
       </colgroup>
 
-  	<tr class= "tr-color">
-  	  <th>写真</th>
-  	  <th>名前</th>
+  	  <tr class= "tr-color">
+  	    <th>写真</th>
+  	    <th>名前</th>
         <th>回答内容</th>
         <th>タイトル</th>
-  	</tr>
+  	  </tr>
 
     <% @references.each do |reference| %>
-
       <tr>
         <td><%= attachment_image_tag(reference.comment.lawyer, :image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40') %></td>
         <td>
@@ -42,7 +42,6 @@
         <td><%= reference.comment.comment.truncate(45) %></td>
         <td><%= link_to 'この回答があるページへ', trouble_path(reference.comment.trouble_id), class: "btn btn-success"%></td>
       </tr>
-
     <% end %>
 
     </table>
@@ -57,4 +56,5 @@
         <h2>"<span class="glyphicon glyphicon-thumbs-up" style="color:#000000;"></span>参考になった"は、まだありません</h2>
     </div>
   <% end %>
+
 </div>

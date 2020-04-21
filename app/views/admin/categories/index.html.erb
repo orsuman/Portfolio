@@ -21,8 +21,7 @@
     </div>
 
     <div class="col-xs-6 col-xs-offset-3">
-
-  		  <%= form_for(@category, url: admin_categories_path) do |f| %>
+  		<%= form_for(@category, url: admin_categories_path) do |f| %>
 
   		    <div class="field">
   		      <%= f.label :カテゴリー名, class:"col-xs-3" %>
@@ -31,25 +30,26 @@
 
           <div class="field">
             <%= f.label :ステータス, class:"col-xs-3" %>
-            <span class= "col-xs-2">
-  		      <%= f.radio_button :is_active, true %>
-  		      <%= f.label :有効 %>
-  		      </span>
-  		      <span class= "col-xs-3">
-  		      <%= f.radio_button :is_active, false %>
-  		      <%= f.label :無効 %>
-  		      </span>
-  		      <span class= "col-xs-3">
-  		      <%= f.submit "追加する" %>
-  		      </span>
+              <span class= "col-xs-2">
+  		          <%= f.radio_button :is_active, true %>
+  		          <%= f.label :有効 %>
+  		        </span>
+  		        <span class= "col-xs-3">
+  		          <%= f.radio_button :is_active, false %>
+  		          <%= f.label :無効 %>
+  		        </span>
+  		        <span class= "col-xs-3">
+  		          <%= f.submit "追加する" %>
+  		        </span>
   		    </div>
 
-  		  <% end %>
+  	 <% end %>
+    </div>
 
-  	</div>
   </div></br></br>
 
   <div class = "row">
+
   	<div class="col-xs-6 col-xs-offset-3">
 
   	    <table ~~~ class = "table">
@@ -67,6 +67,7 @@
   			    <th class = "text-center">ステータス</th>
   			    <th></th>
   		    </tr>
+
   		  <% @categories.each do |category| %>
   		    <tr>
   			    <td class = "text-center"><%= category.name %></td>

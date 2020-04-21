@@ -1,6 +1,6 @@
 <div class = "container yield">
-
   <div class="row">
+
     <div class="col-xs-12 center">
       <% if user_signed_in? %>
           <% if @room.lawyer.deleted_at == nil %>
@@ -76,6 +76,7 @@
         <% end %>
       <% end %>
     <% end %>
+
   </div>
 </div>
 

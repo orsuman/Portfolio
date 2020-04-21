@@ -1,46 +1,45 @@
 class Lawyers::LawyersController < ApplicationController
 
-	before_action :correct_lawyer, only: [:edit, :update, :withdraw, :destroy]
-  before_action :login_model, only: [:show]
+  	before_action :correct_lawyer, only: [:edit, :update, :withdraw, :destroy]
+    before_action :login_model, only: [:show]
 
-	def show
-     @lawyer = Lawyer.with_deleted.find(params[:id])
-     @true_comments = []
-     reference = []
-       @lawyer.comments.order(created_at: :desc).each do |comment|
-         if comment.trouble.category.is_active == true
-           @true_comments << comment
-           reference << comment.references.count
-           @true_references = reference.sum
-         end
-     end
-     @comments = Kaminari.paginate_array(@true_comments).page(params[:page]).per(15)
-	end
+  	def show
+       @lawyer = Lawyer.with_deleted.find(params[:id])
+       @true_comments = []
+       reference = []
+         @lawyer.comments.order(created_at: :desc).each do |comment|
+           if comment.trouble.category.is_active == true
+             @true_comments << comment
+             reference << comment.references.count
+             @true_references = reference.sum
+           end
+       end
+       @comments = Kaminari.paginate_array(@true_comments).page(params[:page]).per(15)
+  	end
 
-	def edit
-	   @lawyer = Lawyer.find(current_lawyer.id)
-	end
+  	def edit
+  	   @lawyer = Lawyer.find(current_lawyer.id)
+  	end
 
-	def update
-	   @lawyer = Lawyer.find(current_lawyer.id)
-	     if @lawyer.update(lawyer_params)
-	       redirect_to lawyer_path(current_lawyer)
-	     else
-	       render 'edit'
-	     end
-	end
+  	def update
+  	   @lawyer = Lawyer.find(current_lawyer.id)
+  	     if @lawyer.update(lawyer_params)
+  	       redirect_to lawyer_path(current_lawyer)
+  	     else
+  	       render 'edit'
+  	     end
+  	end
 
-	def withdraw
-	end
+  	def withdraw
+  	end
 
-	def destroy
-	   lawyer = Lawyer.find(current_lawyer.id)
-	   lawyer.destroy
-	   redirect_to thanks_path
-	end
+  	def destroy
+  	   lawyer = Lawyer.find(current_lawyer.id)
+  	   lawyer.destroy
+  	   redirect_to thanks_path
+  	end
 
     private
-
       def lawyer_params
         params.require(:lawyer).permit(:name, :name_kana, :office, :profession, :age, :postal_code, :prefecture, :address, :latitude, :longitude, :profile, :phone_number, :url, :image, :email)
       end

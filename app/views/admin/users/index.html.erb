@@ -32,6 +32,7 @@
   		    <th>状況</th>
   		    <th></th>
   	    </tr>
+
   	  <% @users.each do |user| %>
   	    <tr>
   	      <td>
@@ -67,7 +68,6 @@
       </table>
 
     </div>
-
 
       <div class = "col-xs-12 center"><br/>
         <%= paginate @users %>

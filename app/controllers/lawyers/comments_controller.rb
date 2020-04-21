@@ -37,6 +37,7 @@ class Lawyers::CommentsController < ApplicationController
 	  def comment_params
 	  	 params.require(:comment).permit(:comment, :trouble_id)
 	  end
+
 	  def lawyer_new
 	  	trouble = Trouble.find(params[:trouble_id])
 	  	if lawyer_signed_in?
@@ -52,6 +53,7 @@ class Lawyers::CommentsController < ApplicationController
 	  	  redirect_to troubles_path
 	  	end
 	  end
+
 	  def lawyer_create
 	  	comment = Comment.new(comment_params)
 	  	trouble = Trouble.find(comment.trouble_id)
@@ -68,4 +70,5 @@ class Lawyers::CommentsController < ApplicationController
 	  	  redirect_to troubles_path
 	  	end
 	  end
+
 end

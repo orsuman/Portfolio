@@ -1,11 +1,15 @@
 class HomeController < ApplicationController
 
-	before_action :login_model, only: [:top]
+	  before_action :login_model, only: [:top]
 
-	def top
-	end
-	def about
-	end
+	  def top
+	  end
+
+	  def about
+	  end
+
+    def thanks
+    end
 
     private
 
@@ -14,4 +18,5 @@ class HomeController < ApplicationController
               redirect_to home_about_path
           end
       end
+
 end

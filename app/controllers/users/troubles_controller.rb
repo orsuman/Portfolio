@@ -62,11 +62,13 @@ class Users::TroublesController < ApplicationController
   	  def trouble_params
   	  	 params.require(:trouble).permit(:title, :body, :image, :category_id)
   	  end
+
   	  def login
   	  	unless user_signed_in? || lawyer_signed_in? || admin_signed_in?
   	  	  redirect_to root_path
   	  	end
   	  end
+
       def true_category
         unless params[:category_id].nil?
           category = Category.find(params[:category_id])
@@ -75,19 +77,22 @@ class Users::TroublesController < ApplicationController
           end
         end
       end
+
       def true_trouble
         trouble = Trouble.find(params[:id])
         if trouble.category.is_active == false
           redirect_to troubles_path
         end
       end
+
       def user_login
-    	unless user_signed_in?
-    	  redirect_to troubles_path
-    	end
+    	  unless user_signed_in?
+    	    redirect_to troubles_path
+    	  end
       end
+
       def true_categories
-         categories = Category.all
+        categories = Category.all
          @true_categories = []
          categories.each do |c|
            if c.is_active == true

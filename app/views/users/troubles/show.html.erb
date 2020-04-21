@@ -5,6 +5,7 @@
     </div>
 
     <div class="col-xs-6 col-xs-offset-3 frame">
+
         <label class="col-xs-3">相談者の名前</label>
           <p class ="col-xs-9">
             <% if @trouble.user.deleted_at == nil %>
@@ -17,16 +18,21 @@
               退会したユーザー
             <% end %>
           </p>
+
         <label class="col-xs-3">カテゴリー</label>
           <p class ="col-xs-9"><%= @trouble.category.name %></p>
+
         <label class="col-xs-3">投稿日時</label>
           <p class ="col-xs-9"><%= @trouble.created_at.strftime('%Y年%m月%d日 %H時%M分') %></p>
+
       <% if @trouble.image_id != nil %>
         <label class="col-xs-12">説明写真</label>
           <span class ="col-xs-12 text-center"><%= attachment_image_tag @trouble, :image, class: "image_tag" %></span>
       <% end %>
+
         <label class="col-xs-12"><br/>タイトル</label>
           <span class ="col-xs-12"><%= @trouble.title %></span>
+
         <label class="col-xs-12"><br/>投稿内容</label>
           <span class ="col-xs-12"><%= safe_join(@trouble.body.split("\n"),tag(:br)) %></span>
 
@@ -51,6 +57,7 @@
       <% end %>
     <% end %>
 
+
     <% if @trouble.comments.count > 0 %>
 
       <div class="col-xs-6 comments"></div>
@@ -61,6 +68,7 @@
 
       <% @comments.each do |comment| %>
         <div class="col-xs-6 col-xs-offset-3 frame comment">
+
           <label class="col-xs-3">回答者</label>
             <p class ="col-xs-9">
               <% if comment.lawyer.deleted_at == nil %>
@@ -79,10 +87,13 @@
                 退会したユーザー
               <% end %>
             </p>
+
           <label class="col-xs-3">回答日時</label>
             <p class ="col-xs-9"><%= comment.created_at.strftime('%Y年%m月%d日 %H時%M分') %></p>
+
           <label class="col-xs-12">回答内容</label>
             <span class ="col-xs-12"><%= safe_join(comment.comment.split("\n"),tag(:br)) %></span>
+
         <% if admin_signed_in? %>
           <div class="col-xs-12 right"><br/>
             <span class="glyphicon glyphicon-thumbs-up" style="color:#000000;">参考になった<%= comment.references.count %></span>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "強制削除する", admin_comment_path(comment), method: :delete, "data-confirm"  => "[要確認!!]本当に削除しますか？", class: "btn   btn-danger" %>
@@ -96,6 +107,7 @@
             <span class="glyphicon glyphicon-thumbs-up" style="color:#000000;">参考になった<%= comment.references.count %></span>
           </div>
         <% end %>
+
         </div>
       <% end %>
 

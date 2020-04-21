@@ -2,12 +2,12 @@ class Lawyers::MapController < ApplicationController
 
     before_action :login_model, only: [:show]
 
-	def show
-	   @lawyer = Lawyer.with_deleted.find(params[:id])
-	end
+	  def show
+	     @lawyer = Lawyer.with_deleted.find(params[:id])
+	  end
 
 
-	private
+	  private
       def login_model
         lawyer = Lawyer.with_deleted.find(params[:id])
           if lawyer.deleted_at == nil
