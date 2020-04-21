@@ -47,10 +47,10 @@
       <% if @trouble.user.deleted_at == nil %>
         <% if Comment.exists?(trouble_id: @trouble.id, lawyer_id: current_lawyer.id) %>
           <div class="col-xs-6 col-xs-offset-3 actions">
-            <h5 class="required", style="text-align:center;">※既に回答して頂いているので、再度の回答はできません。</h5>
+            <h4 class="required", style="text-align:center;">※既に回答して頂いているので、再度の回答はできません。</h4>
           </div>
         <% else %>
-          <div class="col-xs-6 col-xs-offset-3 actions">
+          <div class="col-xs-6 col-xs-offset-3 actions"><br/>
             <%= link_to "この相談に回答する", new_comments_path(trouble_id: @trouble.id), class:"btn btn-primary col-xs-12" %><br/>
           </div>
         <% end %>
