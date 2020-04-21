@@ -69,12 +69,13 @@
 
         <div class="field">
           <%= f.label :お問い合わせ内容, class:"col-xs-12" %>
-          <%= f.text_area :content, class:"col-xs-12",size:'15x10',placeholder: "※500文字以内で入力してください" %>
+          <%= f.text_area :content, class:"col-xs-12 body-text",size:'15x10',placeholder: "※500文字以内で入力してください" %>
+          <p class="text-count">現在の文字数：0文字</p>
         </div>
 
     </div>
 
-    <div class="col-xs-6 col-xs-offset-3"><br/><br/>
+    <div class="col-xs-6 col-xs-offset-3">
         <div class="actions">
           <%= f.submit "以上の内容で問い合わせする", class:"btn btn-primary col-xs-12" %>
         </div>
