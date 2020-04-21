@@ -88,6 +88,10 @@
             <th>自己紹介</th>
             <td><%= @lawyer.profile %></td>
           </tr>
+          <tr>
+            <th>ユーザーページ</th>
+            <td><%= link_to '確認する', lawyer_path(@lawyer) %></td>
+          </tr>
       </table></br>
     </div>
   </div>

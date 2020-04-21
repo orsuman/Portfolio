@@ -64,6 +64,10 @@
             <th>県・市町村</th>
             <td><%= @user.prefecture %> <%= @user.city %></td>
           </tr>
+          <tr>
+            <th>ユーザーページ</th>
+            <td><%= link_to '確認する', user_path(@user) %></td>
+          </tr>
       </table></br>
     </div>
   </div>
