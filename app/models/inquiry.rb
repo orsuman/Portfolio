@@ -1,6 +1,6 @@
 class Inquiry < ApplicationRecord
 
-  enum subject: {ログインできないので確認して欲しい:1, ログインできるよう復元してほしい:2, その他ご利用について:3 }
+  enum subject: {ログインできないので確認してほしい:1, ログインできるよう復元してほしい:2, その他ご利用について:3 }
 
   validates :subject, presence: true
   validates :name, presence: true
