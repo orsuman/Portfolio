@@ -36,7 +36,7 @@
       <%= comment.trouble.category.name %>
   	</td>
   	<td>
-      <%= link_to trouble_path(comment.trouble_id) do%>
+      <%= link_to trouble_path(comment.trouble_id), class: "each_link" do%>
         <%= comment.comment.truncate(36) %>
       <% end %>
   	</td>

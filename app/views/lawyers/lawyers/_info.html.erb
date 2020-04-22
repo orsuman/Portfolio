@@ -26,6 +26,10 @@
       <td><%= lawyer.office %></td>
     </tr>
     <tr>
+      <th>事務所場所</th>
+      <td><%= link_to '事務所の場所を見る', map_path(lawyer), class: "each_link" %></td>
+    </tr>
+    <tr>
       <th>性別</th>
       <td>
           <% if lawyer.sex == true %>
@@ -53,7 +57,7 @@
     </tr>
     <tr>
       <th>URL</th>
-      <td><%= link_to lawyer.url, :target=>["_blank"] do %><%= lawyer.url %><% end %></td>
+      <td><%= link_to lawyer.url, :target=>["_blank"], class: "each_link" do %><%= lawyer.url %><% end %></td>
     </tr>
     <tr>
       <th>自己紹介</th>
@@ -83,5 +87,4 @@
     <% end %>
   <% end %><br/><br/><br/>
 
-  <%= link_to '事務所の場所を見る', map_path(lawyer), class: "btn btn-info col-xs-12" %>
 </div>

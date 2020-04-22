@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
      case resource
        when Admin
-              troubles_path
+              admin_inquiries_path
        when Lawyer
               lawyer_path(current_lawyer)
        when User
