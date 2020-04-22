@@ -39,7 +39,7 @@
   	      	<%= user.id %>
   	      </td>
   	      <td>
-  	      	<%= attachment_image_tag user, :image, :fill, 40, 40, fallback: "no_image.jpg",  size:'40x40' %>
+  	      	<%= attachment_image_tag user, :image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40' %>
   	      </td>
   	      <td>
   	      	<%= link_to user_path(user) do %><span class="each_link"><%= user.nickname %></span><% end %>
