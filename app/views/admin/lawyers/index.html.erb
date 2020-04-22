@@ -39,7 +39,7 @@
   	      	<%= lawyer.id %>
   	      </td>
   	      <td>
-  	      	<%= attachment_image_tag lawyer, :image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40' %>
+  	      	<%= attachment_image_tag lawyer, :image, :fill, 60, 60, fallback: "no_image.jpg", size:'40x40' %>
   	      </td>
   	      <td>
   	      	<%= link_to lawyer_path(lawyer) do %><span class="each_link"><%= lawyer.name %></span><% end %>
