@@ -78,7 +78,7 @@
                   <% if current_lawyer.id == comment.lawyer.id %>
                     <%=link_to lawyer_path(comment.lawyer_id) do %><span class="each_link"><%= comment.lawyer.name %></span><% end %> 様より
                   <% else %>
-                    <%= comment.lawyer.prefecture %>の<%= comment.lawyer.profession %>の先生より
+                    <%= comment.lawyer.prefecture %>の<%= comment.lawyer.profession %>の方より
                   <% end %>
                 <% elsif user_signed_in? %>
                     <%=link_to lawyer_path(comment.lawyer_id) do %><span class="each_link"><%= comment.lawyer.name %></span><% end %> 様より

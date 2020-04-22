@@ -31,12 +31,12 @@
         </div></br></br>
 
         <div class="field">
-          <%= f.label :名前（姓・名） %> <span class="required">※必須</span>（姓・名の間に一文字スペースを入れてください）<br />
+          <%= f.label :名前（姓・名） %> <span class="required">※必須</span>（姓・名の間に一文字スペースをご入力願います）<br />
           <%= f.text_field :name, class:"col-xs-2" %>
         </div></br></br>
 
         <div class="field">
-          <%= f.label :名前（せい・めい） %> <span class="required">※必須</span>（せい・めいの間に一文字スペースを入れてください）<br />
+          <%= f.label :名前（せい・めい） %> <span class="required">※必須</span>（せい・めいの間に一文字スペースをご入力願います）<br />
           <%= f.text_field :name_kana, class:"col-xs-2" %>
         </div></br></br>
 
@@ -51,7 +51,7 @@
         </div></br>
 
         <div class="field">
-          <%= f.label :性別 %> <span class="required">※必須（一度登録すると変更できませんので、よくご確認ください）</span><br />
+          <%= f.label :性別 %> <span class="required">※必須（一度登録すると変更できませんので、よくご確認願います）</span><br />
           <%= f.select :sex,[["男性", "true"], ["女性", "false"]], :prompt => "選択" %>
         </div></br>
 
@@ -61,7 +61,7 @@
         </div></br>
 
         <div class="field">
-          <%= f.label :郵便番号 %>（ハイフン無しで数字のみ入力してください）<span class="required">※必須</span><br />
+          <%= f.label :郵便番号 %>（ハイフン無しで数字のみ、ご入力願います）<span class="required">※必須</span><br />
           <%= f.text_field :postal_code, class:"col-xs-2" %>
         </div></br></br>
 
@@ -76,12 +76,12 @@
         </div></br></br>
 
         <div class = "field">
-          <%= f.label :電話番号 %>（ハイフン無しで数字のみ入力してください） <span class="recommendation">推奨</span><br/>
+          <%= f.label :電話番号 %>（ハイフン無しで数字のみ、ご入力願います） <span class="recommendation">推奨</span><br/>
           <%= f.text_field :phone_number, class:"col-xs-2"%>
         </div></br><br/>
 
         <div class = "field">
-          <label>URL</label>（http又はhttpsから始まるURLを入力してください） <span class="recommendation">推奨</span><br/>
+          <label>URL</label>（http又はhttpsから始まるURLをご入力願います） <span class="recommendation">推奨</span><br/>
           <%= f.text_field :url, class:"col-xs-5" %>
         </div></br><br/>
 
