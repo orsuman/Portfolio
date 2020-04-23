@@ -31,7 +31,12 @@
 
     <% @references.each do |reference| %>
       <tr>
-        <td><%= attachment_image_tag(reference.comment.lawyer, :image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40') %></td>
+        <td>
+          <% if reference.comment.lawyer.deleted_at == nil %>
+            <%= attachment_image_tag reference.comment.lawyer, :image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40' %></td>
+          <% else %>
+            <%= image_tag "no_image.jpg",size:"40x40" %>
+          <% end %>
         <td>
           <% if reference.comment.lawyer.deleted_at == nil %>
             <%= link_to lawyer_path(reference.comment.lawyer.id) do %><span class="each_link"><%= reference.comment.lawyer.name %></span><% end %> 様
