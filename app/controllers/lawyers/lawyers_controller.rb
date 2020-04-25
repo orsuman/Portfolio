@@ -1,9 +1,9 @@
 class Lawyers::LawyersController < ApplicationController
 
-  	before_action :correct_lawyer, only: [:edit, :update, :withdraw, :destroy]
+    before_action :correct_lawyer, only: [:edit, :update, :withdraw, :destroy]
     before_action :login_model, only: [:show]
 
-  	def show
+    def show
        @lawyer = Lawyer.with_deleted.find(params[:id])
        @true_comments = []
        reference = []
@@ -15,29 +15,29 @@ class Lawyers::LawyersController < ApplicationController
            end
        end
        @comments = Kaminari.paginate_array(@true_comments).page(params[:page]).per(15)
-  	end
+    end
 
-  	def edit
-  	   @lawyer = Lawyer.find(current_lawyer.id)
-  	end
+    def edit
+       @lawyer = Lawyer.find(current_lawyer.id)
+    end
 
-  	def update
-  	   @lawyer = Lawyer.find(current_lawyer.id)
-  	     if @lawyer.update(lawyer_params)
-  	       redirect_to lawyer_path(current_lawyer)
-  	     else
-  	       render 'edit'
-  	     end
-  	end
+    def update
+       @lawyer = Lawyer.find(current_lawyer.id)
+         if @lawyer.update(lawyer_params)
+           redirect_to lawyer_path(current_lawyer)
+         else
+           render 'edit'
+         end
+    end
 
-  	def withdraw
-  	end
+    def withdraw
+    end
 
-  	def destroy
-  	   lawyer = Lawyer.find(current_lawyer.id)
-  	   lawyer.destroy
-  	   redirect_to thanks_path
-  	end
+    def destroy
+       lawyer = Lawyer.find(current_lawyer.id)
+       lawyer.destroy
+       redirect_to thanks_path
+    end
 
     private
       def lawyer_params
@@ -56,6 +56,7 @@ class Lawyers::LawyersController < ApplicationController
               redirect_to root_path
           end
       end
+
       def login_model
         lawyer = Lawyer.with_deleted.find(params[:id])
           if lawyer.deleted_at == nil

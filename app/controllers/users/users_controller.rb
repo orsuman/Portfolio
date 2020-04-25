@@ -1,9 +1,9 @@
 class Users::UsersController < ApplicationController
 
-  	before_action :correct_user, only: [:edit, :update, :withdraw, :destroy]
-  	before_action :login_model, only: [:show]
+    before_action :correct_user, only: [:edit, :update, :withdraw, :destroy]
+    before_action :login_model, only: [:show]
 
-  	def show
+    def show
        @user = User.with_deleted.find(params[:id])
        @true_troubles = []
          @user.troubles.order(created_at: :desc).each do |trouble|
@@ -12,29 +12,29 @@ class Users::UsersController < ApplicationController
            end
          end
        @troubles = Kaminari.paginate_array(@true_troubles).page(params[:page])
-  	end
+    end
 
-  	def edit
+    def edit
        @user = User.find(current_user.id)
-  	end
+    end
 
-  	def update
-  	   @user = User.find(current_user.id)
-  	     if @user.update(user_params)
-  	       redirect_to user_path(current_user)
+    def update
+       @user = User.find(current_user.id)
+         if @user.update(user_params)
+           redirect_to user_path(current_user)
          else
           render 'edit'
          end
-  	end
+    end
 
-  	def withdraw
-  	end
+    def withdraw
+    end
 
-  	def destroy
-  	   user = User.find(current_user.id)
-  	   user.destroy
-  	   redirect_to thanks_path
-  	end
+    def destroy
+       user = User.find(current_user.id)
+       user.destroy
+       redirect_to thanks_path
+    end
 
     private
 

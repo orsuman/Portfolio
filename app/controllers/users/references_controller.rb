@@ -1,6 +1,6 @@
 class Users::ReferencesController < ApplicationController
 
-  	before_action :authenticate_user!
+    before_action :authenticate_user!
 
     def index
       @true_references = []
@@ -12,11 +12,12 @@ class Users::ReferencesController < ApplicationController
       end
     end
 
-  	def create
-  	   @comment = Comment.find(params[:comment_id])
+    def create
+       @comment = Comment.find(params[:comment_id])
        reference = current_user.references.new(comment_id: @comment.id)
        reference.save
-      end
+    end
+
     def destroy
        @comment = Comment.find(params[:comment_id])
        reference = current_user.references.find_by(comment_id: @comment.id)

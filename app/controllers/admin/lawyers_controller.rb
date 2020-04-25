@@ -1,6 +1,6 @@
 class Admin::LawyersController < ApplicationController
 
-	  before_action :authenticate_admin!
+    before_action :authenticate_admin!
 
     def index
        @lawyers = Lawyer.all.with_deleted.order(created_at: :desc).page(params[:page]).per(10)
