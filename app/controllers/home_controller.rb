@@ -14,7 +14,9 @@ class HomeController < ApplicationController
     private
 
       def login_model
-          if admin_signed_in? || lawyer_signed_in? || user_signed_in?
+          if admin_signed_in?
+              redirect_to admin_inquiries_path
+          elsif lawyer_signed_in? || user_signed_in?
               redirect_to home_about_path
           end
       end
