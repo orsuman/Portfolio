@@ -96,3 +96,5 @@ end
 #Google map
 gem 'geocoder'
 gem 'gmaps4rails'
+
+gem "refile-s3"
