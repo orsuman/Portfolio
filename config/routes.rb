@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
   root to: "home#top"
   get "home/about"
   get 'home/thanks' => 'home#thanks', as: 'thanks'
+
 
   devise_for :admin
   namespace :admin do
@@ -21,6 +23,7 @@ Rails.application.routes.draw do
     resources :troubles, only: [:destroy]
     resources :inquiries, only: [:index, :show, :destroy]
   end
+
 
   devise_for :lawyers, :controllers => {
   :registrations => 'lawyers/registrations'
@@ -66,5 +69,6 @@ Rails.application.routes.draw do
         get :thanks
       end
   end
+
 
 end
